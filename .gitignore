@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Genomic selection platform - large data files
+genomic-selection/data/raw/string/*.gz
+genomic-selection/data/raw/string/*.tsv
+genomic-selection/data/structures/*.pdb
+genomic-selection/data/raw/1000g/
+genomic-selection/data/raw/ukb_gwas/*.tsv.bgz
+genomic-selection/data/processed/
