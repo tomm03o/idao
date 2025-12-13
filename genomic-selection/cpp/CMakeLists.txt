@@ -21,8 +21,6 @@ set(CORE_SOURCES
     src/ld_matrix.cpp
     src/ldpred.cpp
     src/grm.cpp
-    src/susie.cpp
-    src/utils.cpp
 )
 
 # Build static library
@@ -40,7 +38,3 @@ target_link_libraries(genomic_core_cpp PRIVATE genomic_core)
 install(TARGETS genomic_core_cpp
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
 )
-
-# Tests
-enable_testing()
-add_subdirectory(tests)

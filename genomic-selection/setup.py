@@ -15,8 +15,6 @@ ext_modules = [
             "cpp/src/ld_matrix.cpp",
             "cpp/src/ldpred.cpp",
             "cpp/src/grm.cpp",
-            "cpp/src/susie.cpp",
-            "cpp/src/utils.cpp",
         ],
         include_dirs=["cpp/include"],
         extra_compile_args=["-O3", "-march=native", "-fopenmp", "-std=c++17"],
