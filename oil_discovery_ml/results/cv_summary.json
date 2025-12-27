@@ -1,0 +1,47 @@
+[
+  {
+    "fold": 1,
+    "val_metrics": {
+      "roc_auc": 0.7519986096628432,
+      "pr_auc": 0.021952561174820383,
+      "mae_reserve_size": 3.9923076318748203,
+      "rmse_reserve_size": 5.14683802204172
+    }
+  },
+  {
+    "fold": 2,
+    "val_metrics": {
+      "roc_auc": 0.8799965241571082,
+      "pr_auc": 0.038453883276829824,
+      "mae_reserve_size": 1.62675422238626,
+      "rmse_reserve_size": 2.197955066513108
+    }
+  },
+  {
+    "fold": 3,
+    "val_metrics": {
+      "roc_auc": 0.986444212721585,
+      "pr_auc": 0.29683751589998814,
+      "mae_reserve_size": 2.578918370381263,
+      "rmse_reserve_size": 3.4809744015171358
+    }
+  },
+  {
+    "fold": 4,
+    "val_metrics": {
+      "roc_auc": 0.5492872044506258,
+      "pr_auc": 0.00612295066925305,
+      "mae_reserve_size": 9.2108151614374,
+      "rmse_reserve_size": 12.096164568463857
+    }
+  },
+  {
+    "fold": 5,
+    "val_metrics": {
+      "roc_auc": 0.7449600278067431,
+      "pr_auc": 0.004546558239460675,
+      "mae_reserve_size": 20.107067183698902,
+      "rmse_reserve_size": 37.42408221375292
+    }
+  }
+]
