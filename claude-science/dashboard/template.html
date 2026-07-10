@@ -1,0 +1,418 @@
+<title>Claude Science — Evaluation & Experiment Console</title>
+<style>
+  :root {
+    /* cool slate neutrals with a teal bias — an instrument-panel palette */
+    --bg: #f4f7f7;
+    --panel: #ffffff;
+    --panel-2: #eef3f2;
+    --ink: #0f1e20;
+    --ink-soft: #46595b;
+    --ink-faint: #7d9092;
+    --line: #dbe6e4;
+    --accent: #0f9c8e;      /* deep teal, considered — the single bold hue */
+    --accent-soft: #d3ece8;
+    --good: #2f8a4e;
+    --warn: #b7822a;
+    --crit: #bd4436;
+    --floor: #9bb0b1;       /* muted grey-teal for the baseline series */
+    --shadow: 0 1px 2px rgba(15,30,32,.06), 0 8px 24px rgba(15,30,32,.05);
+    --radius: 12px;
+    --mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1415; --panel: #121e1f; --panel-2: #17262700; --panel-2: #182726;
+      --ink: #e4efed; --ink-soft: #a5b8b8; --ink-faint: #6f8384;
+      --line: #24393a; --accent: #2bc4b2; --accent-soft: #123430;
+      --good: #4fb06b; --warn: #d29a3f; --crit: #e0685a; --floor: #3c5354;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f4f7f7; --panel: #fff; --panel-2: #eef3f2; --ink: #0f1e20;
+    --ink-soft: #46595b; --ink-faint: #7d9092; --line: #dbe6e4;
+    --accent: #0f9c8e; --accent-soft: #d3ece8; --good: #2f8a4e; --warn: #b7822a;
+    --crit: #bd4436; --floor: #9bb0b1;
+    --shadow: 0 1px 2px rgba(15,30,32,.06), 0 8px 24px rgba(15,30,32,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1415; --panel: #121e1f; --panel-2: #182726; --ink: #e4efed;
+    --ink-soft: #a5b8b8; --ink-faint: #6f8384; --line: #24393a; --accent: #2bc4b2;
+    --accent-soft: #123430; --good: #4fb06b; --warn: #d29a3f; --crit: #e0685a;
+    --floor: #3c5354; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 24px 64px; }
+  .tabnum { font-variant-numeric: tabular-nums; }
+
+  /* ---- masthead ---- */
+  header.top {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap; border-bottom: 1px solid var(--line);
+    padding-bottom: 20px; margin-bottom: 28px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .mark {
+    width: 40px; height: 40px; border-radius: 10px; flex: none;
+    background: radial-gradient(120% 120% at 30% 20%, var(--accent), #0a5f57);
+    position: relative; box-shadow: var(--shadow);
+  }
+  .mark::after {
+    content: ""; position: absolute; inset: 0; border-radius: 10px;
+    background:
+      linear-gradient(transparent 46%, rgba(255,255,255,.55) 46%, rgba(255,255,255,.55) 54%, transparent 54%),
+      linear-gradient(90deg, transparent 46%, rgba(255,255,255,.3) 46%, rgba(255,255,255,.3) 54%, transparent 54%);
+  }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; font-weight: 650; }
+  .sub { color: var(--ink-faint); font-size: 12.5px; margin-top: 2px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+  button.theme {
+    font-family: var(--mono); font-size: 11px; color: var(--ink-soft);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 7px 12px; cursor: pointer; letter-spacing: .04em;
+  }
+  button.theme:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- KPI row ---- */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .kpi .label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  .kpi .val { font-size: 30px; font-weight: 650; letter-spacing: -.02em; margin-top: 6px; }
+  .kpi .val small { font-size: 14px; color: var(--ink-faint); font-weight: 500; }
+  .kpi .note { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; }
+
+  /* ---- panels ---- */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; box-shadow: var(--shadow);
+  }
+  .panel.full { grid-column: 1 / -1; }
+  .panel h2 {
+    font-size: 13px; margin: 0 0 2px; font-weight: 640; letter-spacing: -.005em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .panel .desc { color: var(--ink-faint); font-size: 12px; margin: 0 0 16px; }
+
+  /* ---- scorecard bars ---- */
+  .row { display: grid; grid-template-columns: 190px 1fr 52px; align-items: center; gap: 12px; padding: 7px 0; }
+  .row .name { font-size: 12.5px; color: var(--ink-soft); }
+  .track { position: relative; height: 18px; background: var(--panel-2); border-radius: 5px; overflow: hidden; }
+  .fill { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 5px; }
+  .fill.expert { background: linear-gradient(90deg, var(--accent), #0b7a6f); }
+  .fill.floor { background: repeating-linear-gradient(45deg, var(--floor), var(--floor) 4px, transparent 4px, transparent 8px); opacity: .9; }
+  .row .score { font-family: var(--mono); font-size: 12.5px; text-align: right; font-weight: 600; }
+  .legend { display: flex; gap: 16px; margin: 4px 0 14px; font-size: 11px; color: var(--ink-soft); }
+  .swatch { display: inline-block; width: 22px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+
+  /* ---- env chips ---- */
+  .envs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .env {
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px;
+    background: var(--panel-2);
+  }
+  .env .k { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 600; }
+  .env .t { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; }
+  .env .cap { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px; float: right;
+    font-family: var(--mono); font-size: 10px; font-weight: 600; padding: 2px 7px;
+    border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* ---- RL composition ---- */
+  .stackbar { display: flex; height: 30px; border-radius: 7px; overflow: hidden; border: 1px solid var(--line); }
+  .seg { position: relative; }
+  .domlist { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin-top: 14px; }
+  .domlist .d { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-soft); }
+  .domlist .d b { color: var(--ink); font-family: var(--mono); font-variant-numeric: tabular-nums; margin-left: auto; font-weight: 600; }
+  .chipbar { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .exports { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; padding: 4px 9px; border-radius: 6px; border: 1px solid var(--line); color: var(--ink-soft); }
+  .tag b { color: var(--accent); }
+
+  /* ---- adaptive chart ---- */
+  .adapt { display: grid; gap: 14px; }
+  .ar { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; }
+  .ar .lab { font-size: 11.5px; color: var(--ink-soft); font-family: var(--mono); }
+  .pairtrack { display: grid; gap: 5px; }
+  .bar { height: 15px; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 7px; color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 600; }
+  .bar.fx { background: var(--floor); }
+  .bar.ad { background: linear-gradient(90deg, var(--accent), #0b7a6f); }
+  .delta { font-family: var(--mono); font-size: 11px; font-weight: 700; }
+  .up { color: var(--good); } .down { color: var(--crit); } .flat { color: var(--ink-faint); }
+
+  /* ---- planner ---- */
+  .planner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .field select, .field input {
+    font-family: var(--sans); font-size: 13px; color: var(--ink);
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 10px; width: 100%;
+  }
+  .field select:focus, .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .cmdbox {
+    margin-top: 16px; background: var(--ink); color: #d7efec; border-radius: 10px;
+    padding: 14px 16px; font-family: var(--mono); font-size: 12.5px; overflow-x: auto;
+    display: flex; align-items: center; gap: 12px; justify-content: space-between;
+  }
+  :root[data-theme="light"] .cmdbox { background: #0f1e20; }
+  .cmdbox code { white-space: nowrap; }
+  .cmdbox .prompt { color: var(--accent); }
+  .copy { font-family: var(--mono); font-size: 10.5px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: #d7efec; border-radius: 6px; padding: 5px 10px; cursor: pointer; flex: none; }
+  .copy:hover { background: rgba(255,255,255,.2); }
+  footer { margin-top: 32px; color: var(--ink-faint); font-size: 11.5px; text-align: center; line-height: 1.7; }
+  footer code { font-family: var(--mono); color: var(--ink-soft); }
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: 1fr 1fr; }
+    .planner { grid-template-columns: 1fr 1fr; }
+    .row { grid-template-columns: 130px 1fr 44px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .fill, .bar > i { transition: width .6s cubic-bezier(.2,.7,.2,1); }
+  }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"></div>
+      <div>
+        <div class="eyebrow">Agent Evaluation Console</div>
+        <h1>Claude Science</h1>
+        <div class="sub">Harness · validated science · verifiable-reward RL · benchmark — open research build v0.3</div>
+      </div>
+    </div>
+    <button class="theme" id="themeBtn">◐ theme</button>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <div class="grid">
+    <!-- Scorecard -->
+    <section class="panel">
+      <h2>Capability scorecard</h2>
+      <p class="desc">Normalised score per capability. 0 = random floor, 1 = expert reference policy — every task graded on a real computation.</p>
+      <div class="legend">
+        <span><span class="swatch" style="background:linear-gradient(90deg,var(--accent),#0b7a6f)"></span>Expert (heuristic)</span>
+        <span><span class="swatch" style="background:repeating-linear-gradient(45deg,var(--floor),var(--floor) 4px,transparent 4px,transparent 8px)"></span>Random floor</span>
+      </div>
+      <div id="scorecard"></div>
+    </section>
+
+    <!-- Environments -->
+    <section class="panel">
+      <h2>Benchmark environments</h2>
+      <p class="desc">Six self-grading labs spanning the real Claude Science domains.</p>
+      <div class="envs" id="envs"></div>
+    </section>
+
+    <!-- RL dataset -->
+    <section class="panel">
+      <h2>Verifiable-task dataset</h2>
+      <p class="desc">Self-grading items for cheap RL — no human labels, no reward model.</p>
+      <div class="stackbar" id="stack"></div>
+      <div class="domlist" id="domlist"></div>
+      <div class="exports">
+        <span class="tag"><b>SFT</b> messages</span>
+        <span class="tag"><b>DPO</b> chosen/rejected</span>
+        <span class="tag"><b>RLVR</b> prompt + verifier</span>
+      </div>
+    </section>
+
+    <!-- Adaptive design -->
+    <section class="panel">
+      <h2>Adaptive IC50 design <span class="pill"><span class="dot"></span>research</span></h2>
+      <p class="desc">Median |log-fold| IC50 error — sequential D-optimal design vs a fixed log-spaced grid at equal budget (lower is better).</p>
+      <div class="adapt" id="adapt"></div>
+    </section>
+
+    <!-- Planner -->
+    <section class="panel full">
+      <h2>Experiment planner</h2>
+      <p class="desc">Compose an evaluation run and copy the exact command. Runs locally against the harness.</p>
+      <div class="planner">
+        <div class="field">
+          <label for="mode">Task</label>
+          <select id="mode">
+            <option value="bench">Benchmark suite</option>
+            <option value="agent">Single environment</option>
+            <option value="rl">Build RL dataset</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="agent">Agent</label>
+          <select id="agent">
+            <option value="claude">claude (Messages API)</option>
+            <option value="heuristic">heuristic (expert)</option>
+            <option value="random">random (floor)</option>
+          </select>
+        </div>
+        <div class="field" id="envField">
+          <label for="env">Environment</label>
+          <select id="env"></select>
+        </div>
+        <div class="field">
+          <label for="model">Model</label>
+          <select id="model">
+            <option>claude-fable-5</option>
+            <option>claude-opus-4-8</option>
+            <option>claude-sonnet-5</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="seeds">Seeds</label>
+          <input id="seeds" value="0,1,2" />
+        </div>
+        <div class="field">
+          <label for="diff">Difficulty</label>
+          <select id="diff"><option>low</option><option selected>medium</option><option>high</option></select>
+        </div>
+        <div class="field">
+          <label for="nstatic">RL static tasks</label>
+          <input id="nstatic" value="200" />
+        </div>
+        <div class="field">
+          <label for="out">Output</label>
+          <input id="out" value="report.json" />
+        </div>
+      </div>
+      <div class="cmdbox">
+        <code id="cmd"><span class="prompt">$</span> </code>
+        <button class="copy" id="copyBtn">copy</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    All figures are live output from the harness (heuristic &amp; random baselines, 3 seeds).
+    Real-agent scores require <code>ANTHROPIC_API_KEY</code>.<br>
+    Reproduce: <code>python -m claude_science bench run</code> ·
+    <code>rl build --rollouts</code> · <code>research validate-design</code>
+  </footer>
+</div>
+
+<script>
+  const DATA = __DATA__;
+
+  // ---- theme toggle ----
+  const rootEl = document.documentElement;
+  document.getElementById("themeBtn").onclick = () => {
+    const cur = rootEl.getAttribute("data-theme")
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    rootEl.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  };
+
+  const pct = x => (x * 100).toFixed(0);
+  const scoreColor = x => x >= .8 ? "var(--good)" : x >= .4 ? "var(--warn)" : "var(--crit)";
+
+  // ---- KPIs ----
+  const kpis = [
+    { label: "Expert overall", val: DATA.heuristic.overall.toFixed(2), note: "reference-policy ceiling" },
+    { label: "Random floor", val: DATA.random.overall.toFixed(2), note: "capability gap = the signal" },
+    { label: "Verifiable tasks", val: DATA.rl_total, note: "auto-graded, no labels" },
+    { label: "Lab-bench tools", val: 18, note: "science · databases · terminal" },
+  ];
+  document.getElementById("kpis").innerHTML = kpis.map(k => `
+    <div class="kpi">
+      <div class="label">${k.label}</div>
+      <div class="val tabnum">${k.val}</div>
+      <div class="note">${k.note}</div>
+    </div>`).join("");
+
+  // ---- scorecard ----
+  const caps = Object.keys(DATA.heuristic.by_cap).sort();
+  document.getElementById("scorecard").innerHTML = caps.map(c => {
+    const e = DATA.heuristic.by_cap[c], f = DATA.random.by_cap[c] ?? 0;
+    return `<div class="row" style="grid-template-columns:190px 1fr 52px">
+      <div class="name">${c}</div>
+      <div style="display:grid;gap:4px">
+        <div class="track"><div class="fill expert" style="width:${pct(e)}%"></div></div>
+        <div class="track" style="height:9px"><div class="fill floor" style="width:${pct(Math.max(f,0.006))}%"></div></div>
+      </div>
+      <div class="score tabnum">${e.toFixed(2)}</div>
+    </div>`;
+  }).join("");
+
+  // ---- environments ----
+  document.getElementById("envs").innerHTML = DATA.envs.map(e => `
+    <div class="env">
+      <span class="pill"><span class="dot" style="background:var(--good)"></span>${(DATA.heuristic.by_env[e.key] ?? 0).toFixed(2)}</span>
+      <div class="k">${e.key}</div>
+      <div class="t">${e.title}</div>
+      <div class="cap">${e.capability}</div>
+    </div>`).join("");
+
+  // ---- RL composition ----
+  const doms = Object.entries(DATA.rl_domains).sort((a,b) => b[1]-a[1]);
+  const palette = ["#0f9c8e","#2b7ec4","#7a5cc0","#c98a2b","#3d9a50","#bd4436","#5a6b6d"];
+  const total = DATA.rl_total;
+  document.getElementById("stack").innerHTML = doms.map(([d,n],i) =>
+    `<div class="seg" title="${d}: ${n}" style="width:${n/total*100}%;background:${palette[i%palette.length]}"></div>`).join("");
+  document.getElementById("domlist").innerHTML = doms.map(([d,n],i) => `
+    <div class="d"><span class="chipbar" style="background:${palette[i%palette.length]}"></span>${d}<b>${n}</b></div>`).join("");
+
+  // ---- adaptive design ----
+  const maxErr = Math.max(...DATA.adaptive.flatMap(r => [r.fixed, r.adaptive]));
+  document.getElementById("adapt").innerHTML = DATA.adaptive.map(r => {
+    const red = (r.fixed - r.adaptive) / r.fixed * 100;
+    const cls = red > 3 ? "up" : red < -3 ? "down" : "flat";
+    const sign = red > 0 ? "−" : "+";
+    return `<div class="ar">
+      <div class="lab">${r.range}<br>n=${r.n} &nbsp;<span class="delta ${cls}">${sign}${Math.abs(red).toFixed(0)}%</span></div>
+      <div class="pairtrack">
+        <div class="bar fx" style="width:${Math.max(r.fixed/maxErr*100,14)}%">fixed ${r.fixed.toFixed(2)}</div>
+        <div class="bar ad" style="width:${Math.max(r.adaptive/maxErr*100,14)}%">adaptive ${r.adaptive.toFixed(2)}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // ---- planner ----
+  const envSel = document.getElementById("env");
+  envSel.innerHTML = DATA.envs.map(e => `<option value="${e.key}">${e.key}</option>`).join("");
+  const $ = id => document.getElementById(id);
+  function buildCmd() {
+    const mode = $("mode").value, agent = $("agent").value, model = $("model").value;
+    const seeds = $("seeds").value.trim(), diff = $("diff").value;
+    $("envField").style.opacity = mode === "agent" ? "1" : ".4";
+    let c;
+    if (mode === "bench") {
+      c = `python -m claude_science bench run --agent ${agent} --seeds ${seeds} --difficulties ${diff}`;
+      if (agent === "claude") c += ` --model ${model}`;
+      c += ` --out ${$("out").value.trim()}`;
+    } else if (mode === "agent") {
+      c = `python -m claude_science agent run --env ${$("env").value} --agent ${agent} --difficulty ${diff}`;
+      if (agent === "claude") c += ` --model ${model}`;
+    } else {
+      c = `python -m claude_science rl build --n-static ${$("nstatic").value.trim()} --seeds ${seeds} --rollouts --out-prefix run1`;
+    }
+    $("cmd").innerHTML = `<span class="prompt">$</span> ${c}`;
+    $("cmd").dataset.raw = c;
+  }
+  ["mode","agent","model","env","seeds","diff","nstatic","out"].forEach(id => $(id).addEventListener("input", buildCmd));
+  $("copyBtn").onclick = () => {
+    navigator.clipboard?.writeText($("cmd").dataset.raw || "");
+    $("copyBtn").textContent = "copied ✓";
+    setTimeout(() => $("copyBtn").textContent = "copy", 1200);
+  };
+  buildCmd();
+</script>

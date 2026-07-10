@@ -142,6 +142,19 @@ autonomous agent drives to plan and run experiments end to end:
 python -m claude_science lab tools     # list the composed bench
 ```
 
+## Visualization & experiment console
+
+A self-contained, theme-aware HTML dashboard renders the live benchmark
+scorecard, the RL-dataset composition, the adaptive-design result, and an
+interactive **experiment planner** that composes the exact CLI command to run:
+
+```bash
+python -m claude_science.viz --out dashboard.html   # standalone, no assets
+```
+
+The layout is information-design first (KPI row → capability meters → detail),
+with semantic colour for score bands and `tabular-nums` throughout.
+
 ## A novel algorithm, validated in-repo
 
 `research/adaptive_design.py` contributes a **sequential D-optimal experimental
