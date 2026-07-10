@@ -1,120 +1,129 @@
-"""PK/PD dose-finding environment.
+"""PK/PD dose-finding environment (real one-compartment model + NCA).
 
-A one-compartment model with first-order oral absorption governs plasma
-concentration::
-
-    C(t) = F*Dose*ka / (V*(ka-ke)) * (exp(-ke*t) - exp(-ka*t))
-
-The agent cannot see F, ka, ke, V. It must run simulated dose administrations
-(noisy Cmax / AUC read-outs) and pick a dose whose peak concentration lands in
-the therapeutic window and near the efficacy target, without crossing the
-toxicity threshold. This probes experiment design + quantitative extrapolation.
+A one-compartment first-order oral absorption model (hidden F, ka, ke, V)
+governs plasma concentration. The agent administers doses in silico, receives a
+noisy concentration-time profile, may run non-compartmental analysis (real NCA
+tool) to derive Cmax/AUC/half-life, and must pick a dose whose steady peak lands
+on an efficacy target without crossing toxicity. Probes quantitative PK reasoning.
 """
 
 from __future__ import annotations
 
-import math
 from typing import Any, Dict, List
 
+import numpy as np
+
 from .base import Environment
+from ..science import pk
 
 
 class PKPDEnv(Environment):
     key = "pkpd"
-    title = "PK/PD oral dose finding (one-compartment model)"
+    title = "PK/PD oral dose finding (one-compartment model + NCA)"
     capability = "quantitative-pharmacology"
 
     def _build(self) -> None:
         r = self.rng
-        self.F = round(r.uniform(0.5, 0.95), 3)          # bioavailability
-        self.ka = round(r.uniform(0.8, 2.5), 3)          # 1/h absorption
-        self.ke = round(r.uniform(0.08, 0.35), 3)        # 1/h elimination
-        self.V = round(r.uniform(20.0, 60.0), 2)         # L volume of distribution
-        self.target_cmax = round(r.uniform(4.0, 12.0), 2)  # mg/L efficacy target
+        self.F = round(r.uniform(0.5, 0.95), 3)
+        self.ka = round(r.uniform(0.8, 2.5), 3)
+        self.ke = round(r.uniform(0.08, 0.35), 3)
+        self.V = round(r.uniform(20.0, 60.0), 2)
+        self.target_cmax = round(r.uniform(4.0, 12.0), 2)
         self.toxic_cmax = round(self.target_cmax * r.uniform(1.6, 2.2), 2)
-        self.noise = {"low": 0.01, "medium": 0.05, "high": 0.12}.get(
-            self.difficulty, 0.05
-        )
-        self._registry_domain_tools()
+        self.noise = {"low": 0.01, "medium": 0.05, "high": 0.12}.get(self.difficulty, 0.05)
+        self.sample_times = [0.25, 0.5, 1, 1.5, 2, 3, 4, 6, 8, 12, 16, 24]
+        self._register_domain_tools()
 
-    def _cmax_auc(self, dose: float) -> tuple[float, float]:
-        ka, ke, V, F = self.ka, self.ke, self.V, self.F
-        tmax = math.log(ka / ke) / (ka - ke)
-        cmax = (F * dose * ka) / (V * (ka - ke)) * (
-            math.exp(-ke * tmax) - math.exp(-ka * tmax)
-        )
-        auc = (F * dose) / (V * ke)
-        return cmax, auc
+    def _profile(self, dose: float) -> Dict[str, List[float]]:
+        t = np.array(self.sample_times, dtype=float)
+        c = pk.conc_one_compartment_oral(t, dose, self.F, self.ka, self.ke, self.V)
+        noise = 1.0 + self.rng.gauss(0, self.noise)
+        return {"times_h": self.sample_times,
+                "conc_mg_L": [round(float(x) * noise, 4) for x in c]}
 
-    def _registry_domain_tools(self) -> None:
+    def _cmax(self, dose: float) -> float:
+        prof = pk.conc_one_compartment_oral(
+            np.linspace(0.05, 24, 400), dose, self.F, self.ka, self.ke, self.V)
+        return float(prof.max())
+
+    def _register_domain_tools(self) -> None:
         def simulate_dose(dose_mg: float) -> Dict[str, Any]:
             if dose_mg <= 0:
                 raise ValueError("dose_mg must be > 0")
-            cmax, auc = self._cmax_auc(dose_mg)
-            n = 1.0 + self.rng.gauss(0, self.noise)
-            self._record("simulate_dose", {"dose_mg": dose_mg})
-            return {
-                "dose_mg": dose_mg,
-                "cmax_mg_L": round(cmax * n, 3),
-                "auc_mg_h_L": round(auc * n, 3),
-                "tmax_h": round(math.log(self.ka / self.ke) / (self.ka - self.ke), 3),
-                "note": "read-outs include assay noise",
-            }
+            self._record("simulate_dose", dose_mg)
+            prof = self._profile(dose_mg)
+            prof["dose_mg"] = dose_mg
+            return prof
+
+        def run_nca(times_h: List[float], conc_mg_L: List[float],
+                    dose_mg: float) -> Dict[str, Any]:
+            self._record("nca", dose_mg)
+            return pk.nca(times_h, conc_mg_L, dose=dose_mg)
 
         self._registry.add(
             name="simulate_dose",
             description=(
-                "Administer a single oral dose (mg) in silico and measure peak "
-                "plasma concentration (Cmax), area-under-curve (AUC) and time to "
-                "peak. Read-outs are noisy."
+                "Administer a single oral dose (mg) and return the sampled "
+                "plasma concentration-time profile (noisy)."
+            ),
+            parameters={
+                "type": "object",
+                "properties": {"dose_mg": {"type": "number", "minimum": 0,
+                                           "maximum": 2000}},
+                "required": ["dose_mg"],
+            },
+            handler=simulate_dose,
+        )
+        self._registry.add(
+            name="run_nca",
+            description=(
+                "Non-compartmental analysis of a concentration-time profile: "
+                "returns Cmax, Tmax, AUC(last/inf), terminal half-life, CL/F, Vz/F."
             ),
             parameters={
                 "type": "object",
                 "properties": {
-                    "dose_mg": {"type": "number", "minimum": 0, "maximum": 2000}
+                    "times_h": {"type": "array", "items": {"type": "number"}},
+                    "conc_mg_L": {"type": "array", "items": {"type": "number"}},
+                    "dose_mg": {"type": "number"},
                 },
-                "required": ["dose_mg"],
+                "required": ["times_h", "conc_mg_L", "dose_mg"],
             },
-            handler=simulate_dose,
+            handler=run_nca,
         )
 
     def submit_schema(self) -> Dict[str, Any]:
         return {
             "type": "object",
             "properties": {
-                "dose_mg": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 2000,
-                    "description": "Recommended oral dose in mg.",
-                }
+                "dose_mg": {"type": "number", "minimum": 0, "maximum": 2000,
+                            "description": "Recommended oral dose in mg."}
             },
             "required": ["dose_mg"],
         }
 
     def task_prompt(self) -> str:
         return (
-            "Find the oral dose (mg) that produces a peak plasma concentration "
-            f"(Cmax) as close as possible to the efficacy target of "
-            f"{self.target_cmax} mg/L, while staying strictly below the toxicity "
-            f"threshold of {self.toxic_cmax} mg/L. Use `simulate_dose` to probe, "
-            "then `submit` your recommended dose_mg. Doses have an (unknown) "
-            "linear relationship to Cmax."
+            "Find the oral dose (mg) whose peak plasma concentration (Cmax) is as "
+            f"close as possible to the efficacy target of {self.target_cmax} mg/L "
+            f"while staying strictly below the toxicity threshold of "
+            f"{self.toxic_cmax} mg/L. Use `simulate_dose` to obtain a "
+            "concentration-time profile and `run_nca` to derive Cmax/AUC, then "
+            "`submit` your dose. Cmax is linear in dose."
         )
 
     def score(self, payload: Dict[str, Any]) -> float:
         dose = float(payload.get("dose_mg", 0.0))
         if dose <= 0:
             return 0.0
-        cmax, _ = self._cmax_auc(dose)
+        cmax = self._cmax(dose)
         if cmax >= self.toxic_cmax:
-            return 0.0  # toxic => task failed regardless of efficacy
-        rel_err = abs(cmax - self.target_cmax) / self.target_cmax
-        return self.clamp01(1.0 - rel_err)
+            return 0.0
+        return self.clamp01(1.0 - abs(cmax - self.target_cmax) / self.target_cmax)
 
     def reference_policy(self) -> List[Dict[str, Any]]:
         probe = 100.0
-        cmax, _ = self._cmax_auc(probe)
+        cmax = self._cmax(probe)
         required = probe * (self.target_cmax / cmax)
         return [
             {"tool": "simulate_dose", "args": {"dose_mg": probe}},

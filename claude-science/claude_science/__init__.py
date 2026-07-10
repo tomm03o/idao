@@ -14,8 +14,9 @@ See ``claude_science.cli`` (``python -m claude_science ...``) for the CLI.
 from .envs import ENVIRONMENTS, make_env, list_envs
 from .harness import Agent, AnthropicAgent, HeuristicAgent, RandomAgent
 from .benchmark import BenchmarkRunner, render_scorecard
+from . import science
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "ENVIRONMENTS",
@@ -27,5 +28,6 @@ __all__ = [
     "RandomAgent",
     "BenchmarkRunner",
     "render_scorecard",
+    "science",
     "__version__",
 ]

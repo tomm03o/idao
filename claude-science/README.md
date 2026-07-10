@@ -1,148 +1,157 @@
-# Claude Science
+# Claude Science (open harness & benchmark)
 
-**An agent harness and benchmark for biological & pharmaceutical simulation.**
+**An agent harness, a validated scientific tool library, and a capability
+benchmark for AI agents doing drug-discovery-style computation.**
 
-Claude Science is to scientific discovery what Claude Code is to software: a
-*harness* that gives an AI agent instruments, a workspace, and an auditable
-record, plus a *benchmark* to measure how well the agent actually does the
-science — and the plumbing to let it work autonomously across many tasks.
+> Context. Anthropic ships a commercial product called **Claude Science** — a
+> workbench for drug discovery with 60+ built-in functions across genomics,
+> single-cell, proteomics, structural biology and cheminformatics, MCP
+> connectors (Benchling, 10x Genomics, PubMed, …) and Agent Skills
+> ([announcement](https://www.anthropic.com/news/claude-for-life-sciences),
+> [STAT](https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/)).
+> This repository is **not** that product. It is an open, self-hostable
+> *harness + benchmark* in the same spirit: give an agent real scientific
+> instruments in a sandbox, let it work autonomously, and **measure** how well
+> it does the science. It is designed to be embedded in, or evaluated against,
+> a pharma/bioinformatics team's own stack.
 
-Instead of a shell and a filesystem, agents here get **in-silico laboratories**:
-pharmacokinetic models, dose-response assays, docking/lead-optimisation, and
-gene-knockout networks. Each lab exposes its instruments as *tools*, hides a
-ground truth the agent must discover, and scores the agent's final answer.
-
-It runs **out of the box with no API key** (deterministic baseline agents), and
-plugs into the **Claude API** for a real LLM-driven agent.
+The distinguishing feature versus a demo: **every instrument is a real,
+literature-standard computation**, not a toy surrogate. Cheminformatics runs on
+**RDKit**, pharmacokinetics and curve-fitting on **SciPy**, sequence analysis on
+validated dynamic-programming alignment, and 3D energetics on the **MMFF94**
+force field. The numbers an agent sees — a QED score, an IC50 from a 4PL fit, a
+half-life from non-compartmental analysis, a conformer energy in kcal/mol — are
+the same numbers a computational chemist or pharmacometrician would compute.
 
 ---
 
-## Why
+## Two things in one package
 
-Evaluating whether a model can *do science* needs more than a Q&A dataset. It
-needs closed-loop tasks where the agent must **design experiments, spend a
-limited budget, reason from noisy data, and commit to a decision** — then be
-graded on the decision's quality. Claude Science provides that loop, packaged
-as a benchmark so results are comparable across agents and models.
+**1. A scientific tool library** (`claude_science.science`) — usable on its own,
+independent of any agent:
 
-## Install
+| module   | backend | what it does |
+|----------|---------|--------------|
+| `chem`   | RDKit   | descriptors (Crippen logP, TPSA, …), Lipinski/Veber rules, Bickerton **QED**, Ertl **SA score**, ECFP4 fingerprints + Tanimoto virtual screening, structural-alert (PAINS-style) filtering |
+| `pk`     | SciPy   | 1-/2-compartment PK models, **non-compartmental analysis** (Cmax, AUC linear-up/log-down, terminal t½, CL/F, Vz/F), **4-parameter-logistic** dose-response fitting → IC50 ± SE |
+| `seq`    | NumPy   | **Needleman–Wunsch** / **Smith–Waterman** alignment, translation, reverse complement, GC content, ORF finding |
+| `struct` | RDKit   | **ETKDGv3** conformer embedding, **MMFF94** energy & minimisation, multi-start conformer search |
 
-```bash
-cd claude-science
-pip install -e .            # core, zero dependencies
-pip install -e ".[claude]"  # + anthropic SDK for the real agent
-pip install -e ".[dev]"     # + pytest
+```python
+from claude_science.science import chem, pk
+chem.descriptors("CC(=O)Oc1ccccc1C(=O)O")["qed"]      # aspirin QED ≈ 0.55
+pk.fit_dose_response(concs, responses)["ic50"]        # IC50 with standard error
 ```
 
-## Quick start
+**2. An agent harness + benchmark** that wraps those tools into closed-loop
+tasks and scores an agent's decisions.
 
-```bash
-# what labs exist
-python -m claude_science env list
+## The benchmark: six environments across the real domains
 
-# run the expert baseline on one lab and watch the transcript
-python -m claude_science agent run --env assay --agent heuristic
+| key         | capability                | the task (all graded on a real computation) |
+|-------------|---------------------------|---------------------------------------------|
+| `admet`     | cheminformatics           | Pick the best oral candidate from real drug SMILES: Lipinski + Veber, no structural alerts, best QED / SA. |
+| `screen`    | virtual screening         | Return the top-k library compounds most similar to a query by ECFP4 Tanimoto. |
+| `ic50`      | pharmacology assay        | Design a dose-response experiment under a read budget, fit a 4PL curve, report IC50. |
+| `pkpd`      | quantitative pharmacology | Choose an oral dose to hit a target Cmax in the therapeutic window, using NCA on simulated profiles. |
+| `variant`   | bioinformatics            | Call a coding mutation (`p.E12K`) from a reference vs variant CDS via alignment + translation. |
+| `conformer` | computational chemistry   | Find a molecule's global-minimum MMFF94 conformer energy by seeded multi-start search. |
 
-# score the full benchmark suite (no API key needed)
-python -m claude_science bench run --agent heuristic --seeds 0,1,2
-
-# score a real Claude agent (needs ANTHROPIC_API_KEY)
-export ANTHROPIC_API_KEY=sk-...
-python -m claude_science bench run --agent claude --model claude-fable-5 --out report.json
-```
-
-## The environments (labs)
-
-| key        | capability probed              | the task |
-|------------|--------------------------------|----------|
-| `pkpd`     | quantitative pharmacology      | Pick an oral dose that hits a target plasma Cmax in the therapeutic window (one-compartment PK model, hidden parameters). |
-| `assay`    | experiment design under budget | Estimate a compound's IC50 from a limited number of noisy dose-response reads (Hill curve). |
-| `docking`  | multi-objective optimisation   | Optimise a ligand's descriptors for binding affinity while staying drug-like (Lipinski). |
-| `knockout` | causal intervention            | Find the single gene knockout that most lowers a disease marker in a regulatory network. |
-
-Each supports `--difficulty low|medium|high` (more noise, tighter budgets) and
-any integer `--seed` (a fresh randomised instance), so a benchmark is many
-independent tasks, not one lucky roll.
+Each task supports `--difficulty low|medium|high` (more noise, tighter budgets)
+and any integer `--seed` (a fresh randomised instance). Scores are normalised so
+**0 ≈ random floor** and **1 ≈ expert reference policy**, so an agent's number is
+immediately interpretable. On the built-in suite the random baseline scores
+**~0.07** and the expert baseline **1.00** — the gap the benchmark measures.
 
 ## Agents
 
 | agent       | what it is | needs |
 |-------------|-----------|-------|
-| `heuristic` | replays each lab's expert reference policy — the "ceiling" baseline | nothing |
-| `random`    | random valid tool calls — the "floor" baseline | nothing |
+| `heuristic` | replays each environment's expert reference policy (the ceiling) | nothing |
+| `random`    | random valid tool calls (the floor) | nothing |
 | `claude`    | a real tool-use loop against the Claude Messages API | `anthropic` + `ANTHROPIC_API_KEY` |
 
-Scores are normalised so **0 ≈ random floor** and **1 ≈ expert policy**, which
-makes an agent's number immediately interpretable.
+## Install
+
+```bash
+cd claude-science
+pip install -e .            # core: numpy, scipy, rdkit
+pip install -e ".[claude]"  # + anthropic SDK for the real agent
+pip install -e ".[dev]"     # + pytest
+```
+
+## Use
+
+```bash
+python -m claude_science env list
+
+# watch the expert baseline solve one lab
+python -m claude_science agent run --env admet --agent heuristic
+
+# score the whole suite, no API key needed
+python -m claude_science bench run --agent heuristic --seeds 0,1,2
+
+# score a real Claude model and keep every transcript
+export ANTHROPIC_API_KEY=sk-...
+python -m claude_science bench run --agent claude --model claude-fable-5 \
+    --difficulties low,medium --out report.json
+```
 
 ## Architecture
 
 ```
 claude_science/
-├── harness/          # the domain-agnostic engine
-│   ├── tools.py        Tool, ToolRegistry, ToolResult  (Claude-API-shaped schemas)
-│   ├── agent.py        Agent loop: AnthropicAgent, HeuristicAgent, RandomAgent
-│   └── transcript.py   auditable step-by-step episode record
-├── envs/             # the science
-│   ├── base.py         Environment ABC: ground truth + tools + scorer + reference policy
-│   ├── pkpd.py assay.py docking.py knockout.py
-├── benchmark/        # evaluation
-│   ├── runner.py       BenchmarkRunner → BenchmarkReport (per-capability scorecard)
-│   └── report.py       human-readable scorecard
-└── cli.py            # `python -m claude_science ...`
+├── science/          # validated scientific computing (usable standalone)
+│   ├── chem.py  pk.py  seq.py  struct.py
+├── harness/          # domain-agnostic engine
+│   ├── tools.py        Tool/ToolRegistry (Claude Messages API schemas)
+│   ├── agent.py        tool-use loop: AnthropicAgent + heuristic/random baselines
+│   └── transcript.py   auditable, replayable episode record
+├── envs/             # the six benchmark environments + curated real data
+├── benchmark/        # runner → per-capability scorecard + JSON report
+└── cli.py
 ```
 
-The contract is small. An **Environment** samples a hidden ground truth,
-registers domain **tools** (always including `submit`), scores a submission to
-`[0,1]`, and exposes an expert **reference policy** (which both provides the
-`heuristic` baseline and self-tests that the lab is solvable). An **Agent**
-takes an environment and returns a **Transcript**. That's the whole extension
-surface.
-
-## Add a new lab
-
-```python
-from claude_science.envs.base import Environment
-
-class MyEnv(Environment):
-    key = "myenv"; title = "..."; capability = "..."
-    def _build(self):          # sample hidden truth, register tools
-        ...
-    def submit_schema(self):   # JSON schema for the submit tool
-        ...
-    def task_prompt(self):     # what the agent is told
-        ...
-    def score(self, payload):  # -> float in [0, 1]
-        ...
-    def reference_policy(self): # -> list of {"tool", "args"} an expert would run
-        ...
-```
-
-Register it in `envs/__init__.py` and it appears in the CLI and benchmark
-automatically. The `test_reference_policy_solves` test will immediately verify
-your scorer and simulator agree.
+The extension contract is small. An **Environment** samples a hidden ground
+truth, registers domain **tools** (always including `submit`), scores a
+submission to `[0,1]`, and exposes an expert **reference policy** — which both
+provides the `heuristic` baseline and self-tests that the task is solvable
+(`test_reference_policy_solves`). Add a subclass, register it in
+`envs/__init__.py`, and it appears in the CLI and benchmark automatically.
 
 ## Autonomy
 
-The harness *is* the autonomy layer: an agent runs a full episode — many tool
-calls, its own experiment design, a committed answer — with no human in the
-loop, bounded by `--max-steps`. The `BenchmarkRunner` then drives an agent
-across dozens of independent tasks unattended and produces a signed-off report
-(`--out report.json` includes every transcript for review). To run continuously
-(e.g. nightly regression of a model against the suite), wire `bench run --out`
-into cron or CI.
+The harness *is* the autonomy layer: an agent runs a full episode — designs its
+own experiments, spends a bounded tool budget (`--max-steps`), and commits to an
+answer with no human in the loop. `BenchmarkRunner` then drives an agent across
+dozens of independent tasks unattended and emits a signed-off report
+(`--out report.json` embeds every transcript for audit). Wire `bench run --out`
+into CI/cron for nightly regression of a model against the suite.
 
 ## Tests
 
 ```bash
-python -m pytest -q     # 29 tests: every lab is solvable, tools dispatch,
-                        # expert beats random, reports aggregate correctly
+python -m pytest -q   # 50 tests
 ```
 
-## Safety note
+Includes `tests/test_science.py`, which checks the tool library against
+**known reference values** (aspirin MW 180.16 and Crippen logP; NCA half-life vs
+analytic ln2/kₑ; 4PL fit recovering a known IC50; the textbook GATTACA/GCATGCU
+Needleman–Wunsch score of −1). If a simulator or scorer drifts, these fail.
 
-All "laboratories" here are abstract mathematical simulators (PK equations, Hill
-curves, toy descriptor scoring, small regulatory networks). They contain no
-real chemical, biological, or synthesis information — they exist to measure
-*reasoning and experiment-design* capability, not to provide laboratory
-protocols.
+## Scope & honesty
+
+- This is a **research and evaluation framework**, not a regulated or clinical
+  system, and not Anthropic's Claude Science product.
+- The *computations* are real and validated; the benchmark *scenarios* are
+  abstract instances (sampled parameters, curated public SMILES, a synthetic
+  reference CDS) chosen to isolate a capability — they are not tied to a specific
+  program or proprietary target.
+- No wet-lab protocols, no hazardous synthesis or biological-agent information —
+  the goal is to measure and enable *computational reasoning*, and to plug real
+  algorithms into an agent loop you control.
+
+Licensable/extensible for internal evaluation: swap in your own descriptors,
+QSAR/ADMET models, target structures, or assay simulators by adding a `science`
+function and an `Environment`, and the whole harness, baseline set and scorecard
+apply unchanged.

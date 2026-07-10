@@ -27,7 +27,7 @@ def test_tool_error_is_captured():
 
 
 def test_transcript_records_calls():
-    env = make_env("knockout", seed=1, difficulty="low")
+    env = make_env("variant", seed=1, difficulty="low")
     tr = HeuristicAgent().run(env)
     assert tr.n_tool_calls() >= 1
     assert tr.final() is not None
@@ -35,7 +35,7 @@ def test_transcript_records_calls():
 
 
 def test_benchmark_runner_produces_report():
-    runner = BenchmarkRunner(envs=["assay", "pkpd"], seeds=[0, 1],
+    runner = BenchmarkRunner(envs=["ic50", "pkpd"], seeds=[0, 1],
                              difficulties=["low"])
     report = runner.run(HeuristicAgent())
     assert len(report.results) == 4
@@ -45,7 +45,7 @@ def test_benchmark_runner_produces_report():
 
 
 def test_anthropic_schema_shape():
-    env = make_env("docking", seed=0)
+    env = make_env("admet", seed=0)
     schemas = env.tools().anthropic_schemas()
     for s in schemas:
         assert {"name", "description", "input_schema"} <= set(s)
