@@ -25,7 +25,17 @@ the same numbers a computational chemist or pharmacometrician would compute.
 
 ---
 
-## Two things in one package
+## What's in the platform (v0.3)
+
+| layer | package | what it gives you |
+|-------|---------|-------------------|
+| validated science | `science` | RDKit/SciPy/NumPy computations (below) |
+| database access | `data_sources` | live cached connectors to PubChem, ChEMBL, UniProt, RCSB PDB |
+| benchmark | `envs` + `benchmark` | six self-grading environments + scorecard |
+| RL / training data | `rl` | verifiable tasks, judges, and SFT/DPO/RLVR export |
+| agent workspace | `workspace` | sandboxed files + terminal (`run_python`/`run_bash`) |
+| composed toolkit | `toolkits.lab_bench` | science + databases + workspace as one agent tool surface |
+| research | `research` | a novel algorithm, formulated and empirically validated |
 
 **1. A scientific tool library** (`claude_science.science`) — usable on its own,
 independent of any agent:
@@ -71,6 +81,92 @@ immediately interpretable. On the built-in suite the random baseline scores
 | `random`    | random valid tool calls (the floor) | nothing |
 | `claude`    | a real tool-use loop against the Claude Messages API | `anthropic` + `ANTHROPIC_API_KEY` |
 
+## Database access
+
+Live, disk-cached connectors to the public databases a discovery workflow needs,
+exposed both as a Python API and as agent tools:
+
+```bash
+python -m claude_science data query pubchem_compound name=imatinib
+python -m claude_science data query uniprot_protein accession=P00533
+python -m claude_science data query chembl_target_activities target_chembl_id=CHEMBL203
+```
+
+```python
+from claude_science.data_sources import pubchem, chembl, uniprot
+uniprot.sequence("P00533")                       # EGFR, 1210 aa
+chembl.activities_for_target("CHEMBL203")        # measured IC50s → QSAR data
+```
+
+Responses are cached under `~/.cache/claude_science` so agent loops are free to
+re-query and runs reproduce offline.
+
+## Training data & cheap RL with verifiable rewards
+
+The `rl` package turns tasks into **self-grading** training data. Every item
+carries a *judge* — a deterministic verifier (numeric tolerance, canonical
+SMILES match, IC50 log-fold, set overlap, or a reconstructed environment score)
+— so there is no human labeller and no learned reward model. That is what makes
+the RL loop cheap.
+
+```bash
+# build a mixed dataset (static QA + agentic) and export every training format
+python -m claude_science rl build --n-static 200 --rollouts --out-prefix run1
+#   → run1.tasks.jsonl  run1.rlvr.jsonl  run1.sft.jsonl  run1.pref.jsonl
+```
+
+- **`.sft.jsonl`** — `{"messages":[…]}` from high-reward rollouts (supervised FT)
+- **`.pref.jsonl`** — `{"prompt","chosen","rejected"}` DPO pairs
+- **`.rlvr.jsonl`** — `{"prompt","verifier":{…}}` for online RL; the verifier
+  regenerates the reward on the fly
+
+The reference `OracleSolver`/`NullSolver` make the whole pipeline runnable and
+testable with no API key (oracle mean reward 1.00 vs null 0.02); swap in
+`AgentSolver(AnthropicAgent(...))` for genuine model rollouts.
+
+## Sandboxed agent workspace (the "IDE")
+
+`workspace.Workspace` gives an agent the Claude-Code surface — files + a terminal
+— confined to a scratch dir with timeouts and path-escape protection:
+
+```python
+from claude_science.workspace import workspace_tools
+tools = workspace_tools()   # write_file / read_file / list_files / run_python / run_bash
+```
+
+`toolkits.lab_bench()` composes this with the science library and the database
+connectors into **one 18-tool registry** — the full "simulated laboratory" an
+autonomous agent drives to plan and run experiments end to end:
+
+```bash
+python -m claude_science lab tools     # list the composed bench
+```
+
+## A novel algorithm, validated in-repo
+
+`research/adaptive_design.py` contributes a **sequential D-optimal experimental
+design for IC50 estimation**. For the Hill model, information about log(IC50) is
+maximal at the inflection point, so the method locates the active decade from a
+few anchor points then spends the remaining budget around the current estimate.
+
+It is validated honestly — the win is real but *conditional*, and the repo says
+where:
+
+```bash
+python -m claude_science research validate-design
+```
+
+| range | n | fixed (median \|log-fold\|) | adaptive | reduction |
+|-------|---|------|----------|-----------|
+| 4 decades | 6 | 0.10 | 0.15 | −41% |
+| 7 decades | 6 | 0.16 | 0.16 | ~0% |
+| 10 decades | 6 | 0.28 | 0.22 | **+24%** |
+| 10 decades | 8 | 0.15 | 0.11 | **+30%** |
+
+Adaptivity pays off in the wide-range / small-budget primary-screening regime;
+a fixed grid is already near-optimal when the range is narrow. This is the kind
+of formulate-implement-benchmark loop the harness is meant to accelerate.
+
 ## Install
 
 ```bash
@@ -103,12 +199,17 @@ python -m claude_science bench run --agent claude --model claude-fable-5 \
 claude_science/
 ├── science/          # validated scientific computing (usable standalone)
 │   ├── chem.py  pk.py  seq.py  struct.py
+├── data_sources/     # live cached DB connectors: pubchem, chembl, uniprot, pdb
 ├── harness/          # domain-agnostic engine
 │   ├── tools.py        Tool/ToolRegistry (Claude Messages API schemas)
 │   ├── agent.py        tool-use loop: AnthropicAgent + heuristic/random baselines
 │   └── transcript.py   auditable, replayable episode record
 ├── envs/             # the six benchmark environments + curated real data
 ├── benchmark/        # runner → per-capability scorecard + JSON report
+├── rl/               # verifiable tasks, judges, SFT/DPO/RLVR export
+├── workspace/        # sandboxed agent files + terminal
+├── research/         # novel algorithms, formulated + validated in-repo
+├── toolkits.py       # lab_bench(): science + databases + workspace, composed
 └── cli.py
 ```
 
@@ -131,7 +232,7 @@ into CI/cron for nightly regression of a model against the suite.
 ## Tests
 
 ```bash
-python -m pytest -q   # 50 tests
+python -m pytest -q   # 65 tests (science, harness, envs, rl, workspace, research)
 ```
 
 Includes `tests/test_science.py`, which checks the tool library against

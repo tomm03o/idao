@@ -15,8 +15,13 @@ from .envs import ENVIRONMENTS, make_env, list_envs
 from .harness import Agent, AnthropicAgent, HeuristicAgent, RandomAgent
 from .benchmark import BenchmarkRunner, render_scorecard
 from . import science
+from . import data_sources
+from . import rl
+from . import research
+from .workspace import Workspace, workspace_tools
+from .toolkits import lab_bench, science_tools
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "ENVIRONMENTS",
@@ -29,5 +34,12 @@ __all__ = [
     "BenchmarkRunner",
     "render_scorecard",
     "science",
+    "data_sources",
+    "rl",
+    "research",
+    "Workspace",
+    "workspace_tools",
+    "lab_bench",
+    "science_tools",
     "__version__",
 ]

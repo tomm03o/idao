@@ -80,6 +80,55 @@ def cmd_bench_run(args) -> int:
     return 0
 
 
+def cmd_rl_build(args) -> int:
+    from .rl import (build_dataset, run_rollouts, OracleSolver,
+                     to_sft_jsonl, to_preference_jsonl, to_rlvr_jsonl, NullSolver)
+    ds = build_dataset(
+        n_static=args.n_static, seed=args.seed,
+        include_agentic=not args.no_agentic,
+        agentic_seeds=_int_list(args.agentic_seeds),
+    )
+    print(f"Built {len(ds)} verifiable tasks. By domain: {ds.by_domain()}")
+    ds.save_jsonl(f"{args.out_prefix}.tasks.jsonl")
+    to_rlvr_jsonl(ds, f"{args.out_prefix}.rlvr.jsonl")
+    print(f"  wrote {args.out_prefix}.tasks.jsonl and {args.out_prefix}.rlvr.jsonl")
+    if args.rollouts:
+        oracle = run_rollouts(ds, OracleSolver())
+        null = run_rollouts(ds, NullSolver())
+        n_sft = to_sft_jsonl(oracle, f"{args.out_prefix}.sft.jsonl")
+        n_pref = to_preference_jsonl(oracle + null, f"{args.out_prefix}.pref.jsonl")
+        import statistics
+        print(f"  oracle mean reward={statistics.mean(r.reward for r in oracle):.3f} "
+              f"null={statistics.mean(r.reward for r in null):.3f}")
+        print(f"  wrote {n_sft} SFT and {n_pref} preference examples")
+    return 0
+
+
+def cmd_data_query(args) -> int:
+    from .data_sources import database_tools
+    reg = database_tools()
+    res = reg.dispatch(args.tool, dict(a.split("=", 1) for a in args.arg))
+    print(res.to_text())
+    return 0
+
+
+def cmd_research_validate(args) -> int:
+    from .research.validate_adaptive_design import main as validate
+    validate()
+    return 0
+
+
+def cmd_lab_tools(args) -> int:
+    from .toolkits import lab_bench
+    reg = lab_bench(with_databases=not args.no_databases)
+    print(f"Lab bench: {len(reg.names())} tools\n")
+    for name in reg.names():
+        print(f"  {name:26} {reg.get(name).description[:70]}")
+    if getattr(reg, "_workspace", None):
+        reg._workspace.cleanup()
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="claude-science", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -111,6 +160,42 @@ def build_parser() -> argparse.ArgumentParser:
     brun.add_argument("--max-steps", type=int, default=12, dest="max_steps")
     brun.add_argument("--out", default="", help="write JSON report to this path")
     brun.set_defaults(func=cmd_bench_run)
+
+    # rl build
+    rl = sub.add_parser("rl", help="verifiable-task datasets for training/RL")
+    rl_sub = rl.add_subparsers(dest="rl_cmd", required=True)
+    rb = rl_sub.add_parser("build", help="build a verifiable-task dataset + exports")
+    rb.add_argument("--n-static", type=int, default=60, dest="n_static")
+    rb.add_argument("--seed", type=int, default=0)
+    rb.add_argument("--agentic-seeds", default="0,1", dest="agentic_seeds")
+    rb.add_argument("--no-agentic", action="store_true", dest="no_agentic")
+    rb.add_argument("--rollouts", action="store_true",
+                    help="also run oracle/null solvers and export SFT+preference")
+    rb.add_argument("--out-prefix", default="dataset", dest="out_prefix")
+    rb.set_defaults(func=cmd_rl_build)
+
+    # data query
+    dq = sub.add_parser("data", help="query public bio/chem databases")
+    dq_sub = dq.add_subparsers(dest="data_cmd", required=True)
+    q = dq_sub.add_parser("query", help="call a database tool")
+    q.add_argument("tool", help="pubchem_compound | chembl_molecule | "
+                   "chembl_target_activities | uniprot_protein | pdb_entry")
+    q.add_argument("arg", nargs="+", help="key=value tool arguments")
+    q.set_defaults(func=cmd_data_query)
+
+    # research validate
+    rs = sub.add_parser("research", help="reproduce novel-algorithm validations")
+    rs_sub = rs.add_subparsers(dest="research_cmd", required=True)
+    rs_sub.add_parser("validate-design",
+                      help="adaptive vs fixed IC50 design Monte-Carlo").set_defaults(
+        func=cmd_research_validate)
+
+    # lab tools
+    lab = sub.add_parser("lab", help="the composed simulated-laboratory toolkit")
+    lab_sub = lab.add_subparsers(dest="lab_cmd", required=True)
+    lt = lab_sub.add_parser("tools", help="list the lab-bench agent tools")
+    lt.add_argument("--no-databases", action="store_true", dest="no_databases")
+    lt.set_defaults(func=cmd_lab_tools)
 
     return p
 
