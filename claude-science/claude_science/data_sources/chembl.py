@@ -64,3 +64,47 @@ def activities_for_target(target_chembl_id: str, limit: int = 25,
             "pchembl_value": a.get("pchembl_value"),
         })
     return out
+
+
+def target_dataset(target_chembl_id: str, max_records: int = 2000,
+                   standard_type: str = "IC50"):
+    """Build a clean (SMILES, pIC50) structure-activity dataset for a target.
+
+    Paginates the activity endpoint (cached), keeps records with a SMILES and a
+    concentration in nM, converts to pIC50 = 9 - log10(value_nM), and collapses
+    duplicate measurements of the same molecule to their median. Returns a list
+    of ``(smiles, pIC50)`` -- the substrate for QSAR / Bayesian optimisation.
+    """
+    import math
+
+    by: Dict[str, List[float]] = {}
+    fetched = 0
+    for offset in range(0, max_records, 1000):
+        n = min(1000, max_records - fetched)
+        url = (f"{_BASE}/activity.json?target_chembl_id={target_chembl_id}"
+               f"&standard_type={standard_type}&limit={n}&offset={offset}")
+        data = fetch_json(url)
+        rows = data.get("activities", [])
+        if not rows:
+            break
+        for a in rows:
+            smi = a.get("canonical_smiles")
+            val = a.get("standard_value")
+            if smi and val and a.get("standard_units") == "nM":
+                try:
+                    f = float(val)
+                except (TypeError, ValueError):
+                    continue
+                if f > 0:
+                    by.setdefault(smi, []).append(9.0 - math.log10(f))
+        fetched += len(rows)
+        if len(rows) < n:
+            break
+
+    import statistics
+    out = []
+    for smi, vals in by.items():
+        p = statistics.median(vals)
+        if 0.0 < p < 12.0:
+            out.append((smi, round(p, 4)))
+    return out

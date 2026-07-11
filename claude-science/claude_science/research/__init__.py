@@ -8,6 +8,6 @@ Currently:
   ``python -m claude_science.research.validate_adaptive_design``.
 """
 
-from . import adaptive_design
+from . import adaptive_design, molecular_bo
 
-__all__ = ["adaptive_design"]
+__all__ = ["adaptive_design", "molecular_bo"]
