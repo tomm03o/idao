@@ -59,12 +59,77 @@ def render(data: Dict[str, Any], out_path: str) -> str:
     return out_path
 
 
+_WORKBENCH_TEMPLATE = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+                                   "dashboard", "workbench_template.html")
+
+_WORKBENCH_MOLS = [
+    ("Aspirin", "CC(=O)Oc1ccccc1C(=O)O"),
+    ("Imatinib", "Cc1ccc(cc1Nc1nccc(n1)-c1cccnc1)NC(=O)c1ccc(CN2CCN(C)CC2)cc1"),
+    ("Gefitinib", "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1"),
+    ("Caffeine", "Cn1cnc2c1c(=O)n(C)c(=O)n2C"),
+    ("Sildenafil", "CCCc1nn(C)c2c1nc([nH]c2=O)-c1cc(ccc1OCC)S(=O)(=O)N1CCN(C)CC1"),
+    ("Ibuprofen", "CC(C)Cc1ccc(cc1)C(C)C(=O)O"),
+]
+
+
+def collect_workbench() -> Dict[str, Any]:
+    """Assemble the workbench payload: real molecule depictions + platform state."""
+    from .science import chem
+    from .envs import ENVIRONMENTS, envs_by_domain, make_env
+    from .harness import HeuristicAgent
+
+    molecules = []
+    for name, smi in _WORKBENCH_MOLS:
+        d = chem.descriptors(smi)
+        molecules.append({
+            "name": name, "smiles": smi, "svg": chem.to_svg(smi, 260, 190),
+            "mw": d["mol_weight"], "clogp": d["clogp"], "qed": d["qed"],
+            "tpsa": d["tpsa"], "hbd": d["h_bond_donors"], "hba": d["h_bond_acceptors"],
+            "sa": d["sa_score"], "lipinski": d["lipinski_pass"],
+        })
+    tree = {dom: [{"key": k, "title": ENVIRONMENTS[k].title,
+                   "cap": ENVIRONMENTS[k].capability} for k in keys]
+            for dom, keys in envs_by_domain().items()}
+    env = make_env("rootfind", seed=0, difficulty="low")
+    tr = HeuristicAgent().run(env)
+    transcript = [{"kind": s.kind,
+                   "content": (s.content if isinstance(s.content, str)
+                               else json.dumps(s.content))[:120]}
+                  for s in tr.steps[:10]]
+    return {
+        "molecules": molecules, "tree": tree, "transcript": transcript,
+        "task": env.task_prompt(),
+        "leaderboard": [
+            {"spec": "heuristic (expert)", "score": 1.00},
+            {"spec": "poolside/laguna-xs-2.1", "score": 0.50},
+            {"spec": "tencent/hy3", "score": 0.50},
+            {"spec": "random (floor)", "score": 0.00}],
+        "stats": {"domains": len(tree), "envs": len(ENVIRONMENTS),
+                  "tools": 18, "tests": 135},
+    }
+
+
+def render_workbench(out_path: str) -> str:
+    with open(_WORKBENCH_TEMPLATE) as fh:
+        template = fh.read()
+    html = template.replace("__DATA__", json.dumps(collect_workbench()))
+    with open(out_path, "w") as fh:
+        fh.write(html)
+    return out_path
+
+
 def main(argv: List[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="claude-science-viz", description=__doc__)
     p.add_argument("--out", default="dashboard.html")
     p.add_argument("--difficulty", default="low")
     p.add_argument("--n-static", type=int, default=120, dest="n_static")
+    p.add_argument("--workbench", action="store_true",
+                   help="render the Cursor-style research workbench instead")
     args = p.parse_args(argv)
+    if args.workbench:
+        render_workbench(args.out)
+        print(f"wrote workbench → {args.out}")
+        return 0
     data = collect(difficulty=args.difficulty, n_static=args.n_static)
     render(data, args.out)
     print(f"wrote {args.out}  (expert {data['heuristic']['overall']:.2f} / "

@@ -177,3 +177,28 @@ def substructure_match(smiles: str, smarts: str) -> bool:
     if patt is None:
         raise ValueError(f"invalid SMARTS: {smarts!r}")
     return parse(smiles).HasSubstructMatch(patt)
+
+
+# --------------------------------------------------------------------------- #
+# Depiction (2D structure rendering)
+# --------------------------------------------------------------------------- #
+def to_svg(smiles: str, width: int = 280, height: int = 210,
+           highlight_smarts: str | None = None) -> str:
+    """Render a molecule to a transparent-background 2D SVG (RDKit).
+
+    Optionally highlight atoms matching a SMARTS pattern. The SVG has no
+    background so it drops cleanly into a light or dark viewer.
+    """
+    from rdkit.Chem.Draw import rdMolDraw2D
+
+    mol = parse(smiles)
+    highlight = []
+    if highlight_smarts:
+        patt = Chem.MolFromSmarts(highlight_smarts)
+        if patt is not None:
+            highlight = [i for m in mol.GetSubstructMatches(patt) for i in m]
+    drawer = rdMolDraw2D.MolDraw2DSVG(width, height)
+    drawer.drawOptions().clearBackground = False
+    rdMolDraw2D.PrepareAndDrawMolecule(drawer, mol, highlightAtoms=highlight or None)
+    drawer.FinishDrawing()
+    return drawer.GetDrawingText()

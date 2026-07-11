@@ -33,15 +33,17 @@ the same numbers a computational chemist or pharmacometrician would compute.
 | database access | `data_sources` | live cached connectors to PubChem, ChEMBL, UniProt, RCSB PDB |
 | internet | `data_sources.web` | biomedical literature search (Europe PMC) + web fetch |
 | retrieval (RAG) | `retrieval` | BM25 corpus an agent can ingest into and query |
-| benchmark | `envs` + `benchmark` | six self-grading environments + scorecard + **multi-model leaderboard** |
+| benchmark | `envs` + `benchmark` | **ten** self-grading environments across **two domains** (life-sciences + numerics) + scorecard + **multi-model leaderboard** |
+| agent structure | `harness.scientist` | **ScientistAgent** — a hypothesis→plan→execute→conclude scaffold over any LLM backend |
 | model backends | `harness` | Claude (Anthropic) **and any OpenRouter model**, one tool-use contract |
 | RL / training data | `rl` | verifiable tasks (18 generators), judges, and SFT/DPO/RLVR export |
 | agent workspace | `workspace` | sandboxed files + terminal (`run_python`/`run_bash`) |
 | composed toolkit | `toolkits.lab_bench` | science + databases + workspace as one agent tool surface |
 | interactive console | `console` | a Claude-Code-style REPL for lab work (human ↔ agent) |
-| admin web app | `admin` | browser console to launch benchmarks/leaderboards/datasets |
+| unified workbench UX | `viz --workbench` | a Cursor-style IDE with a **real RDKit molecular viewer**, env explorer, agent trace, terminal |
+| admin web app | `admin` | browser console to launch benchmarks/leaderboards/datasets + inspect transcripts |
 | MCP server | `mcp_server` | expose everything (incl. the playable benchmark) over MCP |
-| research | `research` | a novel algorithm, formulated and empirically validated |
+| research | `research` | novel algorithms, formulated and empirically validated on real data |
 
 ### Verified results (real runs)
 
@@ -75,7 +77,11 @@ pk.fit_dose_response(concs, responses)["ic50"]        # IC50 with standard error
 **2. An agent harness + benchmark** that wraps those tools into closed-loop
 tasks and scores an agent's decisions.
 
-## The benchmark: six environments across the real domains
+## The benchmark: ten environments across two research domains
+
+The harness is domain-agnostic — the same contract (hidden ground truth + tool
+oracles + verifiable scorer + expert reference policy) spans any computational
+field. **Life sciences:**
 
 | key         | capability                | the task (all graded on a real computation) |
 |-------------|---------------------------|---------------------------------------------|
@@ -85,6 +91,18 @@ tasks and scores an agent's decisions.
 | `pkpd`      | quantitative pharmacology | Choose an oral dose to hit a target Cmax in the therapeutic window, using NCA on simulated profiles. |
 | `variant`   | bioinformatics            | Call a coding mutation (`p.E12K`) from a reference vs variant CDS via alignment + translation. |
 | `conformer` | computational chemistry   | Find a molecule's global-minimum MMFF94 conformer energy by seeded multi-start search. |
+
+**Numerics** (proof the platform generalises beyond biology):
+
+| key          | capability                 | the task |
+|--------------|----------------------------|----------|
+| `rootfind`   | numerical root-finding     | Locate a zero of a hidden function from an evaluation oracle (bisection). |
+| `optimize`   | numerical optimisation     | Minimise a hidden 1-D function under a query budget (golden-section). |
+| `quadrature` | numerical integration      | Estimate a definite integral from point samples (Simpson). |
+| `eigenvalue` | numerical linear algebra   | Recover a matrix's dominant eigenvalue from a matvec oracle (power iteration). |
+
+Adding a new domain is a new `Environment` subclass with a `domain` tag — the
+CLI, benchmark, leaderboard, RL export and workbench pick it up automatically.
 
 Each task supports `--difficulty low|medium|high` (more noise, tighter budgets)
 and any integer `--seed` (a fresh randomised instance). Scores are normalised so
@@ -99,6 +117,35 @@ immediately interpretable. On the built-in suite the random baseline scores
 | `heuristic` | replays each environment's expert reference policy (the ceiling) | nothing |
 | `random`    | random valid tool calls (the floor) | nothing |
 | `claude`    | a real tool-use loop against the Claude Messages API | `anthropic` + `ANTHROPIC_API_KEY` |
+| `openrouter:<model>` | any OpenRouter-hosted model through the same contract | `OPENROUTER_API_KEY` |
+| `scientist:<spec>` | wraps any backend in the scientific-method scaffold | as wrapped |
+
+### Structured research-scientist scaffold
+
+`ScientistAgent` imposes the structure autonomous-discovery systems use
+(Plan-and-Execute; AutoDiscovery's hypothesis/experiment generators) instead of
+a flat ReAct loop: before touching an instrument the agent **states a hypothesis
+and pre-registers its experiment plan** (one LLM call), then executes the plan in
+the tool loop, then concludes with `submit`. The plan is recorded as the first
+transcript step — an auditable pre-registration. It composes with any backend
+and any domain:
+
+```bash
+claude-science bench compare --agents \
+  heuristic,scientist:openrouter:tencent/hy3:free,random --envs rootfind,ic50
+```
+
+## Unified workbench (Cursor-style UX + molecular viewer)
+
+```bash
+python -m claude_science.viz --workbench --out workbench.html   # standalone
+```
+
+A self-contained IDE-style workbench: an activity rail, an environment explorer
+grouped by domain, a **real RDKit 2D molecular viewer** (descriptors, Lipinski
+badges, structure depictions rendered by `chem.to_svg`), an agent-trace tab
+showing the scientist scaffold's hypothesis→plan→execute steps, a live terminal,
+and a leaderboard inspector — theme-aware, no external assets.
 
 ## Interactive console, admin, and MCP
 

@@ -71,3 +71,15 @@ def test_conformer_search_min_le_max():
     cs = struct.conformer_search("CCCCCCC(=O)O", n_confs=8)
     assert cs["energy_min"] <= cs["energy_max"]
     assert cs["n_conformers"] >= 1
+
+
+# --- molecular depiction --------------------------------------------------- #
+def test_to_svg_renders_valid_svg():
+    svg = chem.to_svg("CC(=O)Oc1ccccc1C(=O)O")
+    assert svg.lstrip().startswith("<?xml") or "<svg" in svg
+    assert "</svg>" in svg and len(svg) > 500
+
+
+def test_to_svg_highlight_runs():
+    svg = chem.to_svg("O=CC=CC(=O)O", highlight_smarts="[CX3]=O")
+    assert "<svg" in svg

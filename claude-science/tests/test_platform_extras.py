@@ -121,3 +121,21 @@ def test_admin_lists_and_loads_saved_runs(tmp_path):
     assert "transcripts" in loaded["result"]
     assert loaded["result"]["ranking"][0]["spec"] == "heuristic"
     assert admin._load_run("does-not-exist") is None
+
+
+# --- workbench UX generator ----------------------------------------------- #
+def test_workbench_payload_has_real_depictions():
+    from claude_science.viz import collect_workbench
+    p = collect_workbench()
+    assert len(p["molecules"]) >= 4
+    assert all("<svg" in m["svg"] for m in p["molecules"])
+    assert "life-sciences" in p["tree"] and "numerics" in p["tree"]
+    assert p["transcript"] and p["stats"]["envs"] >= 10
+
+
+def test_workbench_renders_standalone_html(tmp_path):
+    from claude_science.viz import render_workbench
+    out = str(tmp_path / "wb.html")
+    render_workbench(out)
+    html = open(out).read()
+    assert "__DATA__" not in html and html.count("<svg") >= 4
