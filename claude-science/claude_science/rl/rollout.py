@@ -98,13 +98,18 @@ class AgentSolver:
         return self._single_shot(task), []
 
     def _single_shot(self, task: VerifiableTask) -> str:
-        client = self.agent._client()  # AnthropicAgent
+        system = task.system or "Answer with only the final value, no prose."
+        # OpenRouterAgent (and any agent) exposing a `complete` method
+        if hasattr(self.agent, "complete"):
+            return self.agent.complete(task.prompt, system=system)
+        # AnthropicAgent fallback
+        client = self.agent._client()
         resp = client.messages.create(
-            model=self.agent.model, max_tokens=512,
-            system=task.system or "Answer with only the final value, no prose.",
+            model=self.agent.model, max_tokens=512, system=system,
             messages=[{"role": "user", "content": task.prompt}],
         )
-        return "".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
+        return "".join(b.text for b in resp.content
+                       if getattr(b, "type", "") == "text").strip()
 
 
 def _run_expert(task: VerifiableTask):

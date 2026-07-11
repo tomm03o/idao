@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "claude-science"
-version = "0.3.0"
+version = "0.4.0"
 description = "An agent harness and benchmark for biological and pharmaceutical simulation tasks."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -22,6 +22,9 @@ dev = ["pytest>=7"]
 
 [project.scripts]
 claude-science = "claude_science.cli:main"
+claude-science-console = "claude_science.console:main"
+claude-science-admin = "claude_science.admin:main"
+claude-science-mcp = "claude_science.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

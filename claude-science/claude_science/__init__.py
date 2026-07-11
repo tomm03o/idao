@@ -20,8 +20,9 @@ from . import rl
 from . import research
 from .workspace import Workspace, workspace_tools
 from .toolkits import lab_bench, science_tools
+from .retrieval import Corpus, retrieval_tools
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "ENVIRONMENTS",
@@ -41,5 +42,7 @@ __all__ = [
     "workspace_tools",
     "lab_bench",
     "science_tools",
+    "Corpus",
+    "retrieval_tools",
     "__version__",
 ]

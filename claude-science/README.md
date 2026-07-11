@@ -25,17 +25,36 @@ the same numbers a computational chemist or pharmacometrician would compute.
 
 ---
 
-## What's in the platform (v0.3)
+## What's in the platform (v0.4)
 
 | layer | package | what it gives you |
 |-------|---------|-------------------|
 | validated science | `science` | RDKit/SciPy/NumPy computations (below) |
 | database access | `data_sources` | live cached connectors to PubChem, ChEMBL, UniProt, RCSB PDB |
-| benchmark | `envs` + `benchmark` | six self-grading environments + scorecard |
-| RL / training data | `rl` | verifiable tasks, judges, and SFT/DPO/RLVR export |
+| internet | `data_sources.web` | biomedical literature search (Europe PMC) + web fetch |
+| retrieval (RAG) | `retrieval` | BM25 corpus an agent can ingest into and query |
+| benchmark | `envs` + `benchmark` | six self-grading environments + scorecard + **multi-model leaderboard** |
+| model backends | `harness` | Claude (Anthropic) **and any OpenRouter model**, one tool-use contract |
+| RL / training data | `rl` | verifiable tasks (18 generators), judges, and SFT/DPO/RLVR export |
 | agent workspace | `workspace` | sandboxed files + terminal (`run_python`/`run_bash`) |
 | composed toolkit | `toolkits.lab_bench` | science + databases + workspace as one agent tool surface |
+| interactive console | `console` | a Claude-Code-style REPL for lab work (human ↔ agent) |
+| admin web app | `admin` | browser console to launch benchmarks/leaderboards/datasets |
+| MCP server | `mcp_server` | expose everything (incl. the playable benchmark) over MCP |
 | research | `research` | a novel algorithm, formulated and empirically validated |
+
+### Verified results (real runs)
+
+| agent | overall | notes |
+|-------|--------:|-------|
+| expert reference (heuristic) | 1.00 | ceiling |
+| **Claude, playing by hand from tool observations** | **0.968** | admet/screen/variant 1.00; ic50 0.93; pkpd 0.97; conformer 0.90 |
+| `tencent/hy3:free` (OpenRouter, live) | 0.393 | variant 1.00, ic50 0.96; fails admet/pkpd/screen |
+| random floor | 0.04 | floor |
+
+The benchmark discriminates cleanly across this whole range — that spread is the
+signal. (`hy3` ran live via OpenRouter; broader multi-model sweeps are gated by
+the free tier's 50-requests/day cap, and resume automatically once it resets.)
 
 **1. A scientific tool library** (`claude_science.science`) — usable on its own,
 independent of any agent:
@@ -80,6 +99,40 @@ immediately interpretable. On the built-in suite the random baseline scores
 | `heuristic` | replays each environment's expert reference policy (the ceiling) | nothing |
 | `random`    | random valid tool calls (the floor) | nothing |
 | `claude`    | a real tool-use loop against the Claude Messages API | `anthropic` + `ANTHROPIC_API_KEY` |
+
+## Interactive console, admin, and MCP
+
+Three ways to actually *drive* the platform, all real and dependency-free:
+
+```bash
+# 1. Claude-Code-style REPL: delegate lab tasks to an agent with 22 tools
+python -m claude_science.console --model tencent/hy3:free
+#    (science + databases + workspace + internet + RAG; /tools /pipeline /save)
+
+# 2. Admin web console: launch benchmarks, leaderboards, datasets from a browser
+python -m claude_science.admin --port 8765     # → http://localhost:8765
+
+# 3. MCP server: expose everything to Claude Code / Desktop / the Agent SDK
+python -m claude_science.mcp_server            # JSON-RPC 2.0 over stdio
+```
+
+The MCP server lets a connected agent **play the benchmark itself**:
+`bench_start` opens an episode and returns the task + instrument schemas,
+`bench_act` calls an instrument, and `bench_score` reports the graded result —
+plus every science/database/web/RAG/workspace tool directly. Register it with
+the included `.mcp.json`.
+
+## Multi-model leaderboard
+
+```bash
+python -m claude_science bench compare \
+  --agents "heuristic,random,openrouter:tencent/hy3:free,openrouter:poolside/laguna-xs-2.1:free" \
+  --envs variant,ic50,screen,admet --seeds 0
+```
+
+Any model on OpenRouter or Claude is a one-token spec (`openrouter:<model>` /
+`claude:<model>`). Rate-limited or unreachable models are skipped with a note
+rather than sinking the run. Needs `OPENROUTER_API_KEY` / `ANTHROPIC_API_KEY`.
 
 ## Database access
 
@@ -219,10 +272,14 @@ claude_science/
 │   └── transcript.py   auditable, replayable episode record
 ├── envs/             # the six benchmark environments + curated real data
 ├── benchmark/        # runner → per-capability scorecard + JSON report
-├── rl/               # verifiable tasks, judges, SFT/DPO/RLVR export
+├── rl/               # verifiable tasks (18 generators), judges, SFT/DPO/RLVR export
 ├── workspace/        # sandboxed agent files + terminal
+├── retrieval.py      # BM25 RAG corpus + tools
 ├── research/         # novel algorithms, formulated + validated in-repo
 ├── toolkits.py       # lab_bench(): science + databases + workspace, composed
+├── console.py        # interactive Claude-Code-style REPL
+├── admin.py + admin_ui.py   # browser admin console (launch jobs)
+├── mcp_server.py     # dependency-free MCP server (+ playable benchmark)
 └── cli.py
 ```
 
@@ -245,7 +302,8 @@ into CI/cron for nightly regression of a model against the suite.
 ## Tests
 
 ```bash
-python -m pytest -q   # 65 tests (science, harness, envs, rl, workspace, research)
+python -m pytest -q   # 83 tests (science, harness, envs, rl, workspace,
+                      # research, retrieval, admin, console, MCP, leaderboard)
 ```
 
 Includes `tests/test_science.py`, which checks the tool library against

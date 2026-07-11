@@ -17,7 +17,8 @@ from typing import List
 
 from .benchmark import BenchmarkRunner, render_scorecard
 from .envs import ENVIRONMENTS, list_envs, make_env
-from .harness import AnthropicAgent, HeuristicAgent, RandomAgent
+from .harness import (AnthropicAgent, HeuristicAgent, OpenRouterAgent,
+                      RandomAgent)
 
 
 def _make_agent(name: str, model: str, max_steps: int):
@@ -27,8 +28,11 @@ def _make_agent(name: str, model: str, max_steps: int):
         a = RandomAgent()
     elif name == "claude":
         a = AnthropicAgent(model=model, max_steps=max_steps)
+    elif name == "openrouter":
+        a = OpenRouterAgent(model=model, max_steps=max_steps)
     else:
-        raise SystemExit(f"unknown agent {name!r} (heuristic|random|claude)")
+        raise SystemExit(
+            f"unknown agent {name!r} (heuristic|random|claude|openrouter)")
     a.max_steps = max_steps
     return a
 
@@ -77,6 +81,22 @@ def cmd_bench_run(args) -> int:
         with open(args.out, "w") as fh:
             json.dump(report.to_dict(include_transcripts=True), fh, indent=2, default=str)
         print(f"\nFull report + transcripts written to {args.out}")
+    return 0
+
+
+def cmd_bench_compare(args) -> int:
+    from .benchmark import run_leaderboard, render_leaderboard
+    import json as _json
+    envs = args.envs.split(",") if args.envs else list(ENVIRONMENTS)
+    runner = BenchmarkRunner(envs=envs, seeds=_int_list(args.seeds),
+                             difficulties=args.difficulties.split(","))
+    specs = [s.strip() for s in args.agents.split(",") if s.strip()]
+    lb = run_leaderboard(specs, runner, max_steps=args.max_steps)
+    print(render_leaderboard(lb))
+    if args.out:
+        with open(args.out, "w") as fh:
+            _json.dump(lb.to_dict(), fh, indent=2, default=str)
+        print(f"\nLeaderboard JSON written to {args.out}")
     return 0
 
 
@@ -160,6 +180,17 @@ def build_parser() -> argparse.ArgumentParser:
     brun.add_argument("--max-steps", type=int, default=12, dest="max_steps")
     brun.add_argument("--out", default="", help="write JSON report to this path")
     brun.set_defaults(func=cmd_bench_run)
+
+    bcmp = bn_sub.add_parser("compare", help="rank several agents/models on the suite")
+    bcmp.add_argument("--agents", required=True,
+                      help="comma list of specs: heuristic,random,"
+                           "openrouter:tencent/hy3:free,claude:claude-fable-5")
+    bcmp.add_argument("--envs", default="", help="comma list; default all")
+    bcmp.add_argument("--seeds", default="0")
+    bcmp.add_argument("--difficulties", default="low")
+    bcmp.add_argument("--max-steps", type=int, default=12, dest="max_steps")
+    bcmp.add_argument("--out", default="", help="write leaderboard JSON here")
+    bcmp.set_defaults(func=cmd_bench_compare)
 
     # rl build
     rl = sub.add_parser("rl", help="verifiable-task datasets for training/RL")
