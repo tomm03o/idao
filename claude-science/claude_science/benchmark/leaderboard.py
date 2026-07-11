@@ -18,10 +18,19 @@ from .runner import BenchmarkReport, BenchmarkRunner
 
 
 def make_agent(spec: str, max_steps: int = 12):
-    """Build an agent from a spec string like 'openrouter:tencent/hy3:free'."""
+    """Build an agent from a spec string.
+
+    Examples: ``heuristic``, ``random``, ``openrouter:tencent/hy3:free``,
+    ``claude:claude-fable-5``, or wrap any LLM backend in the scientific-method
+    scaffold with a ``scientist:`` prefix, e.g.
+    ``scientist:openrouter:tencent/hy3:free``.
+    """
     from ..harness import (AnthropicAgent, HeuristicAgent, OpenRouterAgent,
-                           RandomAgent)
-    kind, _, model = spec.partition(":")
+                           RandomAgent, ScientistAgent)
+    kind, _, rest = spec.partition(":")
+    if kind == "scientist":
+        return ScientistAgent(make_agent(rest, max_steps=max_steps))
+    model = rest
     if kind == "heuristic":
         return HeuristicAgent()
     if kind == "random":

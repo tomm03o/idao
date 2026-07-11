@@ -36,6 +36,17 @@ class Environment:
     title: str = "Base environment"
     #: which scientific capability the task probes
     capability: str = "general"
+    #: research field this environment belongs to (life-sciences, numerics, …).
+    #: Lets the platform span all computational-research domains, not just bio.
+    domain: str = "life-sciences"
+
+    #: per-domain framing for the agent's system prompt
+    _DOMAIN_FRAMING = {
+        "life-sciences": "a simulated biological / pharmaceutical laboratory",
+        "numerics": "a numerical-computing and applied-mathematics workbench",
+        "physics": "a computational-physics simulation environment",
+        "general": "a computational research environment",
+    }
 
     def __init__(self, seed: int = 0, difficulty: str = "medium"):
         self.seed = seed
@@ -86,12 +97,13 @@ class Environment:
         return self._submission
 
     def system_prompt(self) -> str:
+        framing = self._DOMAIN_FRAMING.get(self.domain, self._DOMAIN_FRAMING["general"])
         return (
-            "You are a scientific research agent operating in a simulated "
-            "biological/pharmaceutical laboratory. You have instruments exposed "
-            "as tools. Design experiments deliberately, reason from the data you "
-            "collect, and call `submit` exactly once when confident. Experiments "
-            "may be noisy and your call budget is limited, so be economical."
+            f"You are a research agent operating in {framing}. You have "
+            "instruments exposed as tools. Design experiments deliberately, "
+            "reason from the data you collect, and call `submit` exactly once "
+            "when confident. Observations may be noisy and your call budget is "
+            "limited, so be economical."
         )
 
     def task_prompt(self) -> str:

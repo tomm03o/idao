@@ -1,9 +1,10 @@
 """Environment registry.
 
-Six environments spanning the real Claude Science domains: cheminformatics,
-virtual screening, assay pharmacology, quantitative PK, bioinformatics, and
-computational chemistry. Each is backed by a validated algorithm (RDKit / scipy
-/ numpy), not a surrogate.
+Environments span multiple computational-research domains. Life sciences:
+cheminformatics, virtual screening, assay pharmacology, quantitative PK,
+bioinformatics, computational chemistry. Numerics: root-finding, optimisation,
+quadrature, linear algebra. Each is backed by a validated algorithm (RDKit /
+scipy / numpy), not a surrogate, and ships an expert reference policy.
 """
 
 from __future__ import annotations
@@ -17,11 +18,20 @@ from .ic50 import IC50Env
 from .pkpd import PKPDEnv
 from .variant import VariantEnv
 from .conformer import ConformerEnv
+from .numerics import (RootFindEnv, OptimizeEnv, QuadratureEnv, EigenvalueEnv)
 
 ENVIRONMENTS: Dict[str, Type[Environment]] = {
     cls.key: cls
-    for cls in (ADMETEnv, ScreenEnv, IC50Env, PKPDEnv, VariantEnv, ConformerEnv)
+    for cls in (ADMETEnv, ScreenEnv, IC50Env, PKPDEnv, VariantEnv, ConformerEnv,
+                RootFindEnv, OptimizeEnv, QuadratureEnv, EigenvalueEnv)
 }
+
+
+def envs_by_domain() -> Dict[str, List[str]]:
+    out: Dict[str, List[str]] = {}
+    for cls in ENVIRONMENTS.values():
+        out.setdefault(cls.domain, []).append(cls.key)
+    return out
 
 
 def make_env(key: str, seed: int = 0, difficulty: str = "medium") -> Environment:
@@ -34,4 +44,4 @@ def list_envs() -> List[Type[Environment]]:
     return list(ENVIRONMENTS.values())
 
 
-__all__ = ["ENVIRONMENTS", "make_env", "list_envs", "Environment"]
+__all__ = ["ENVIRONMENTS", "make_env", "list_envs", "envs_by_domain", "Environment"]
