@@ -58,6 +58,22 @@ class Leaderboard:
             "errors": dict(self.errors),
         }
 
+    def transcripts(self) -> Dict[str, List[Dict]]:
+        """One episode transcript per (agent, task) for inspection in the UI.
+
+        This is what lets an admin see *how* a model reasoned -- which tools it
+        called and why it failed -- not just its score.
+        """
+        out: Dict[str, List[Dict]] = {}
+        for spec, rep in self.reports.items():
+            out[spec] = [
+                {"env": r.env, "task_id": r.task_id, "score": r.score,
+                 "submitted": r.submitted, "n_tool_calls": r.n_tool_calls,
+                 "steps": (r.transcript or {}).get("steps", [])}
+                for r in rep.results
+            ]
+        return out
+
 
 def run_leaderboard(specs: List[str], runner: BenchmarkRunner,
                     max_steps: int = 12, progress: bool = True) -> Leaderboard:

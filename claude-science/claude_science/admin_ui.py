@@ -60,6 +60,7 @@ ADMIN_HTML = r"""<!doctype html><html lang="en"><head>
     <div class="tab" data-t="leaderboard">Leaderboard</div>
     <div class="tab" data-t="dataset">RL dataset</div>
     <div class="tab" data-t="inspect">Task inspector</div>
+    <div class="tab" data-t="runs">Runs &amp; transcripts</div>
     <div class="tab" data-t="jobs">Jobs</div>
   </div>
 
@@ -107,6 +108,17 @@ ADMIN_HTML = r"""<!doctype html><html lang="en"><head>
     <div id="i_out" style="margin-top:16px;overflow-x:auto"></div>
   </section>
 
+  <section id="runs" class="panel hidden">
+    <h2>Runs &amp; transcripts</h2>
+    <p class="d">Saved runs persist under <code>runs/</code> across restarts. Open a
+      leaderboard run to inspect <em>how</em> each model reasoned — the tools it
+      called and where it went wrong — not just its score.</p>
+    <button class="go" onclick="loadRuns()">↻ Refresh runs</button>
+    <div id="r_list" style="margin-top:16px;overflow-x:auto"></div>
+    <div id="r_detail" style="margin-top:20px"></div>
+    <div id="r_trace" style="margin-top:16px"></div>
+  </section>
+
   <section id="jobs" class="panel hidden">
     <h2>Jobs</h2><p class="d">All runs this session.</p>
     <button class="go" onclick="loadJobs()">↻ Refresh</button>
@@ -118,8 +130,9 @@ const $=s=>document.querySelector(s);
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   t.classList.add("active");
-  ["bench","leaderboard","dataset","inspect","jobs"].forEach(id=>$("#"+id).classList.add("hidden"));
+  ["bench","leaderboard","dataset","inspect","runs","jobs"].forEach(id=>$("#"+id).classList.add("hidden"));
   $("#"+t.dataset.t).classList.remove("hidden");
+  if(t.dataset.t==="runs") loadRuns();
 });
 async function jget(u){return (await fetch(u)).json();}
 async function jpost(u,b){return (await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)})).json();}
@@ -150,6 +163,44 @@ async function loadSample(){const s=await jget("/api/dataset/sample?n=12");
    s.map(t=>`<tr><td><code>${t.task_id}</code></td><td>${t.domain}</td><td>${t.judge}</td>
      <td><code>${String(t.gold).slice(0,26)}</code></td>
      <td><span class="pill ${t.gold_scores_pass?'pass':'fail'}">${t.gold_scores_pass?'PASS '+t.reward:'FAIL'}</span></td></tr>`).join("")+"</table>";}
+const ESC=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+async function loadRuns(){const r=await jget("/api/runs");
+  $("#r_detail").innerHTML="";$("#r_trace").innerHTML="";
+  if(!r.length){$("#r_list").innerHTML="<p class='d'>No saved runs yet. Run a leaderboard first.</p>";return;}
+  $("#r_list").innerHTML="<table><tr><th>id</th><th>kind</th><th>status</th><th>summary</th><th></th></tr>"+
+    r.map(x=>`<tr><td><code>${x.id}</code></td><td>${x.kind}</td>
+      <td><span class="pill ${x.status==='done'?'pass':x.status==='error'?'fail':'run'}">${x.status}</span></td>
+      <td>${ESC(x.summary||'')}</td>
+      <td><button class="go" style="padding:4px 10px" onclick="openRun('${x.id}')">open</button></td></tr>`).join("")+"</table>";}
+async function openRun(id){const d=await jget("/api/run/"+id);const res=d.result||{};
+  $("#r_trace").innerHTML="";
+  if(!res.ranking){$("#r_detail").innerHTML="<pre class='out'>"+ESC(JSON.stringify(res,null,2).slice(0,2000))+"</pre>";return;}
+  const caps=[...new Set(res.ranking.flatMap(r=>Object.keys(r.by_capability||{})))];
+  let h="<h3 style='font-size:13px;margin:0 0 10px'>Leaderboard "+ESC(id)+"</h3>";
+  h+="<table><tr><th>#</th><th>agent / model</th><th>overall</th>"+caps.map(c=>`<th class="num">${c.slice(0,5)}</th>`).join("")+"</tr>";
+  res.ranking.forEach((r,i)=>{h+=`<tr><td>${i+1}</td><td><code>${ESC(r.spec)}</code></td>
+    <td class="num"><b>${r.overall.toFixed(3)}</b></td>`+
+    caps.map(c=>`<td class="num">${(r.by_capability[c]??0).toFixed(2)}</td>`).join("")+"</tr>";});
+  h+="</table>";
+  if(res.errors&&Object.keys(res.errors).length)
+    h+="<p class='d' style='margin-top:10px'>skipped: "+Object.entries(res.errors).map(([s,e])=>ESC(s)).join(", ")+"</p>";
+  const tr=res.transcripts||{};
+  if(Object.keys(tr).length){
+    h+="<h3 style='font-size:13px;margin:18px 0 8px'>Inspect an episode</h3><div style='display:flex;gap:8px;flex-wrap:wrap'>";
+    for(const spec of Object.keys(tr))for(const ep of tr[spec])
+      h+=`<button class="tab" onclick='showTrace(${JSON.stringify(spec)},${JSON.stringify(ep.task_id)},"${id}")'>
+        ${ESC(spec.replace('openrouter:',''))} · ${ESC(ep.env)}
+        <span class="pill ${ep.score>=0.8?'pass':ep.score>0?'run':'fail'}">${ep.score.toFixed(2)}</span></button>`;
+    h+="</div>";
+  }
+  $("#r_detail").innerHTML=h;window._run=d;}
+function showTrace(spec,task,id){const d=window._run;const ep=(d.result.transcripts[spec]||[]).find(e=>e.task_id===task);
+  if(!ep)return;
+  const kindColor={message:"var(--soft)",tool_call:"var(--accent)",observation:"var(--faint)",final:"var(--ink)"};
+  let h=`<div class="out"><b>${ESC(spec)}</b> on <b>${ESC(ep.env)}</b> — score ${ep.score.toFixed(2)}, ${ep.n_tool_calls} tool calls\n\n`;
+  ep.steps.forEach((s,i)=>{const c=typeof s.content==="object"?JSON.stringify(s.content):String(s.content);
+    h+=`<span style="color:${kindColor[s.kind]||'var(--soft)'}">${String(i).padStart(2,'0')} ${s.kind.padEnd(11)}</span> ${ESC(c.slice(0,600))}\n`;});
+  h+="</div>";$("#r_trace").innerHTML=h;$("#r_trace").scrollIntoView({behavior:"smooth"});}
 async function loadJobs(){const j=await jget("/api/jobs");
   $("#j_out").innerHTML="<table><tr><th>id</th><th>kind</th><th>status</th><th>started</th></tr>"+
    j.map(x=>`<tr><td><code>${x.id}</code></td><td>${x.kind}</td>

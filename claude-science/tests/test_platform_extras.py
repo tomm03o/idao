@@ -93,3 +93,31 @@ def _wait(admin, jid, timeout=60):
         if admin._JOBS[jid]["status"] != "running":
             return
         time.sleep(0.5)
+
+
+# --- leaderboard transcripts + saved-run browsing ------------------------- #
+def test_leaderboard_captures_transcripts():
+    from claude_science.benchmark import BenchmarkRunner, run_leaderboard
+    runner = BenchmarkRunner(envs=["variant"], seeds=[0], difficulties=["low"])
+    lb = run_leaderboard(["heuristic", "random"], runner, progress=False)
+    tr = lb.transcripts()
+    assert set(tr) == {"heuristic", "random"}
+    ep = tr["heuristic"][0]
+    assert ep["env"] == "variant" and ep["steps"]
+    assert {"kind", "content"} <= set(ep["steps"][0])
+
+
+def test_admin_lists_and_loads_saved_runs(tmp_path):
+    from claude_science import admin
+    admin.RUNS_DIR = str(tmp_path)
+    jid = admin.start_job("leaderboard", {"agents": ["heuristic", "random"],
+                                          "envs": ["variant"], "seeds": [0],
+                                          "difficulty": "low"})
+    _wait(admin, jid)
+    runs = admin._list_runs()
+    assert any(r["id"] == jid and r["kind"] == "leaderboard" for r in runs)
+    loaded = admin._load_run(jid)
+    assert loaded is not None
+    assert "transcripts" in loaded["result"]
+    assert loaded["result"]["ranking"][0]["spec"] == "heuristic"
+    assert admin._load_run("does-not-exist") is None

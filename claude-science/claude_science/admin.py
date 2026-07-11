@@ -84,9 +84,11 @@ def _run_leaderboard(jid: str, p: Dict[str, Any]) -> None:
         lb = run_leaderboard(p.get("agents", ["heuristic", "random"]), runner,
                              max_steps=p.get("max_steps", 10), progress=False)
         _finish(jid, {"ranking": [{"spec": s, "overall": r.overall(),
-                                    "by_capability": r.by_capability()}
+                                    "by_capability": r.by_capability(),
+                                    "by_env": r.by_env()}
                                    for s, r in lb.ranked()],
                       "errors": lb.errors,
+                      "transcripts": lb.transcripts(),
                       "table": render_leaderboard(lb)})
     except Exception:
         _finish(jid, error=traceback.format_exc()[-1500:])
@@ -126,6 +128,43 @@ def start_job(kind: str, params: Dict[str, Any]) -> str:
     jid = _new_job(kind, params)
     threading.Thread(target=_RUNNERS[kind], args=(jid, params), daemon=True).start()
     return jid
+
+
+def _list_runs() -> List[Dict[str, Any]]:
+    """List persisted runs (survives restarts) with a one-line summary."""
+    if not os.path.isdir(RUNS_DIR):
+        return []
+    out = []
+    for fn in sorted(os.listdir(RUNS_DIR), reverse=True):
+        if not fn.endswith(".json"):
+            continue
+        try:
+            with open(os.path.join(RUNS_DIR, fn)) as fh:
+                d = json.load(fh)
+        except (OSError, json.JSONDecodeError):
+            continue
+        res = d.get("result") or {}
+        summary = ""
+        if d.get("kind") == "leaderboard" and res.get("ranking"):
+            top = res["ranking"][0]
+            summary = f"top: {top['spec']} ({top['overall']:.2f})"
+        elif d.get("kind") == "bench":
+            summary = f"overall {res.get('overall', '—')}"
+        out.append({"id": d.get("id", fn[:-5]), "kind": d.get("kind"),
+                    "status": d.get("status"), "started": d.get("started"),
+                    "params": d.get("params"), "summary": summary})
+    return out
+
+
+def _load_run(jid: str) -> Dict[str, Any] | None:
+    path = os.path.join(RUNS_DIR, f"{jid}.json")
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path) as fh:
+            return json.load(fh)
+    except (OSError, json.JSONDecodeError):
+        return None
 
 
 def dataset_sample(n: int = 10, seed: int = 0) -> List[Dict[str, Any]]:
@@ -184,6 +223,12 @@ class Handler(BaseHTTPRequestHandler):
         elif u.path == "/api/dataset/sample":
             n = int(q.get("n", ["10"])[0])
             self._json(dataset_sample(n))
+        elif u.path == "/api/runs":
+            self._json(_list_runs())
+        elif u.path.startswith("/api/run/"):
+            jid = u.path.rsplit("/", 1)[-1]
+            self._json(_load_run(jid) or {"error": "not found"},
+                       200 if _load_run(jid) else 404)
         else:
             self._json({"error": "not found"}, 404)
 
