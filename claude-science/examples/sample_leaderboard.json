@@ -1,0 +1,1209 @@
+{
+  "id": "5d8bd19dc8c6",
+  "kind": "leaderboard",
+  "params": {
+    "agents": [
+      "heuristic",
+      "openrouter:tencent/hy3:free",
+      "openrouter:poolside/laguna-xs-2.1:free",
+      "random"
+    ],
+    "envs": [
+      "variant",
+      "ic50",
+      "admet",
+      "screen"
+    ],
+    "seeds": [
+      0
+    ],
+    "difficulty": "low",
+    "max_steps": 12
+  },
+  "status": "done",
+  "started": 1783753062.475935,
+  "result": {
+    "ranking": [
+      {
+        "spec": "heuristic",
+        "overall": 1.0,
+        "by_capability": {
+          "bioinformatics": 1.0,
+          "cheminformatics": 1.0,
+          "pharmacology-assay": 1.0,
+          "virtual-screening": 1.0
+        },
+        "by_env": {
+          "admet": 1.0,
+          "ic50": 1.0,
+          "screen": 1.0,
+          "variant": 1.0
+        }
+      },
+      {
+        "spec": "openrouter:tencent/hy3:free",
+        "overall": 0.4998,
+        "by_capability": {
+          "bioinformatics": 1.0,
+          "cheminformatics": 0.0,
+          "pharmacology-assay": 0.9992,
+          "virtual-screening": 0.0
+        },
+        "by_env": {
+          "admet": 0.0,
+          "ic50": 0.9992,
+          "screen": 0.0,
+          "variant": 1.0
+        }
+      },
+      {
+        "spec": "random",
+        "overall": 0.0,
+        "by_capability": {
+          "bioinformatics": 0.0,
+          "cheminformatics": 0.0,
+          "pharmacology-assay": 0.0,
+          "virtual-screening": 0.0
+        },
+        "by_env": {
+          "admet": 0.0,
+          "ic50": 0.0,
+          "screen": 0.0,
+          "variant": 0.0
+        }
+      }
+    ],
+    "errors": {
+      "openrouter:poolside/laguna-xs-2.1:free": "RuntimeError: OpenRouter HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metad"
+    },
+    "transcripts": {
+      "heuristic": [
+        {
+          "env": "variant",
+          "task_id": "variant-low-0",
+          "score": 1.0,
+          "submitted": true,
+          "n_tool_calls": 3,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "translate",
+                "args": {
+                  "dna": "ATGGCAGAAGATCCTGAAGTGCTGAAGCGTATTGGCGATTTTGGCCTGGCAACCGAAAAAAGCCGTTGGAGCGGCAGCCATCAGTTTGAACAGCTGAGCGGCAGCATTCTGTGGATGGCACCGGAAGTGATTCGTATGCAGGATAACAACCCGTTTAGCTTTCAGAGCGATGTGTATAGCTATGGCATTGTGCTGTATGAACTGATGACCGGCTAA"
+                }
+              },
+              "t": 1783753062.4761398,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"protein\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNNPFSFQSDVYSYGIVLYELMTG*\"\n}",
+              "t": 1783753062.4762142,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "translate",
+                "args": {
+                  "dna": "ATGGCAGAAGATCCTGAAGTGCTGAAGCGTATTGGCGATTTTGGCCTGGCAACCGAAAAAAGCCGTTGGAGCGGCAGCCATCAGTTTGAACAGCTGAGCGGCAGCATTCTGTGGATGGCACCGGAAGTGATTCGTATGCAGGATAACAAACCGTTTAGCTTTCAGAGCGATGTGTATAGCTATGGCATTGTGCTGTATGAACTGATGACCGGCTAA"
+                }
+              },
+              "t": 1783753062.4762163,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"protein\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNKPFSFQSDVYSYGIVLYELMTG*\"\n}",
+              "t": 1783753062.4762514,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "variant": "p.N50K"
+                }
+              },
+              "t": 1783753062.476253,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 1.000",
+              "t": 1783753062.4762704,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "variant": "p.N50K"
+              },
+              "t": 1783753062.4762714,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "ic50",
+          "task_id": "ic50-low-0",
+          "score": 1.0,
+          "submitted": true,
+          "n_tool_calls": 7,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 170.701
+                }
+              },
+              "t": 1783753062.4764414,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 170.701,\n  \"percent_inhibition\": 2.34,\n  \"reads_remaining\": 11\n}",
+              "t": 1783753062.4765325,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 569.003
+                }
+              },
+              "t": 1783753062.4765344,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 569.003,\n  \"percent_inhibition\": 15.82,\n  \"reads_remaining\": 10\n}",
+              "t": 1783753062.4765637,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 1707.008
+                }
+              },
+              "t": 1783753062.4765654,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 1707.008,\n  \"percent_inhibition\": 49.47,\n  \"reads_remaining\": 9\n}",
+              "t": 1783753062.4765918,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 5121.024
+                }
+              },
+              "t": 1783753062.4765985,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 5121.024,\n  \"percent_inhibition\": 81.23,\n  \"reads_remaining\": 8\n}",
+              "t": 1783753062.47663,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 17070.08
+                }
+              },
+              "t": 1783753062.4766316,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 17070.08,\n  \"percent_inhibition\": 92.57,\n  \"reads_remaining\": 7\n}",
+              "t": 1783753062.4766643,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 51210.24
+                }
+              },
+              "t": 1783753062.4766655,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 51210.24,\n  \"percent_inhibition\": 96.92,\n  \"reads_remaining\": 6\n}",
+              "t": 1783753062.476694,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "ic50_nM": 1707.01
+                }
+              },
+              "t": 1783753062.4766953,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 1.000",
+              "t": 1783753062.476707,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "ic50_nM": 1707.01
+              },
+              "t": 1783753062.476708,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "admet",
+          "task_id": "admet-low-0",
+          "score": 1.0,
+          "submitted": true,
+          "n_tool_calls": 7,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CCCc1nn(C)c2c1nc([nH]c2=O)-c1cc(ccc1OCC)S(=O)(=O)N1CCN(C)CC1"
+                }
+              },
+              "t": 1783753062.9142454,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 3,\n  \"canonical_smiles\": \"CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12\",\n  \"clogp\": 1.611,\n  \"fraction_csp3\": 0.5,\n  \"h_bond_acceptors\": 7,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 33,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 474.59,\n  \"qed\": 0.553,\n  \"rotatable_bonds\": 7,\n  \"sa_score\": 2.74,\n  \"structural_alerts\": [],\n  \"tpsa\": 113.42,\n  \"veber_pass\": true\n}",
+              "t": 1783753062.9182613,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CCCCCCCCCCCCCCCCCCCC"
+                }
+              },
+              "t": 1783753062.9182658,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 0,\n  \"canonical_smiles\": \"CCCCCCCCCCCCCCCCCCCC\",\n  \"clogp\": 8.048,\n  \"fraction_csp3\": 1.0,\n  \"h_bond_acceptors\": 0,\n  \"h_bond_donors\": 0,\n  \"heavy_atoms\": 20,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 282.56,\n  \"qed\": 0.237,\n  \"rotatable_bonds\": 17,\n  \"sa_score\": 1.06,\n  \"structural_alerts\": [],\n  \"tpsa\": 0.0,\n  \"veber_pass\": false\n}",
+              "t": 1783753062.9202638,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CN1CCC23C=CC(O)C4Oc5c(O)ccc(c5C24)CC1C3"
+                }
+              },
+              "t": 1783753062.9202683,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"CN1CCC23C=CC(O)C4Oc5c(O)ccc(c5C42)CC1C3\",\n  \"clogp\": 1.804,\n  \"fraction_csp3\": 0.556,\n  \"h_bond_acceptors\": 4,\n  \"h_bond_donors\": 2,\n  \"heavy_atoms\": 22,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 299.37,\n  \"qed\": 0.717,\n  \"rotatable_bonds\": 0,\n  \"sa_score\": 5.86,\n  \"structural_alerts\": [],\n  \"tpsa\": 52.93,\n  \"veber_pass\": true\n}",
+              "t": 1783753062.923357,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CC(=O)CC(c1ccccc1)c1c(O)c2ccccc2oc1=O"
+                }
+              },
+              "t": 1783753062.923361,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 3,\n  \"canonical_smiles\": \"CC(=O)CC(c1ccccc1)c1c(O)c2ccccc2oc1=O\",\n  \"clogp\": 3.61,\n  \"fraction_csp3\": 0.158,\n  \"h_bond_acceptors\": 4,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 23,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 308.33,\n  \"qed\": 0.748,\n  \"rotatable_bonds\": 4,\n  \"sa_score\": 2.63,\n  \"structural_alerts\": [],\n  \"tpsa\": 67.51,\n  \"veber_pass\": true\n}",
+              "t": 1783753062.9265146,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "O=[N+]([O-])c1ccccc1"
+                }
+              },
+              "t": 1783753062.9265182,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"O=[N+]([O-])c1ccccc1\",\n  \"clogp\": 1.595,\n  \"fraction_csp3\": 0.0,\n  \"h_bond_acceptors\": 2,\n  \"h_bond_donors\": 0,\n  \"heavy_atoms\": 9,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 123.11,\n  \"qed\": 0.42,\n  \"rotatable_bonds\": 1,\n  \"sa_score\": 1.32,\n  \"structural_alerts\": [\n    \"nitro_aromatic\"\n  ],\n  \"tpsa\": 43.14,\n  \"veber_pass\": true\n}",
+              "t": 1783753062.928149,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CC(C)Cc1ccc(cc1)C(C)C(=O)O"
+                }
+              },
+              "t": 1783753062.928153,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"CC(C)Cc1ccc(C(C)C(=O)O)cc1\",\n  \"clogp\": 3.073,\n  \"fraction_csp3\": 0.462,\n  \"h_bond_acceptors\": 1,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 15,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 206.28,\n  \"qed\": 0.822,\n  \"rotatable_bonds\": 4,\n  \"sa_score\": 2.19,\n  \"structural_alerts\": [],\n  \"tpsa\": 37.3,\n  \"veber_pass\": true\n}",
+              "t": 1783753062.9304416,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "smiles": "CC(C)Cc1ccc(cc1)C(C)C(=O)O"
+                }
+              },
+              "t": 1783753062.9304452,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 1.000",
+              "t": 1783753062.9317322,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "smiles": "CC(C)Cc1ccc(cc1)C(C)C(=O)O"
+              },
+              "t": 1783753062.931734,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "screen",
+          "task_id": "screen-low-0",
+          "score": 1.0,
+          "submitted": true,
+          "n_tool_calls": 2,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "screen_library",
+                "args": {
+                  "top_k": 2
+                }
+              },
+              "t": 1783753062.9375763,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "[\n  {\n    \"smiles\": \"CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc23)CC1\",\n    \"tanimoto\": 0.1789\n  },\n  {\n    \"smiles\": \"Cc1ccc(cc1Nc1nccc(n1)-c1cccnc1)NC(=O)c1ccc(CN2CCN(C)CC2)cc1\",\n    \"tanimoto\": 0.1667\n  }\n]",
+              "t": 1783753062.9425883,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "hits": [
+                    "CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1",
+                    "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1"
+                  ]
+                }
+              },
+              "t": 1783753062.9425917,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 1.000",
+              "t": 1783753062.9432707,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "hits": [
+                  "CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1",
+                  "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1"
+                ]
+              },
+              "t": 1783753062.943273,
+              "meta": {}
+            }
+          ]
+        }
+      ],
+      "openrouter:tencent/hy3:free": [
+        {
+          "env": "variant",
+          "task_id": "variant-low-0",
+          "score": 1.0,
+          "submitted": true,
+          "n_tool_calls": 4,
+          "steps": [
+            {
+              "kind": "message",
+              "content": "I'll translate both sequences and align them to find the single amino-acid substitution.",
+              "t": 1783753069.5969763,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "translate",
+                "args": {
+                  "dna": "ATGGCAGAAGATCCTGAAGTGCTGAAGCGTATTGGCGATTTTGGCCTGGCAACCGAAAAAAGCCGTTGGAGCGGCAGCCATCAGTTTGAACAGCTGAGCGGCAGCATTCTGTGGATGGCACCGGAAGTGATTCGTATGCAGGATAACAACCCGTTTAGCTTTCAGAGCGATGTGTATAGCTATGGCATTGTGCTGTATGAACTGATGACCGGCTAA"
+                }
+              },
+              "t": 1783753069.5969865,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"protein\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNNPFSFQSDVYSYGIVLYELMTG*\"\n}",
+              "t": 1783753069.5970721,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "translate",
+                "args": {
+                  "dna": "ATGGCAGAAGATCCTGAAGTGCTGAAGCGTATTGGCGATTTTGGCCTGGCAACCGAAAAAAGCCGTTGGAGCGGCAGCCATCAGTTTGAACAGCTGAGCGGCAGCATTCTGTGGATGGCACCGGAAGTGATTCGTATGCAGGATAACAAACCGTTTAGCTTTCAGAGCGATGTGTATAGCTATGGCATTGTGCTGTATGAACTGATGACCGGCTAA"
+                }
+              },
+              "t": 1783753069.5970895,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"protein\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNKPFSFQSDVYSYGIVLYELMTG*\"\n}",
+              "t": 1783753069.5971172,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "Let me align the two protein sequences to pinpoint the substitution.",
+              "t": 1783753075.1669905,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "align_sequences",
+                "args": {
+                  "seq1": "MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNNPFSFQSDVYSYGIVLYELMTG*",
+                  "seq2": "MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNKPFSFQSDVYSYGIVLYELMTG*"
+                }
+              },
+              "t": 1783753075.1670063,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aligned_seq1\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNNPFSFQSDVYSYGIVLYELMTG*\",\n  \"aligned_seq2\": \"MAEDPEVLKRIGDFGLATEKSRWSGSHQFEQLSGSILWMAPEVIRMQDNKPFSFQSDVYSYGIVLYELMTG*\",\n  \"identity\": 0.9861,\n  \"length\": 72,\n  \"score\": 70\n}",
+              "t": 1783753075.1726217,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "The alignment shows a single difference: the reference has `NN` (Asn-Asn) at positions 49\u201350, while the variant has `NK` (Asn-Lys). Counting the protein positions:\n\n- Position 49: N (unchanged)\n- Position 50: N \u2192 K (substitution)\n\nThe DNA confirms this: reference `AACAAC` (Asn-Asn) vs variant `AACAAA` (Asn-Lys), where the second codon changed from `AAC` (Asn) to `AAA` (Lys).\n\nThe substitution is at position 50, Asn \u2192 Lys.",
+              "t": 1783753087.4828825,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "variant": "p.N50K"
+                }
+              },
+              "t": 1783753087.4829097,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 1.000",
+              "t": 1783753087.4829786,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "variant": "p.N50K"
+              },
+              "t": 1783753087.482981,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "ic50",
+          "task_id": "ic50-low-0",
+          "score": 0.9992,
+          "submitted": true,
+          "n_tool_calls": 14,
+          "steps": [
+            {
+              "kind": "message",
+              "content": "I'll start by sampling a broad range of log-spaced concentrations to locate where the 50% inhibition point falls.",
+              "t": 1783753095.5631678,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 1
+                }
+              },
+              "t": 1783753095.5631776,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 1,\n  \"percent_inhibition\": 0.0,\n  \"reads_remaining\": 11\n}",
+              "t": 1783753095.563326,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 10
+                }
+              },
+              "t": 1783753095.5633535,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 10,\n  \"percent_inhibition\": 1.22,\n  \"reads_remaining\": 10\n}",
+              "t": 1783753095.5634046,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 100
+                }
+              },
+              "t": 1783753095.5634198,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 100,\n  \"percent_inhibition\": 2.7,\n  \"reads_remaining\": 9\n}",
+              "t": 1783753095.563449,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 1000
+                }
+              },
+              "t": 1783753095.5634627,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 1000,\n  \"percent_inhibition\": 29.06,\n  \"reads_remaining\": 8\n}",
+              "t": 1783753095.5634837,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 10000
+                }
+              },
+              "t": 1783753095.5635383,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 10000,\n  \"percent_inhibition\": 89.42,\n  \"reads_remaining\": 7\n}",
+              "t": 1783753095.563572,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 100000
+                }
+              },
+              "t": 1783753095.5635865,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 100000,\n  \"percent_inhibition\": 97.22,\n  \"reads_remaining\": 6\n}",
+              "t": 1783753095.5636072,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "The 50% point lies between 1000 nM (29%) and 10000 nM (89%). I'll sample more densely in that range to bracket the midpoint.",
+              "t": 1783753102.2406592,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 2000
+                }
+              },
+              "t": 1783753102.2406707,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 2000,\n  \"percent_inhibition\": 56.58,\n  \"reads_remaining\": 5\n}",
+              "t": 1783753102.2407928,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 3000
+                }
+              },
+              "t": 1783753102.2408109,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 3000,\n  \"percent_inhibition\": 68.04,\n  \"reads_remaining\": 4\n}",
+              "t": 1783753102.2408361,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 5000
+                }
+              },
+              "t": 1783753102.240851,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 5000,\n  \"percent_inhibition\": 81.51,\n  \"reads_remaining\": 3\n}",
+              "t": 1783753102.2410212,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 7000
+                }
+              },
+              "t": 1783753102.2410426,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 7000,\n  \"percent_inhibition\": 90.02,\n  \"reads_remaining\": 2\n}",
+              "t": 1783753102.2410724,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "The 50% point is between 1000 nM (29%) and 2000 nM (56.6%). I'll add two points to bracket it tightly.",
+              "t": 1783753108.896044,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 1300
+                }
+              },
+              "t": 1783753108.8960538,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 1300,\n  \"percent_inhibition\": 38.34,\n  \"reads_remaining\": 1\n}",
+              "t": 1783753108.896177,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 1600
+                }
+              },
+              "t": 1783753108.8961952,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 1600,\n  \"percent_inhibition\": 46.01,\n  \"reads_remaining\": 0\n}",
+              "t": 1783753108.8962202,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "I now have 12 well-distributed points bracketing the 50% point. Let me fit the Hill model.",
+              "t": 1783753116.449467,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "fit_curve",
+                "args": {
+                  "concentrations_nM": [
+                    1,
+                    10,
+                    100,
+                    1000,
+                    1300,
+                    1600,
+                    2000,
+                    3000,
+                    5000,
+                    7000,
+                    10000,
+                    100000
+                  ],
+                  "responses": [
+                    0.0,
+                    1.22,
+                    2.7,
+                    29.06,
+                    38.34,
+                    46.01,
+                    56.58,
+                    68.04,
+                    81.51,
+                    90.02,
+                    89.42,
+                    97.22
+                  ]
+                }
+              },
+              "t": 1783753116.4494839,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"bottom\": 0.898,\n  \"hill_slope\": 1.595,\n  \"ic50\": 1709.8883,\n  \"ic50_se\": 47.9163,\n  \"r_squared\": 0.9989,\n  \"top\": 96.865\n}",
+              "t": 1783753116.4555452,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "The fit is excellent (R\u00b2 = 0.9989, IC50 SE = 47.9 nM). The data tightly brackets the 50% point (1600 nM \u2192 46%, 2000 nM \u2192 56.6%), and the Hill slope (~1.6) is reasonable. I'm confident in the estimate.",
+              "t": 1783753121.1394951,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "ic50_nM": 1710
+                }
+              },
+              "t": 1783753121.1395066,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 0.999",
+              "t": 1783753121.1395943,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "ic50_nM": 1710
+              },
+              "t": 1783753121.1395974,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "admet",
+          "task_id": "admet-low-0",
+          "score": 0.0,
+          "submitted": false,
+          "n_tool_calls": 6,
+          "steps": [
+            {
+              "kind": "message",
+              "content": "I'll analyze all six candidates in parallel to evaluate their drug-likeness, structural alerts, and quality.",
+              "t": 1783753127.3078914,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CCCc1nn(C)c2c1nc([nH]c2=O)-c1cc(ccc1OCC)S(=O)(=O)N1CCN(C)CC1"
+                }
+              },
+              "t": 1783753127.3079004,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 3,\n  \"canonical_smiles\": \"CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12\",\n  \"clogp\": 1.611,\n  \"fraction_csp3\": 0.5,\n  \"h_bond_acceptors\": 7,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 33,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 474.59,\n  \"qed\": 0.553,\n  \"rotatable_bonds\": 7,\n  \"sa_score\": 2.74,\n  \"structural_alerts\": [],\n  \"tpsa\": 113.42,\n  \"veber_pass\": true\n}",
+              "t": 1783753127.313537,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CCCCCCCCCCCCCCCCCCCCC"
+                }
+              },
+              "t": 1783753127.3136568,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 0,\n  \"canonical_smiles\": \"CCCCCCCCCCCCCCCCCCCCC\",\n  \"clogp\": 8.438,\n  \"fraction_csp3\": 1.0,\n  \"h_bond_acceptors\": 0,\n  \"h_bond_donors\": 0,\n  \"heavy_atoms\": 21,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 296.58,\n  \"qed\": 0.223,\n  \"rotatable_bonds\": 18,\n  \"sa_score\": 1.06,\n  \"structural_alerts\": [],\n  \"tpsa\": 0.0,\n  \"veber_pass\": false\n}",
+              "t": 1783753127.316101,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CN1CCC23C=CC(O)C4Oc5c(O)ccc(c5C24)CC1C3"
+                }
+              },
+              "t": 1783753127.316152,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"CN1CCC23C=CC(O)C4Oc5c(O)ccc(c5C42)CC1C3\",\n  \"clogp\": 1.804,\n  \"fraction_csp3\": 0.556,\n  \"h_bond_acceptors\": 4,\n  \"h_bond_donors\": 2,\n  \"heavy_atoms\": 22,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 299.37,\n  \"qed\": 0.717,\n  \"rotatable_bonds\": 0,\n  \"sa_score\": 5.86,\n  \"structural_alerts\": [],\n  \"tpsa\": 52.93,\n  \"veber_pass\": true\n}",
+              "t": 1783753127.319587,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CC(=O)CC(c1ccccc1)c1c(O)c2ccccc2oc1=O"
+                }
+              },
+              "t": 1783753127.319646,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 3,\n  \"canonical_smiles\": \"CC(=O)CC(c1ccccc1)c1c(O)c2ccccc2oc1=O\",\n  \"clogp\": 3.61,\n  \"fraction_csp3\": 0.158,\n  \"h_bond_acceptors\": 4,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 23,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 308.33,\n  \"qed\": 0.748,\n  \"rotatable_bonds\": 4,\n  \"sa_score\": 2.63,\n  \"structural_alerts\": [],\n  \"tpsa\": 67.51,\n  \"veber_pass\": true\n}",
+              "t": 1783753127.3228333,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "O=[N+]([O-])c1ccccc1"
+                }
+              },
+              "t": 1783753127.3228755,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"O=[N+]([O-])c1ccccc1\",\n  \"clogp\": 1.595,\n  \"fraction_csp3\": 0.0,\n  \"h_bond_acceptors\": 2,\n  \"h_bond_donors\": 0,\n  \"heavy_atoms\": 9,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 123.11,\n  \"qed\": 0.42,\n  \"rotatable_bonds\": 1,\n  \"sa_score\": 1.32,\n  \"structural_alerts\": [\n    \"nitro_aromatic\"\n  ],\n  \"tpsa\": 43.14,\n  \"veber_pass\": true\n}",
+              "t": 1783753127.3245752,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "analyze_molecule",
+                "args": {
+                  "smiles": "CC(C)Cc1ccc(cc1)C(C)C(=O)O"
+                }
+              },
+              "t": 1783753127.3246148,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"aromatic_rings\": 1,\n  \"canonical_smiles\": \"CC(C)Cc1ccc(C(C)C(=O)O)cc1\",\n  \"clogp\": 3.073,\n  \"fraction_csp3\": 0.462,\n  \"h_bond_acceptors\": 1,\n  \"h_bond_donors\": 1,\n  \"heavy_atoms\": 15,\n  \"lipinski_pass\": true,\n  \"mol_weight\": 206.28,\n  \"qed\": 0.822,\n  \"rotatable_bonds\": 4,\n  \"sa_score\": 2.19,\n  \"structural_alerts\": [],\n  \"tpsa\": 37.3,\n  \"veber_pass\": true\n}",
+              "t": 1783753127.3269343,
+              "meta": {}
+            },
+            {
+              "kind": "message",
+              "content": "## Analysis of Results\n\nLet me evaluate each candidate against the criteria (Lipinski pass, Veber pass, no reactive alerts, then highest QED at reasonable synthetic accessibility):\n\n| # | Candidate | Lipinski | Veber | Alerts | QED | SA score |\n|---|-----------|----------|-------|--------|-----|----------|\n| 1 | Sulfonamide-pyrazolone | \u2705 | \u2705 | none | 0.553 | 2.74 |\n| 2 | C19 alkane | \u2705 | \u274c (18 rot. bonds) | none | 0.223 | 1.06 |\n| 3 | Morphinan-like | \u2705 | \u2705 | none | 0.",
+              "t": 1783753146.1125584,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": "## Analysis of Results\n\nLet me evaluate each candidate against the criteria (Lipinski pass, Veber pass, no reactive alerts, then highest QED at reasonable synthetic accessibility):\n\n| # | Candidate | Lipinski | Veber | Alerts | QED | SA score |\n|---|-----------|----------|-------|--------|-----|----------|\n| 1 | Sulfonamide-pyrazolone | \u2705 | \u2705 | none | 0.553 | 2.74 |\n| 2 | C19 alkane | \u2705 | \u274c (18 rot. bonds) | none | 0.223 | 1.06 |\n| 3 | Morphinan-like | \u2705 | \u2705 | none | 0.",
+              "t": 1783753146.1125693,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "screen",
+          "task_id": "screen-low-0",
+          "score": 0.0,
+          "submitted": false,
+          "n_tool_calls": 0,
+          "steps": [
+            {
+              "kind": "final",
+              "content": null,
+              "t": 1783753163.965778,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "note": "agent stopped without a final answer"
+              },
+              "t": 1783753163.9657884,
+              "meta": {}
+            }
+          ]
+        }
+      ],
+      "random": [
+        {
+          "env": "variant",
+          "task_id": "variant-low-0",
+          "score": 0.0,
+          "submitted": true,
+          "n_tool_calls": 1,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "variant": ""
+                }
+              },
+              "t": 1783753203.7928987,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 0.000",
+              "t": 1783753203.7929235,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "note": "random agent submitted no explicit answer"
+              },
+              "t": 1783753203.792925,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "ic50",
+          "task_id": "ic50-low-0",
+          "score": 0.0,
+          "submitted": true,
+          "n_tool_calls": 2,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "run_assay",
+                "args": {
+                  "concentration_nM": 40484.388
+                }
+              },
+              "t": 1783753203.7930424,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "{\n  \"concentration_nM\": 40484.388,\n  \"percent_inhibition\": 94.89,\n  \"reads_remaining\": 11\n}",
+              "t": 1783753203.79315,
+              "meta": {}
+            },
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "ic50_nM": 4.859
+                }
+              },
+              "t": 1783753203.7931578,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 0.000",
+              "t": 1783753203.7931714,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "note": "random agent submitted no explicit answer"
+              },
+              "t": 1783753203.7931726,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "admet",
+          "task_id": "admet-low-0",
+          "score": 0.0,
+          "submitted": true,
+          "n_tool_calls": 1,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "smiles": ""
+                }
+              },
+              "t": 1783753203.812362,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 0.000",
+              "t": 1783753203.8136613,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "note": "random agent submitted no explicit answer"
+              },
+              "t": 1783753203.8136647,
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "env": "screen",
+          "task_id": "screen-low-0",
+          "score": 0.0,
+          "submitted": true,
+          "n_tool_calls": 1,
+          "steps": [
+            {
+              "kind": "tool_call",
+              "content": {
+                "tool": "submit",
+                "args": {
+                  "hits": []
+                }
+              },
+              "t": 1783753203.8191476,
+              "meta": {}
+            },
+            {
+              "kind": "observation",
+              "content": "Submission recorded. Provisional score = 0.000",
+              "t": 1783753203.8191714,
+              "meta": {}
+            },
+            {
+              "kind": "final",
+              "content": {
+                "note": "random agent submitted no explicit answer"
+              },
+              "t": 1783753203.819173,
+              "meta": {}
+            }
+          ]
+        }
+      ]
+    },
+    "table": "\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  CLAUDE SCIENCE LEADERBOARD\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n  agent / model                  overall     bioi   chem   phar   virt\n  --------------------------------------------------------------------\n  1. heuristic                     1.000     1.00   1.00   1.00   1.00\n  2. openrouter:tencent/hy3:free   0.500     1.00   0.00   1.00   0.00\n  3. random                        0.000     0.00   0.00   0.00   0.00\n\n  capability key: bioi=bioinformatics  chem=cheminformatics  phar=pharmacology-assay  virt=virtual-screening\n\n  skipped (unreachable / rate-limited):\n    openrouter:poolside/laguna-xs-2.1:free: RuntimeError: OpenRouter HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day\",\"code\":429,\"metad"
+  },
+  "error": null,
+  "ended": 1783753203.8200374
+}

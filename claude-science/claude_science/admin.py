@@ -50,12 +50,18 @@ def _new_job(kind: str, params: Dict[str, Any]) -> str:
 
 
 def _finish(jid: str, result: Any = None, error: str | None = None) -> None:
+    status = "error" if error else "done"
     with _LOCK:
-        _JOBS[jid].update(status="error" if error else "done", result=result,
-                          error=error, ended=time.time())
+        job = _JOBS[jid]
+        job.update(result=result, error=error, ended=time.time())
+        payload = dict(job, status=status)
+    # persist BEFORE publishing the terminal status, so a caller that observes
+    # status != "running" can always then read the run file (no write race).
     os.makedirs(RUNS_DIR, exist_ok=True)
     with open(os.path.join(RUNS_DIR, f"{jid}.json"), "w") as fh:
-        json.dump(_JOBS[jid], fh, indent=2, default=str)
+        json.dump(payload, fh, indent=2, default=str)
+    with _LOCK:
+        _JOBS[jid]["status"] = status
 
 
 def _run_bench(jid: str, p: Dict[str, Any]) -> None:
