@@ -56,7 +56,15 @@ class OpenRouterAgent(Agent):
             try:
                 req = urllib.request.Request(_ENDPOINT, data=body, headers=headers)
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                    return json.loads(resp.read())
+                    data = json.loads(resp.read())
+                if "choices" not in data:
+                    # some providers return an error object with HTTP 200
+                    err = (data.get("error") or {}).get("message") or str(data)[:160]
+                    if "rate" in err.lower() and attempt < 3:
+                        time.sleep(2 ** attempt)
+                        continue
+                    raise RuntimeError(f"OpenRouter response has no choices: {err}")
+                return data
             except urllib.error.HTTPError as exc:
                 detail = exc.read().decode("utf-8", "replace")[:200]
                 if exc.code in (429, 502, 503) and attempt < 3:
