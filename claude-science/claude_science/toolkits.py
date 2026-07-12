@@ -147,9 +147,11 @@ def _merge(*registries: ToolRegistry) -> ToolRegistry:
 
 
 def lab_bench(workspace: Workspace | None = None,
-              with_databases: bool = True, with_rag: bool = True) -> ToolRegistry:
+              with_databases: bool = True, with_rag: bool = True,
+              with_cognition: bool = True) -> ToolRegistry:
     """The full simulated-laboratory tool surface for an autonomous agent."""
     from .rag import rag_tools
+    from .harness.cognition import cognition_tools
     ws_reg = workspace_tools(workspace)
     parts = [science_tools(), ws_reg]
     if with_databases:
@@ -158,7 +160,12 @@ def lab_bench(workspace: Workspace | None = None,
     if with_rag:
         rag_reg = rag_tools()
         parts.append(rag_reg)
+    cog_reg = None
+    if with_cognition:
+        cog_reg = cognition_tools()
+        parts.append(cog_reg)
     merged = _merge(*parts)
     merged._workspace = getattr(ws_reg, "_workspace", None)
     merged._rag_router = getattr(rag_reg, "_router", None)
+    merged._blackboard = getattr(cog_reg, "_blackboard", None)
     return merged

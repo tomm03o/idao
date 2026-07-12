@@ -26,10 +26,14 @@ def make_agent(spec: str, max_steps: int = 12):
     ``scientist:openrouter:tencent/hy3:free``.
     """
     from ..harness import (AnthropicAgent, HeuristicAgent, OpenRouterAgent,
-                           RandomAgent, ScientistAgent)
+                           RandomAgent, ScientistAgent, VerifiedBestOfN)
     kind, _, rest = spec.partition(":")
     if kind == "scientist":
         return ScientistAgent(make_agent(rest, max_steps=max_steps))
+    if kind == "verified":
+        n_str, _, inner = rest.partition(":")
+        return VerifiedBestOfN(make_agent(inner, max_steps=max_steps),
+                               n=int(n_str) if n_str.isdigit() else 5)
     model = rest
     if kind == "heuristic":
         return HeuristicAgent()
