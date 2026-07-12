@@ -21,6 +21,7 @@ from . import research
 from .workspace import Workspace, workspace_tools
 from .toolkits import lab_bench, science_tools
 from .retrieval import Corpus, retrieval_tools
+from . import rag
 
 __version__ = "0.4.0"
 
@@ -44,5 +45,6 @@ __all__ = [
     "science_tools",
     "Corpus",
     "retrieval_tools",
+    "rag",
     "__version__",
 ]
