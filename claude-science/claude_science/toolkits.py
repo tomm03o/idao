@@ -74,7 +74,34 @@ def science_tools() -> ToolRegistry:
                 "generations": {"type": "integer", "minimum": 1, "maximum": 12}},
              "required": ["query_smiles", "seed_smiles"]},
             _design_similar)
+    reg.add("perceive_molecule",
+            "Build a multi-level structural view of a molecule so you can reason "
+            "over its chemistry, not its SMILES tokens: identity, drug-likeness, "
+            "Murcko scaffold, functional groups, pharmacophore features, 3D shape. "
+            "Returns a structured view and a compact text card.",
+            {"type": "object", "properties": {"smiles": {"type": "string"},
+             "with_geometry": {"type": "boolean"}}, "required": ["smiles"]},
+            _perceive_molecule)
+    reg.add("perceive_sequence",
+            "Build a multi-level view of a DNA/protein sequence: composition, GC / "
+            "ORFs (DNA) or hydropathy + secondary-structure propensity (protein).",
+            {"type": "object", "properties": {"sequence": {"type": "string"},
+             "kind": {"type": "string", "enum": ["auto", "dna", "protein"]}},
+             "required": ["sequence"]},
+            _perceive_sequence)
     return reg
+
+
+def _perceive_molecule(smiles, with_geometry=False):
+    from .science.perception import MoleculeView
+    v = MoleculeView(smiles)
+    return {"view": v.to_dict(with_geometry=with_geometry), "card": v.card()}
+
+
+def _perceive_sequence(sequence, kind="auto"):
+    from .science.perception import SequenceView
+    v = SequenceView(sequence, kind=kind)
+    return {"view": v.to_dict(), "card": v.card()}
 
 
 def _design_similar(query_smiles, seed_smiles, generations=5):
