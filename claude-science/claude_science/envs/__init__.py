@@ -19,12 +19,13 @@ from .pkpd import PKPDEnv
 from .variant import VariantEnv
 from .conformer import ConformerEnv
 from .design import DesignEnv
+from .guide import GuideEnv
 from .numerics import (RootFindEnv, OptimizeEnv, QuadratureEnv, EigenvalueEnv)
 
 ENVIRONMENTS: Dict[str, Type[Environment]] = {
     cls.key: cls
     for cls in (ADMETEnv, ScreenEnv, IC50Env, PKPDEnv, VariantEnv, ConformerEnv,
-                DesignEnv,
+                DesignEnv, GuideEnv,
                 RootFindEnv, OptimizeEnv, QuadratureEnv, EigenvalueEnv)
 }
 

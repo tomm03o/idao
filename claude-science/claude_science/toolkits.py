@@ -89,6 +89,20 @@ def science_tools() -> ToolRegistry:
              "kind": {"type": "string", "enum": ["auto", "dna", "protein"]}},
              "required": ["sequence"]},
             _perceive_sequence)
+    reg.add("crispr_find_guides",
+            "Enumerate candidate CRISPR-Cas9 sgRNA protospacers (NGG PAM, both "
+            "strands) in a DNA locus, ranked by on-target efficiency.",
+            {"type": "object", "properties": {"dna": {"type": "string"},
+             "top_n": {"type": "integer", "minimum": 1, "maximum": 50}},
+             "required": ["dna"]},
+            _crispr_find_guides)
+    reg.add("crispr_off_target_cfd",
+            "CFD-style off-target activity (0-1) of a 20 nt guide against a 20 nt "
+            "off-target site with the given 2 nt PAM ('GG' for NGG).",
+            {"type": "object", "properties": {"guide": {"type": "string"},
+             "off_target": {"type": "string"}, "off_pam": {"type": "string"}},
+             "required": ["guide", "off_target"]},
+            _crispr_off_target)
     return reg
 
 
@@ -102,6 +116,19 @@ def _perceive_sequence(sequence, kind="auto"):
     from .science.perception import SequenceView
     v = SequenceView(sequence, kind=kind)
     return {"view": v.to_dict(), "card": v.card()}
+
+
+def _crispr_find_guides(dna, top_n=8):
+    from .science import crispr
+    guides = sorted(crispr.find_guides(dna), key=lambda g: g.on_target,
+                    reverse=True)[:top_n]
+    return [{"protospacer": g.protospacer, "pam": g.pam, "strand": g.strand,
+             "start": g.start, "on_target": round(g.on_target, 3)} for g in guides]
+
+
+def _crispr_off_target(guide, off_target, off_pam="GG"):
+    from .science import crispr
+    return {"cfd": crispr.cfd_off_target(guide, off_target, off_pam)}
 
 
 def _design_similar(query_smiles, seed_smiles, generations=5):
