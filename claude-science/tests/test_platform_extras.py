@@ -55,7 +55,9 @@ def test_admin_dataset_job_writes_files(tmp_path):
                                       "agentic_seeds": [0], "rollouts": True})
     _wait(admin, jid)
     res = admin._JOBS[jid]["result"]
-    assert res["total"] > 20 and res["oracle_mean_reward"] == 1.0
+    # oracle solves the deterministic tasks; the soft-scored `design` env is
+    # continuously rewarded (expert < 1.0 by construction), so allow ≥ 0.9.
+    assert res["total"] > 20 and res["oracle_mean_reward"] >= 0.9
     assert res["null_mean_reward"] < res["oracle_mean_reward"]
 
 

@@ -94,7 +94,10 @@ class OpenRouterAgent(Agent):
         resp = self._post({"model": self.model, "messages": messages,
                            "max_tokens": self.max_tokens,
                            "temperature": self.temperature})
-        return (resp["choices"][0]["message"].get("content") or "").strip()
+        msg = resp["choices"][0]["message"]
+        # reasoning models may leave `content` empty and put text in `reasoning`
+        return ((msg.get("content") or "").strip()
+                or (msg.get("reasoning") or "").strip())
 
     # -- agentic loop ---------------------------------------------------- #
     def run(self, env) -> Transcript:

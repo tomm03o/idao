@@ -65,7 +65,23 @@ def science_tools() -> ToolRegistry:
              "n_conformers": {"type": "integer", "minimum": 1, "maximum": 60}},
              "required": ["smiles"]},
             lambda smiles, n_conformers=20: struct.conformer_search(smiles, n_conformers))
+    reg.add("design_similar_molecules",
+            "Goal-directed de novo design (Graph-GA): generate drug-like molecules "
+            "similar to a query SMILES. Returns ranked candidates with scores.",
+            {"type": "object", "properties": {
+                "query_smiles": {"type": "string"},
+                "seed_smiles": {"type": "array", "items": {"type": "string"}},
+                "generations": {"type": "integer", "minimum": 1, "maximum": 12}},
+             "required": ["query_smiles", "seed_smiles"]},
+            _design_similar)
     return reg
+
+
+def _design_similar(query_smiles, seed_smiles, generations=5):
+    from .research.molecular_design import design_like
+    pop = design_like(query_smiles, seed_smiles, pop_size=30,
+                      generations=generations)
+    return [{"smiles": c.smiles, "score": c.score} for c in pop[:10]]
 
 
 def _merge(*registries: ToolRegistry) -> ToolRegistry:

@@ -87,3 +87,36 @@ def test_scientist_spec_parsing():
     a = make_agent("scientist:heuristic")
     assert isinstance(a, ScientistAgent)
     assert a.base.__class__.__name__ == "HeuristicAgent"
+
+
+def test_scientist_force_conclude_recovers_unsubmitted_run():
+    """If the base loop ends without submitting, the CONCLUDE phase forces a
+    final answer from the gathered evidence."""
+    from claude_science.harness.scientist import _extract_json
+
+    assert _extract_json('```json\n{"root": 2.4}\n```') == {"root": 2.4}
+    assert _extract_json('the answer is {"root": 2.4} ok') == {"root": 2.4}
+    assert _extract_json("no json here") is None
+
+    class NoSubmitBackend:
+        name = "nosub"
+        max_steps = 3
+
+        def complete(self, prompt, system=""):
+            # planning call has HYPOTHESIS; conclude call asks for JSON
+            if "HYPOTHESIS" in prompt:
+                return "plan"
+            return '{"root": %s}' % env.root  # conclude with the true root
+
+        def run(self, env_):
+            from claude_science.harness.transcript import Transcript
+            tr = Transcript(env_.task_id, self.name)
+            tr.log("tool_call", {"tool": "evaluate", "args": {"x": 0.0}})
+            tr.log("observation", "f_x=1.0")
+            return tr  # never submits
+
+    env = make_env("rootfind", seed=0, difficulty="low")
+    tr = ScientistAgent(NoSubmitBackend()).run(env)
+    assert env.is_done()                       # conclude phase submitted
+    assert env.result().score >= 0.75
+    assert any(s.kind == "final" for s in tr.steps)

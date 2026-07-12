@@ -91,4 +91,74 @@ class ScientistAgent(Agent):
         tr = self.base.run(_PlannedEnv(env, plan))
         tr.agent = self.name
         tr.steps.insert(0, Step(kind="plan", content=plan))
+
+        # Phase 4 (CONCLUDE): if the agent used up its budget without submitting,
+        # force a conclusion from the evidence it gathered. This closes the
+        # hypothesis→plan→execute→conclude loop instead of leaving the episode
+        # unfinished — a common failure of flat tool loops that over-iterate.
+        if not env.is_done() and hasattr(self.base, "complete"):
+            self._force_conclude(env, tr)
         return tr
+
+    def _force_conclude(self, env: Any, tr: Transcript) -> None:
+        import json
+
+        evidence = "\n".join(
+            f"{s.kind}: {s.content if isinstance(s.content, str) else json.dumps(s.content)}"
+            for s in tr.steps if s.kind in ("tool_call", "observation")
+        )[-2000:]
+        schema = json.dumps(env.submit_schema().get("properties", {}))
+        prompt = (
+            "You have run out of experiment budget without submitting. Based ONLY "
+            "on the evidence below, output your best final answer now as a single "
+            f"JSON object matching these fields: {schema}. Output JSON only.\n\n"
+            f"EVIDENCE:\n{evidence}"
+        )
+        try:
+            raw = self.base.complete(prompt, system=_SCIENTIST_SYSTEM)
+            payload = _extract_json(raw, keys=list(env.submit_schema()
+                                                   .get("properties", {})))
+            if payload:
+                res = env.tools().dispatch("submit", payload)
+                tr.log("tool_call", {"tool": "submit", "args": payload})
+                tr.log("observation", res.to_text())
+                tr.log("final", payload)
+        except Exception as exc:
+            tr.log("conclude", f"(forced conclusion failed: {type(exc).__name__})")
+
+
+def _extract_json(text: str, keys: list | None = None) -> dict | None:
+    """Pull a submission dict out of a model reply.
+
+    Reasoning-model replies are verbose and may contain several ``{...}`` spans
+    (including the schema itself). When ``keys`` are given, return the last flat
+    object that contains one of them; otherwise the last parseable flat object,
+    then a whole-string parse. This is robust to prose wrapped around the answer.
+    """
+    import json
+    import re
+
+    text = (text or "").strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```[a-zA-Z]*\n?|\n?```$", "", text).strip()
+
+    candidates = re.findall(r"\{[^{}]*\}", text, re.S)
+    parsed = []
+    for c in candidates:
+        try:
+            obj = json.loads(c)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(obj, dict):
+            parsed.append(obj)
+    if keys:
+        for obj in reversed(parsed):
+            if any(k in obj for k in keys):
+                return obj
+    if parsed:
+        return parsed[-1]
+    try:
+        obj = json.loads(text)
+        return obj if isinstance(obj, dict) else None
+    except json.JSONDecodeError:
+        return None
