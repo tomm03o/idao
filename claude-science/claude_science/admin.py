@@ -235,8 +235,43 @@ class Handler(BaseHTTPRequestHandler):
             jid = u.path.rsplit("/", 1)[-1]
             self._json(_load_run(jid) or {"error": "not found"},
                        200 if _load_run(jid) else 404)
+        elif u.path.startswith("/vendor/"):
+            self._serve_vendor(u.path.rsplit("/", 1)[-1])
+        elif u.path.startswith("/api/"):
+            self._science_get(u.path, q)
         else:
             self._json({"error": "not found"}, 404)
+
+    # -- Workbench science endpoints ------------------------------------- #
+    def _serve_vendor(self, name: str) -> None:
+        from . import workbench
+        try:
+            body = workbench.vendor_asset(name)
+        except Exception:
+            return self._json({"error": "not found"}, 404)
+        ctype = "application/javascript" if name.endswith(".js") else "text/plain"
+        self._send(200, body, ctype)
+
+    def _science_get(self, path: str, q: Dict[str, Any]) -> None:
+        from . import workbench
+        one = lambda key, default="": q.get(key, [default])[0]
+        try:
+            if path == "/api/mol3d":
+                self._send(200, workbench.mol3d_sdf(one("smiles")).encode(),
+                           "chemical/x-mdl-sdfile")
+            elif path == "/api/mol2d":
+                self._send(200, workbench.mol2d_svg(one("smiles")).encode(),
+                           "image/svg+xml")
+            elif path == "/api/descriptors":
+                self._json(workbench.descriptors(one("smiles")))
+            elif path == "/api/perceive":
+                self._json(workbench.perceive(one("obj"), one("kind", "auto")))
+            elif path == "/api/crispr":
+                self._json(workbench.crispr_guides(one("dna")))
+            else:
+                self._json({"error": "not found"}, 404)
+        except Exception as exc:
+            self._json({"error": f"{type(exc).__name__}: {exc}"}, 400)
 
     def do_POST(self) -> None:
         u = urlparse(self.path)
@@ -247,10 +282,24 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"error": "bad json"}, 400)
         kind = {"/api/bench": "bench", "/api/leaderboard": "leaderboard",
                 "/api/dataset": "dataset"}.get(u.path)
-        if not kind:
-            return self._json({"error": "not found"}, 404)
-        jid = start_job(kind, body)
-        self._json({"job_id": jid, "status": "running"})
+        if kind:
+            jid = start_job(kind, body)
+            return self._json({"job_id": jid, "status": "running"})
+        # synchronous science endpoints
+        from . import workbench
+        try:
+            if u.path == "/api/design":
+                return self._json(workbench.design(
+                    body["query_smiles"], body.get("seed_smiles"),
+                    int(body.get("generations", 5))))
+            if u.path == "/api/rag":
+                return self._json(workbench.rag(
+                    body.get("action", "search"), body.get("kind", "literature"),
+                    body.get("query", ""), body.get("doc_id", ""),
+                    body.get("content", ""), int(body.get("k", 5))))
+        except Exception as exc:
+            return self._json({"error": f"{type(exc).__name__}: {exc}"}, 400)
+        self._json({"error": "not found"}, 404)
 
 
 def serve(port: int = 8765, runs_dir: str = "runs") -> None:

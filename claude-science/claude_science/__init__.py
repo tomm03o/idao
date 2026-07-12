@@ -4,7 +4,7 @@ pharmaceutical simulation tasks.
 Quick start::
 
     from claude_science import make_env, HeuristicAgent
-    env = make_env("assay", seed=0)
+    env = make_env("ic50", seed=0)
     tr = HeuristicAgent().run(env)
     print(env.result().score)
 

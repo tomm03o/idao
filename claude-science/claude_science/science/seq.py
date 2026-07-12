@@ -1,14 +1,13 @@
 """Validated sequence bioinformatics (pure numpy, no external DB needed).
 
-* Needleman-Wunsch global and Smith-Waterman local alignment with affine-free
-  linear gap penalties and a substitution matrix (identity or BLOSUM62).
+* Needleman-Wunsch global and Smith-Waterman local alignment with a linear
+  (non-affine) gap penalty and a scalar match/mismatch score.
 * Nucleotide utilities: reverse complement, GC content, transcription,
   translation via the standard genetic code, and open-reading-frame finding.
 
 References
 ----------
 * Needleman & Wunsch, J. Mol. Biol. 1970; Smith & Waterman, J. Mol. Biol. 1981.
-* Henikoff & Henikoff, PNAS 1992 (BLOSUM62).
 """
 
 from __future__ import annotations

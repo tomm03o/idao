@@ -105,8 +105,28 @@ def collect_workbench() -> Dict[str, Any]:
             {"spec": "tencent/hy3", "score": 0.50},
             {"spec": "random (floor)", "score": 0.00}],
         "stats": {"domains": len(tree), "envs": len(ENVIRONMENTS),
-                  "tools": 18, "tests": 135},
+                  "tools": len(_lab_bench_tool_count()), "tests": _test_count()},
     }
+
+
+def _lab_bench_tool_count():
+    from .toolkits import lab_bench
+    reg = lab_bench(with_databases=True)
+    names = reg.names()
+    if getattr(reg, "_workspace", None):
+        reg._workspace.cleanup()
+    return names
+
+
+def _test_count() -> int:
+    import glob
+    import os
+    here = os.path.dirname(os.path.dirname(__file__))
+    n = 0
+    for path in glob.glob(os.path.join(here, "tests", "test_*.py")):
+        with open(path) as fh:
+            n += sum(1 for line in fh if line.lstrip().startswith("def test_"))
+    return n
 
 
 def render_workbench(out_path: str) -> str:

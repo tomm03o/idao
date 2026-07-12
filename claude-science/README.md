@@ -25,23 +25,28 @@ the same numbers a computational chemist or pharmacometrician would compute.
 
 ---
 
-## What's in the platform (v0.4)
+## What's in the platform (v0.5)
+
+An agentic research IDE — "Claude Code for science" — where a human scientist and
+autonomous scientist-agents collaborate over one professional surface.
 
 | layer | package | what it gives you |
 |-------|---------|-------------------|
-| validated science | `science` | RDKit/SciPy/NumPy computations (below) |
-| database access | `data_sources` | live cached connectors to PubChem, ChEMBL, UniProt, RCSB PDB |
-| internet | `data_sources.web` | biomedical literature search (Europe PMC) + web fetch |
-| retrieval (RAG) | `retrieval` | BM25 corpus an agent can ingest into and query |
-| benchmark | `envs` + `benchmark` | **ten** self-grading environments across **two domains** (life-sciences + numerics) + scorecard + **multi-model leaderboard** |
-| agent structure | `harness.scientist` | **ScientistAgent** — a hypothesis→plan→execute→conclude scaffold over any LLM backend |
+| **Workbench IDE** | `admin` | **local web app** (`python -m claude_science.admin`): real WebGL **3D molecular viewer** (3Dmol.js), **design studio**, **CRISPR studio**, **perception** panel, evaluation — human↔agent surface |
+| molecular design | `research.molecular_design` | **Graph-GA** de novo design: search novel, drug-like candidates against a real target and test them |
+| gene editing | `science.crispr` | **CRISPR sgRNA design**: guide enumeration, on-target + **CFD** off-target scoring |
+| perception | `science.perception` | **multi-level views** so models reason over structure, not tokens (scaffold, pharmacophore, 3D shape; sequence hydropathy/structure) |
+| type-specialized RAG | `rag` | **molecule** (Tanimoto), **sequence** (k-mer/alignment), **literature** (BM25) — each ad hoc, behind one router |
+| training-free RL | `harness.reliability` | **verified best-of-N** + anytime budget — raises pass rate with no training (`verified:<n>:<agent>`) |
+| agent cognition | `harness.cognition` | structural resources: **blackboard** memory, **critic**, exact **calc** — offload LLM weaknesses |
+| validated science | `science` | RDKit/SciPy/NumPy computations (chem, pk, seq, struct) |
+| database access | `data_sources` | live cached connectors to PubChem, ChEMBL, UniProt, RCSB PDB, Europe PMC |
+| benchmark | `envs` + `benchmark` | **twelve** self-grading environments over life-sciences + numerics + scorecard + **multi-model leaderboard** |
+| agent structure | `harness.scientist` | **ScientistAgent** — hypothesis→plan→execute→conclude scaffold over any backend |
 | model backends | `harness` | Claude (Anthropic) **and any OpenRouter model**, one tool-use contract |
 | RL / training data | `rl` | verifiable tasks (18 generators), judges, and SFT/DPO/RLVR export |
 | agent workspace | `workspace` | sandboxed files + terminal (`run_python`/`run_bash`) |
-| composed toolkit | `toolkits.lab_bench` | science + databases + workspace as one agent tool surface |
-| interactive console | `console` | a Claude-Code-style REPL for lab work (human ↔ agent) |
-| unified workbench UX | `viz --workbench` | a Cursor-style IDE with a **real RDKit molecular viewer**, env explorer, agent trace, terminal |
-| admin web app | `admin` | browser console to launch benchmarks/leaderboards/datasets + inspect transcripts |
+| composed toolkit | `toolkits.lab_bench` | science + design + CRISPR + perception + RAG + cognition + DB + workspace, one tool surface |
 | MCP server | `mcp_server` | expose everything (incl. the playable benchmark) over MCP |
 | research | `research` | novel algorithms, formulated and empirically validated on real data |
 

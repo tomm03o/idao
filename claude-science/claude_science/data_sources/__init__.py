@@ -10,7 +10,7 @@ exposed to agents as harness tools via
 :func:`claude_science.data_sources.tools.database_tools`.
 """
 
-from . import chembl, pubchem, uniprot
+from . import chembl, pubchem, uniprot, web
 from .tools import database_tools
 
-__all__ = ["chembl", "pubchem", "uniprot", "database_tools"]
+__all__ = ["chembl", "pubchem", "uniprot", "web", "database_tools"]
