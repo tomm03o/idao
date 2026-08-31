@@ -368,3 +368,7 @@ genomic-selection/data/structures/*.pdb
 genomic-selection/data/raw/1000g/
 genomic-selection/data/raw/ukb_gwas/*.tsv.bgz
 genomic-selection/data/processed/
+
+# Claude Science session run artifacts
+runs/
+claude-science/runs/

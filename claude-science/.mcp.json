@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "claude-science": {
+      "command": "python",
+      "args": ["-m", "claude_science.mcp_server"],
+      "description": "Claude Science platform: validated science tools, biological/chemical databases, internet, RAG, a sandboxed workspace, and a playable benchmark (bench_start / bench_act / bench_score)."
+    }
+  }
+}

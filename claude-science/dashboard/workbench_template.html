@@ -1,0 +1,286 @@
+<title>Claude Science — Research Workbench</title>
+<style>
+  :root{
+    --bg:#0d1417; --chrome:#111b1f; --panel:#0f181b; --panel2:#152227;
+    --ink:#dce8e7; --soft:#8ca3a4; --faint:#5c7274; --line:#213137;
+    --accent:#2bc4b2; --accent2:#12a594; --good:#4fb06b; --warn:#d29a3f;
+    --crit:#e0685a; --floor:#3c5354;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef3f2; --chrome:#e3ecea; --panel:#fff; --panel2:#f1f6f5;
+    --ink:#0f1e20; --soft:#4a5d5e; --faint:#7d9092; --line:#d6e2e0;
+    --accent:#0f9c8e; --accent2:#0b7a6f; --floor:#9bb0b1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;
+    -webkit-font-smoothing:antialiased;overflow:hidden}
+  .app{display:grid;grid-template-columns:48px 234px 1fr 306px;grid-template-rows:46px 1fr;
+    height:100vh}
+  /* header */
+  header{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:0 14px;
+    background:var(--chrome);border-bottom:1px solid var(--line)}
+  .logo{width:24px;height:24px;border-radius:6px;flex:none;
+    background:radial-gradient(120% 120% at 30% 20%,var(--accent),#0a5f57);position:relative}
+  .logo::after{content:"";position:absolute;inset:0;border-radius:6px;
+    background:linear-gradient(transparent 46%,rgba(255,255,255,.5) 46%,rgba(255,255,255,.5) 54%,transparent 54%)}
+  header h1{font-size:13px;margin:0;font-weight:600;letter-spacing:-.01em}
+  header .path{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  header .spacer{flex:1}
+  header .stat{font-family:var(--mono);font-size:11px;color:var(--soft)}
+  header .stat b{color:var(--accent)}
+  .tbtn{font-family:var(--mono);font-size:11px;color:var(--soft);background:var(--panel);
+    border:1px solid var(--line);border-radius:6px;padding:5px 9px;cursor:pointer}
+  .tbtn:hover{color:var(--accent);border-color:var(--accent)}
+  /* activity rail */
+  .rail{background:var(--chrome);border-right:1px solid var(--line);display:flex;
+    flex-direction:column;align-items:center;gap:4px;padding-top:10px}
+  .rail .ic{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
+    color:var(--faint);cursor:pointer;font-size:16px}
+  .rail .ic.active{color:var(--accent);background:var(--panel2)}
+  .rail .ic:hover{color:var(--ink)}
+  /* explorer */
+  .explorer{background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:10px 8px}
+  .exhead{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);padding:6px 8px 8px}
+  .group{font-size:11.5px;color:var(--soft);padding:5px 8px;font-weight:600;display:flex;gap:6px;align-items:center}
+  .group .caret{color:var(--faint);font-size:9px}
+  .leaf{display:flex;align-items:center;gap:7px;padding:4px 8px 4px 22px;border-radius:6px;
+    cursor:pointer;color:var(--soft);font-size:12px}
+  .leaf:hover{background:var(--panel2);color:var(--ink)}
+  .leaf.sel{background:var(--accent);color:#04201d}
+  .leaf .k{font-family:var(--mono);font-size:11px}
+  .dot{width:6px;height:6px;border-radius:50%;flex:none}
+  /* center */
+  .center{display:flex;flex-direction:column;min-width:0;background:var(--bg)}
+  .tabs{display:flex;background:var(--chrome);border-bottom:1px solid var(--line);flex:none}
+  .tab{padding:9px 15px;font-size:12px;color:var(--soft);cursor:pointer;border-right:1px solid var(--line);
+    display:flex;gap:7px;align-items:center}
+  .tab.active{color:var(--ink);background:var(--bg);box-shadow:inset 0 -2px 0 var(--accent)}
+  .content{flex:1;overflow-y:auto;padding:18px 20px;min-height:0}
+  .pane{display:none}.pane.show{display:block}
+  /* molecule grid */
+  .molgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .mol{background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden;
+    cursor:pointer;transition:border-color .15s}
+  .mol:hover{border-color:var(--accent)}
+  .mol .depict{background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(127,127,127,.03) 10px,rgba(127,127,127,.03) 20px);
+    display:grid;place-items:center;padding:6px}
+  .mol .depict svg{max-width:100%;height:auto}
+  :root:not([data-theme="light"]) .mol .depict svg,
+  :root:not([data-theme="light"]) #selmol svg{filter:invert(.92) hue-rotate(180deg)}
+  .mol .meta{padding:10px 12px;border-top:1px solid var(--line)}
+  .mol .nm{font-weight:600;font-size:12.5px;display:flex;justify-content:space-between;align-items:center}
+  .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+  .chip{font-family:var(--mono);font-size:9.5px;padding:2px 6px;border-radius:5px;
+    background:var(--panel2);color:var(--soft)}
+  .chip b{color:var(--ink)}
+  .badge{font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:999px}
+  .badge.ok{background:rgba(79,176,107,.15);color:var(--good)}
+  .badge.no{background:rgba(224,104,90,.15);color:var(--crit)}
+  /* task pane */
+  .filecard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;max-width:760px}
+  .filecard .fh{font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:10px}
+  .filecard p{line-height:1.65;color:var(--ink);white-space:pre-wrap;margin:0}
+  .code{font-family:var(--mono);font-size:12px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:8px;padding:12px 14px;color:var(--soft);overflow-x:auto;margin-top:14px}
+  .code .p{color:var(--accent)}
+  /* transcript */
+  .trace{font-family:var(--mono);font-size:11.5px;line-height:1.7}
+  .trow{display:flex;gap:10px;padding:3px 0}
+  .trow .kd{width:92px;flex:none;text-transform:uppercase;font-size:9.5px;letter-spacing:.06em;padding-top:2px}
+  .kd.plan{color:var(--accent)}.kd.tool_call{color:var(--accent)}.kd.observation{color:var(--faint)}
+  .kd.final{color:var(--good)}.kd.message{color:var(--soft)}
+  .trow .bd{color:var(--ink);white-space:pre-wrap;word-break:break-word}
+  /* inspector */
+  .inspector{background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;padding:14px}
+  .ihead{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);margin:2px 0 10px}
+  .phase{display:flex;gap:9px;padding:8px 0;align-items:flex-start}
+  .phase .num{width:20px;height:20px;border-radius:6px;background:var(--panel2);color:var(--accent);
+    display:grid;place-items:center;font-family:var(--mono);font-size:10px;flex:none;font-weight:600}
+  .phase .t{font-size:12px}.phase .t b{display:block;color:var(--ink)}
+  .phase .t span{color:var(--faint);font-size:11px}
+  .lb{margin-top:8px}
+  .lbrow{display:grid;grid-template-columns:1fr 42px;gap:8px;align-items:center;padding:5px 0;font-size:11.5px}
+  .lbrow .bar{height:6px;background:var(--panel2);border-radius:3px;overflow:hidden}
+  .lbrow .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .lbrow .sc{font-family:var(--mono);text-align:right;color:var(--ink)}
+  .lbrow .nm{color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* terminal */
+  .terminal{height:172px;flex:none;background:var(--panel);border-top:1px solid var(--line);
+    display:flex;flex-direction:column}
+  .termbar{display:flex;gap:14px;padding:7px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--faint)}
+  .termbar .on{color:var(--accent)}
+  .termbody{flex:1;overflow-y:auto;padding:10px 14px;font-family:var(--mono);font-size:11.5px;line-height:1.6}
+  .termbody .cmd{color:var(--ink)}.termbody .cmd .p{color:var(--accent)}
+  .termbody .out{color:var(--soft)}
+  .cur{display:inline-block;width:7px;height:13px;background:var(--accent);vertical-align:middle;
+    animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (max-width:1050px){.app{grid-template-columns:48px 200px 1fr}.inspector{display:none}}
+</style>
+
+<div class="app">
+  <header>
+    <div class="logo"></div>
+    <h1>Claude Science</h1>
+    <span class="path">research-workbench › unified agentic platform</span>
+    <span class="spacer"></span>
+    <span class="stat"><b id="s_dom">·</b> domains</span>
+    <span class="stat"><b id="s_env">·</b> environments</span>
+    <span class="stat"><b id="s_test">·</b> tests green</span>
+    <button class="tbtn" id="theme">◐ theme</button>
+  </header>
+
+  <nav class="rail">
+    <div class="ic active" title="Explorer">☰</div>
+    <div class="ic" title="Molecules">⬡</div>
+    <div class="ic" title="Agents">◈</div>
+    <div class="ic" title="Search">⌕</div>
+  </nav>
+
+  <aside class="explorer" id="explorer">
+    <div class="exhead">Research environments</div>
+    <div id="tree"></div>
+    <div class="exhead" style="margin-top:12px">Compound library</div>
+    <div id="mollist"></div>
+  </aside>
+
+  <main class="center">
+    <div class="tabs">
+      <div class="tab active" data-p="viewer">⬡ Molecular viewer</div>
+      <div class="tab" data-p="task">◭ task.md</div>
+      <div class="tab" data-p="trace">◈ agent-trace</div>
+    </div>
+    <div class="content">
+      <div class="pane show" id="viewer">
+        <div class="molgrid" id="molgrid"></div>
+      </div>
+      <div class="pane" id="task">
+        <div class="filecard">
+          <div class="fh" id="task_key">rootfind-low-0 · numerics</div>
+          <p id="task_body"></p>
+          <div class="code"><span class="p">$</span> python -m claude_science agent run --env rootfind \
+  --agent scientist:openrouter:tencent/hy3:free</div>
+        </div>
+      </div>
+      <div class="pane" id="trace">
+        <div class="filecard" style="max-width:900px">
+          <div class="fh">episode transcript · scientist scaffold (hypothesis → plan → execute → conclude)</div>
+          <div class="trace" id="tracebody"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="termbar"><span class="on">● harness</span><span>bash</span><span>python 3.11 · rdkit · scipy</span></div>
+      <div class="termbody" id="term"></div>
+    </div>
+  </main>
+
+  <aside class="inspector">
+    <div class="ihead">Scientist agent — structure</div>
+    <div class="phase"><div class="num">1</div><div class="t"><b>Hypothesise</b><span>state a falsifiable expectation</span></div></div>
+    <div class="phase"><div class="num">2</div><div class="t"><b>Plan</b><span>pre-register the experiments</span></div></div>
+    <div class="phase"><div class="num">3</div><div class="t"><b>Execute</b><span>ReAct tool loop within budget</span></div></div>
+    <div class="phase"><div class="num">4</div><div class="t"><b>Conclude</b><span>submit, verifiable reward</span></div></div>
+
+    <div class="ihead" style="margin-top:18px">Leaderboard · real run</div>
+    <div class="lb" id="lb"></div>
+
+    <div class="ihead" style="margin-top:18px">Selected compound</div>
+    <div id="selmol" style="font-size:12px;color:var(--soft)">Pick a molecule from the viewer.</div>
+  </aside>
+</div>
+
+<script>
+const DATA = __DATA__;
+const $=s=>document.querySelector(s);
+$("#s_dom").textContent=DATA.stats.domains;
+$("#s_env").textContent=DATA.stats.envs;
+$("#s_test").textContent=DATA.stats.tests;
+
+// theme
+$("#theme").onclick=()=>{const r=document.documentElement;
+  const cur=r.getAttribute("data-theme")||"dark";
+  r.setAttribute("data-theme",cur==="dark"?"light":"dark");};
+document.documentElement.setAttribute("data-theme","dark");
+
+// explorer tree
+const domDot={"life-sciences":"var(--accent)","numerics":"var(--warn)","physics":"var(--crit)"};
+$("#tree").innerHTML=Object.entries(DATA.tree).map(([dom,envs])=>`
+  <div class="group"><span class="caret">▾</span>${dom}</div>
+  ${envs.map(e=>`<div class="leaf" data-env="${e.key}" title="${e.cap}">
+     <span class="dot" style="background:${domDot[dom]||'var(--soft)'}"></span>
+     <span class="k">${e.key}</span></div>`).join("")}`).join("");
+$("#mollist").innerHTML=DATA.molecules.map((m,i)=>`
+  <div class="leaf" data-mol="${i}"><span class="dot" style="background:var(--accent2)"></span>${m.name}</div>`).join("");
+
+// molecule grid
+function molCard(m,i){return `<div class="mol" data-mol="${i}">
+  <div class="depict">${m.svg}</div>
+  <div class="meta"><div class="nm">${m.name}
+    <span class="badge ${m.lipinski?'ok':'no'}">${m.lipinski?'Lipinski ✓':'Lipinski ✗'}</span></div>
+    <div class="chips">
+      <span class="chip">MW <b>${m.mw}</b></span>
+      <span class="chip">cLogP <b>${m.clogp}</b></span>
+      <span class="chip">QED <b>${m.qed}</b></span>
+      <span class="chip">TPSA <b>${m.tpsa}</b></span>
+      <span class="chip">SA <b>${m.sa}</b></span>
+    </div></div></div>`;}
+$("#molgrid").innerHTML=DATA.molecules.map(molCard).join("");
+
+// select molecule -> inspector
+function selectMol(i){const m=DATA.molecules[i];
+  $("#selmol").innerHTML=`<div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:8px;display:grid;place-items:center">${m.svg}</div>
+    <div style="font-weight:600;color:var(--ink);margin:8px 0 4px">${m.name}</div>
+    <div style="font-family:var(--mono);font-size:10.5px;word-break:break-all;color:var(--faint)">${m.smiles}</div>
+    <div class="chips" style="margin-top:8px">
+      <span class="chip">HBD <b>${m.hbd}</b></span><span class="chip">HBA <b>${m.hba}</b></span>
+      <span class="chip">MW <b>${m.mw}</b></span><span class="chip">QED <b>${m.qed}</b></span></div>`;
+}
+document.addEventListener("click",e=>{
+  const mc=e.target.closest("[data-mol]");
+  if(mc){document.querySelectorAll("[data-mol]").forEach(x=>x.classList.remove("sel"));
+    selectMol(+mc.dataset.mol);}
+  const ev=e.target.closest("[data-env]");
+  if(ev){document.querySelectorAll("[data-env]").forEach(x=>x.classList.remove("sel"));ev.classList.add("sel");
+    $("#task_key").textContent=ev.dataset.env+" · task";
+    $$tab("task");}
+});
+function $$tab(p){document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.p===p));
+  document.querySelectorAll(".pane").forEach(x=>x.classList.toggle("show",x.id===p));}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>$$tab(t.dataset.p));
+
+// task + transcript
+$("#task_body").textContent=DATA.task;
+const kd=k=>`<span class="kd ${k}">${k}</span>`;
+$("#tracebody").innerHTML=DATA.transcript.map(s=>`<div class="trow">${kd(s.kind)}<span class="bd">${(s.content||"").replace(/</g,"&lt;")}</span></div>`).join("");
+
+// leaderboard
+$("#lb").innerHTML=DATA.leaderboard.map(r=>`<div class="lbrow">
+  <div><div class="nm">${r.spec}</div><div class="bar"><i style="width:${r.score*100}%"></i></div></div>
+  <div class="sc">${r.score.toFixed(2)}</div></div>`).join("");
+
+// terminal typewriter
+const lines=[
+ {t:"cmd",h:'<span class="p">$</span> claude-science env list --by-domain'},
+ {t:"out",h:'life-sciences  admet screen ic50 pkpd variant conformer'},
+ {t:"out",h:'numerics       rootfind optimize quadrature eigenvalue'},
+ {t:"cmd",h:'<span class="p">$</span> claude-science bench compare --agents \\'},
+ {t:"cmd",h:'    heuristic,scientist:openrouter:tencent/hy3:free,random'},
+ {t:"out",h:'▶ heuristic 1.000 · hy3 0.50 · random 0.00'},
+ {t:"cmd",h:'<span class="p">$</span> python -m claude_science.research.validate_molecular_bo'},
+ {t:"out",h:'greedy BO recovers 80% of top-30 hits vs random 13% (6.0×)'},
+ {t:"out",h:'conformal coverage 0.83 / 0.93 / 0.98 @ target 0.80 / 0.90 / 0.95'},
+];
+const term=$("#term");let li=0;
+function typeLine(){if(li>=lines.length){term.insertAdjacentHTML("beforeend",'<div class="cmd"><span class="p">$</span> <span class="cur"></span></div>');return;}
+  const l=lines[li++];const div=document.createElement("div");div.className=l.t;div.innerHTML=l.h;
+  term.appendChild(div);term.scrollTop=term.scrollHeight;setTimeout(typeLine,l.t==="cmd"?420:260);}
+typeLine();
+selectMol(0);
+</script>
