@@ -1,0 +1,5 @@
+build/
+out/
+*.pvm
+*.glb
+__pycache__/
