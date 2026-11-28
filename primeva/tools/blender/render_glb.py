@@ -134,12 +134,13 @@ def main():
     sky.altitude = 300.0
     sky.air_density = 1.0
     sky.dust_density = 1.5
+    sky.sun_disc = False  # direct light comes from the Sun lamp only (no double sun)
     bg = wn.nodes["Background"]
-    bg.inputs["Strength"].default_value = 0.25
+    bg.inputs["Strength"].default_value = 1.0
     wn.links.new(sky.outputs["Color"], bg.inputs["Color"])
 
     sun_data = bpy.data.lights.new("Sun", type="SUN")
-    sun_data.energy = 4.0
+    sun_data.energy = 3.2
     sun_data.angle = math.radians(0.53)
     sun = bpy.data.objects.new("Sun", sun_data)
     scene.collection.objects.link(sun)
@@ -167,7 +168,8 @@ def main():
     scene.render.resolution_x, scene.render.resolution_y = w, h
     scene.render.resolution_percentage = 100
     scene.view_settings.view_transform = "AgX"
-    scene.view_settings.look = "AgX - Medium High Contrast"
+    scene.view_settings.look = "AgX - Base Contrast"
+    scene.view_settings.exposure = -0.4
     scene.render.filepath = dst
     scene.render.image_settings.file_format = "PNG"
     bpy.ops.render.render(write_still=True)

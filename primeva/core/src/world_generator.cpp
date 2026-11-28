@@ -297,11 +297,13 @@ Material WorldGenerator::solid_material(double x, double y, double z, const Colu
 
   // Soil horizons.
   const bool underwater = col.surface_m < col.water_m - 0.3;
-  const bool cliff = col.slope > 1.0;
+  // Soil thins continuously with slope (hillslope erosion): full horizons on
+  // flats, bare rock on cliffs, no column-to-column flicker at a threshold.
+  const double soil = 1.0 - smoothstep(0.55, 1.5, col.slope);
   double acc = 0.0;
-  if (!cliff) {
+  if (soil > 0.02) {
     for (int k = 0; k < 3; ++k) {
-      acc += bd.surface[k].thickness_m * col.stack_scale;
+      acc += bd.surface[k].thickness_m * col.stack_scale * soil;
       if (depth < acc) {
         if (k == 0 && underwater) {
           if (col.river) return Material::Gravel;
@@ -313,7 +315,7 @@ Material WorldGenerator::solid_material(double x, double y, double z, const Colu
         return bd.surface[k].material;
       }
     }
-    acc += col.sediment_m;
+    acc += col.sediment_m * soil;
     if (depth < acc) return bd.sediment;
   }
 
