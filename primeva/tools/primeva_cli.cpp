@@ -7,6 +7,7 @@
 //   section  --macro macro.pvm --x X --z Z --width 512 --ymin -300 --ymax 300 --out s.png [--mpp 0.5]
 //   export   --macro macro.pvm --x X --z Z --size 96 --out area.glb [--lod 0] [--depth 8] [--ymin Y --ymax Y] [--dig]
 //   bench    --macro macro.pvm [--chunks 2000]
+//   heightmap --macro macro.pvm --x X --z Z --size 64 --res 0.25 --out terrain (writes terrain.f32 + terrain.json)
 
 #include <chrono>
 #include <cmath>
@@ -443,11 +444,69 @@ int cmd_bench(const Args& a) {
   return 0;
 }
 
+// Terrain patch for physics gyms (MuJoCo / Isaac): row-major float32 heights
+// (rows along +z, columns along +x) relative to the patch minimum, plus a JSON
+// sidecar with metadata. Water surface and surface material are exported too
+// so gyms can randomise friction / buoyancy by material.
+int cmd_heightmap(const Args& a) {
+  auto m = load_macro(a);
+  auto gen = std::make_shared<WorldGenerator>(m, gen_params(*m));
+  const double cxm = a.num("x", m->world_size_m() / 2), czm = a.num("z", m->world_size_m() / 2);
+  const double size = a.num("size", 64), res = a.num("res", 0.25);
+  const int n = static_cast<int>(std::lround(size / res)) + 1;
+  std::vector<double> h(static_cast<size_t>(n) * n), w(static_cast<size_t>(n) * n);
+  std::vector<uint16_t> mat(static_cast<size_t>(n) * n);
+  parallel_for(0, static_cast<size_t>(n), [&](size_t jj) {
+    const int j = static_cast<int>(jj);
+    for (int i = 0; i < n; ++i) {
+      const double x = cxm - size / 2 + i * res, z = czm - size / 2 + j * res;
+      const ColumnInfo c = gen->column(x, z);
+      h[static_cast<size_t>(j) * n + i] = c.surface_m;
+      w[static_cast<size_t>(j) * n + i] = c.water_m;
+      const PointInfo pi = gen->point(x, c.surface_m - 0.06, z);
+      mat[static_cast<size_t>(j) * n + i] = static_cast<uint16_t>(pi.voxel.material);
+    }
+  });
+  double hmin = 1e30, hmax = -1e30, wmax = -1e30;
+  for (size_t k = 0; k < h.size(); ++k) { hmin = std::min(hmin, h[k]); hmax = std::max(hmax, h[k]); wmax = std::max(wmax, w[k]); }
+  const std::string base = a.get("out", "terrain");
+  {
+    std::vector<float> hf(h.size());
+    for (size_t k = 0; k < h.size(); ++k) hf[k] = static_cast<float>(h[k] - hmin);
+    std::FILE* f = std::fopen((base + ".f32").c_str(), "wb");
+    if (!f) return 1;
+    std::fwrite(hf.data(), sizeof(float), hf.size(), f);
+    std::fclose(f);
+    std::FILE* fm = std::fopen((base + ".mat.u16").c_str(), "wb");
+    std::fwrite(mat.data(), sizeof(uint16_t), mat.size(), fm);
+    std::fclose(fm);
+  }
+  std::map<int, int> counts;
+  for (uint16_t v : mat) counts[v]++;
+  std::FILE* j = std::fopen((base + ".json").c_str(), "w");
+  std::fprintf(j, "{\n  \"samples\": %d,\n  \"resolution_m\": %.6f,\n  \"size_m\": %.3f,\n  \"origin_world_m\": [%.3f, %.3f, %.3f],\n",
+               n, res, size, cxm - size / 2, hmin, czm - size / 2);
+  std::fprintf(j, "  \"height_range_m\": %.4f,\n  \"water_level_rel_m\": %s,\n  \"layout\": \"row-major, rows +z, cols +x, float32 metres above origin y\",\n",
+               hmax - hmin, wmax > -1e29 ? std::to_string(wmax - hmin).c_str() : "null");
+  std::fprintf(j, "  \"materials\": {");
+  bool first = true;
+  for (const auto& [id, cnt] : counts) {
+    const auto& mi = material_info(static_cast<Material>(id));
+    std::fprintf(j, "%s\n    \"%d\": {\"name\": \"%s\", \"fraction\": %.4f, \"friction_angle_deg\": %.1f, \"hardness\": %.2f}",
+                 first ? "" : ",", id, std::string(mi.name).c_str(), static_cast<double>(cnt) / mat.size(), mi.friction_angle_deg, mi.hardness);
+    first = false;
+  }
+  std::fprintf(j, "\n  }\n}\n");
+  std::fclose(j);
+  std::printf("heightmap %dx%d @ %.3f m, relief %.2f m -> %s.{f32,mat.u16,json}\n", n, n, res, hmax - hmin, base.c_str());
+  return 0;
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
   if (argc < 2) {
-    std::fprintf(stderr, "usage: primeva_cli <bake|stats|map|find|section|export|bench> [--options]\n");
+    std::fprintf(stderr, "usage: primeva_cli <bake|stats|map|find|section|export|bench|heightmap> [--options]\n");
     return 2;
   }
   const std::string cmd = argv[1];
@@ -459,6 +518,7 @@ int main(int argc, char** argv) {
   if (cmd == "section") return cmd_section(a);
   if (cmd == "export") return cmd_export(a);
   if (cmd == "bench") return cmd_bench(a);
+  if (cmd == "heightmap") return cmd_heightmap(a);
   std::fprintf(stderr, "unknown command %s\n", cmd.c_str());
   return 2;
 }

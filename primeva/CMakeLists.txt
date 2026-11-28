@@ -38,6 +38,11 @@ add_library(primeva_core
   core/src/mesher.cpp
   core/src/mesh_export.cpp
   core/src/image.cpp
+  core/src/json.cpp
+  core/src/brain/species.cpp
+  core/src/brain/technique.cpp
+  core/src/brain/mind.cpp
+  core/src/brain/ecosystem.cpp
 )
 target_include_directories(primeva_core PUBLIC core/include)
 target_compile_options(primeva_core PRIVATE ${PRIMEVA_WARN} ${PRIMEVA_FP_FLAGS})
@@ -47,8 +52,12 @@ add_executable(primeva_cli tools/primeva_cli.cpp)
 target_link_libraries(primeva_cli PRIVATE primeva_core)
 target_compile_options(primeva_cli PRIVATE ${PRIMEVA_WARN} ${PRIMEVA_FP_FLAGS})
 
+add_executable(brain_lab tools/brain_lab.cpp)
+target_link_libraries(brain_lab PRIVATE primeva_core)
+target_compile_options(brain_lab PRIVATE ${PRIMEVA_WARN} ${PRIMEVA_FP_FLAGS})
+
 enable_testing()
-add_executable(primeva_tests tests/test_main.cpp tests/test_core.cpp)
+add_executable(primeva_tests tests/test_main.cpp tests/test_core.cpp tests/test_brain.cpp)
 target_link_libraries(primeva_tests PRIVATE primeva_core)
 target_compile_options(primeva_tests PRIVATE ${PRIMEVA_FP_FLAGS})
 add_test(NAME primeva_tests COMMAND primeva_tests)
