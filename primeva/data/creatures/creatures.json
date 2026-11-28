@@ -1,0 +1,7494 @@
+[
+  {
+    "id": "velaryx",
+    "name": "Velaryx",
+    "inspiration": [
+      "Meganeura",
+      "Meganeuropsis"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "carboniferous_giant_fern_forest",
+      "carboniferous_coal_swamp"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 0.7,
+      "height_m": 0.1,
+      "mass_kg": 0.4
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.95,
+      "smell": 0.2,
+      "hearing": 0.4,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.5,
+      "curiosity": 0.5,
+      "territoriality": 0.7,
+      "sociability": 0.1,
+      "patience": 0.4,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.6,
+      "hunting_pursuit": 0.9,
+      "scouting_aerial": 0.7,
+      "evasion": 0.8,
+      "tracking": 0.5,
+      "territory_patrol": 0.5
+    },
+    "innate_techniques": [
+      "stoop_snatch",
+      "hover_scan",
+      "wing_clap_stun"
+    ],
+    "roles": [
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Hold still on a sunlit fern frond while it circles; once it perches on your outstretched glove for three dawns in a row it accepts being ridden by smaller handlers' lures."
+    },
+    "abilities": [
+      {
+        "name": "Compound Sight",
+        "description": "Detects movement at long range and flags prey on the player's HUD."
+      },
+      {
+        "name": "Dive Snatch",
+        "description": "Fast grab attack that pulls small prey from foliage."
+      }
+    ],
+    "wild_behavior": "Patrols fixed hunting perches along stagnant pools at dawn, snatching insects and tiny amphibians in flight. Chases rivals out of its air column and is ambushed in turn by Paludon at the water's edge.",
+    "tier": 1
+  },
+  {
+    "id": "chilodrax",
+    "name": "Chilodrax",
+    "inspiration": [
+      "Arthropleura"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "carboniferous_coal_swamp",
+      "carboniferous_giant_fern_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.6,
+      "height_m": 0.5,
+      "mass_kg": 180.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.2,
+      "smell": 0.7,
+      "hearing": 0.3,
+      "tremor": 0.6,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        12
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.2,
+      "sociability": 0.6,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "harvesting": 0.7,
+      "transport_hauling": 0.5,
+      "defense_herd_circle": 0.6,
+      "evasion": 0.4,
+      "construction": 0.3
+    },
+    "innate_techniques": [
+      "litter_shred",
+      "segment_curl",
+      "spore_cull"
+    ],
+    "roles": [
+      "harvest",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Scatter rotting log slabs along its trail for several days; it falls into step behind the handler, accepting a harness once its migratory route overlaps your base."
+    },
+    "abilities": [
+      {
+        "name": "Litter Shredder",
+        "description": "Converts plant debris into compost and fiber at double yield."
+      },
+      {
+        "name": "Segment Roll",
+        "description": "Curls into a ring that blocks projectiles."
+      }
+    ],
+    "wild_behavior": "Slowly migrates between logs, shredding leaf litter into rich soil that other creatures forage. Groups curl up when giant scorpions or Paludon approach.",
+    "tier": 2
+  },
+  {
+    "id": "paludon",
+    "name": "Paludon",
+    "inspiration": [
+      "Eogyrinus",
+      "Proterogyrinus"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "carboniferous_coal_swamp"
+    ],
+    "layer": "amphibious",
+    "size": {
+      "length_m": 4.2,
+      "height_m": 0.7,
+      "mass_kg": 220.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.8,
+      "fear": 0.3,
+      "curiosity": 0.3,
+      "territoriality": 0.7,
+      "sociability": 0.1,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.9,
+      "swimming_diving": 0.8,
+      "stealth": 0.6,
+      "tracking": 0.5,
+      "combat_melee": 0.5,
+      "territory_patrol": 0.6
+    },
+    "innate_techniques": [
+      "drown_roll",
+      "mud_lunge",
+      "bog_sense"
+    ],
+    "roles": [
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Out-wait it in the shallows without flinching through three lunges; its stare-down ritual yields only to a handler who holds ground and then offers eel meat."
+    },
+    "abilities": [
+      {
+        "name": "Bog Ambush",
+        "description": "Submerged strike that grabs and drags prey into water."
+      },
+      {
+        "name": "Tremor Read",
+        "description": "Senses footsteps through the mud within 20 metres."
+      }
+    ],
+    "wild_behavior": "Lies half-submerged for hours at the swamp margin, striking whatever drinks. Defends a stretch of bank and tolerates Chilodrax migrating past.",
+    "tier": 4
+  },
+  {
+    "id": "hylos",
+    "name": "Hylos",
+    "inspiration": [
+      "Hylonomus"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "carboniferous_coal_swamp",
+      "carboniferous_giant_fern_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 0.3,
+      "height_m": 0.06,
+      "mass_kg": 0.2
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "quadruped",
+      "climber"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.6,
+      "hearing": 0.5,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        2,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.9,
+      "curiosity": 0.8,
+      "territoriality": 0.2,
+      "sociability": 0.5,
+      "patience": 0.3,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "evasion": 0.8,
+      "climbing": 0.6,
+      "stealth": 0.6
+    },
+    "innate_techniques": [
+      "hollow_dart",
+      "litter_flush",
+      "stump_hide"
+    ],
+    "roles": [
+      "companion",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Leave grubs in a hollow stump daily; it nests inside carried stumps and becomes a pocket companion."
+    },
+    "abilities": [
+      {
+        "name": "Grub Finder",
+        "description": "Reveals buried insects and eggs nearby."
+      },
+      {
+        "name": "Stump Slip",
+        "description": "Hides in any hollow, becoming untargetable briefly."
+      }
+    ],
+    "wild_behavior": "Forages through hollow lycopsid stumps for beetles, fleeing into them at any shadow overhead. Clusters share nest stumps in winter.",
+    "tier": 1
+  },
+  {
+    "id": "scorpex",
+    "name": "Scorpex",
+    "inspiration": [
+      "Brontoscorpio",
+      "Pulmonoscorpius"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "carboniferous_coal_swamp",
+      "carboniferous_giant_fern_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.0,
+      "height_m": 0.3,
+      "mass_kg": 25.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.2,
+      "tremor": 0.9,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.4,
+      "curiosity": 0.2,
+      "territoriality": 0.8,
+      "sociability": 0.1,
+      "patience": 0.7,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "stealth": 0.7,
+      "digging_burrowing": 0.3,
+      "tracking": 0.5,
+      "combat_melee": 0.5
+    },
+    "innate_techniques": [
+      "burrow_wait",
+      "pincer_pin",
+      "venom_prick"
+    ],
+    "roles": [
+      "combat",
+      "capture"
+    ],
+    "dig": {
+      "max_hardness": 1,
+      "speed": 0.3
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Present a clean carapace-shaped shield for it to test its claws on; after enough harmless pinning bouts it treats you as a dominant clutch-mate."
+    },
+    "abilities": [
+      {
+        "name": "Sand Trap",
+        "description": "Digs a pit that immobilises passing prey."
+      },
+      {
+        "name": "Paralytic Sting",
+        "description": "Sting that slows a target for a short time."
+      }
+    ],
+    "wild_behavior": "Digs shallow burrows under roots and waits for tremors. Is avoided by almost every swamp creature after dark.",
+    "tier": 2
+  },
+  {
+    "id": "cremaspis",
+    "name": "Cremaspis",
+    "inspiration": [
+      "Dimetrodon",
+      "Sphenacodon"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_red_desert"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.2,
+      "height_m": 1.3,
+      "mass_kg": 260.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.3,
+      "thermal": 0.7,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.7,
+      "sociability": 0.1,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.7,
+      "hunting_pursuit": 0.5,
+      "tracking": 0.6,
+      "combat_melee": 0.6,
+      "territory_patrol": 0.5
+    },
+    "innate_techniques": [
+      "sail_bask",
+      "lunge_bite",
+      "heat_flare"
+    ],
+    "roles": [
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Stand in the shadow cast across its sail until it learns your warmth; feeding it only at dusk when sluggish builds rank."
+    },
+    "abilities": [
+      {
+        "name": "Sail Flare",
+        "description": "Raises its sail to intimidate and reduce enemy aggression."
+      },
+      {
+        "name": "Thermal Sense",
+        "description": "Reveals warm-blooded prey through rock."
+      }
+    ],
+    "wild_behavior": "Basks at sunrise on red rocks to warm its sail, then hunts at midday. Competes with Gorgovar for waterholes and loses to larger packs.",
+    "tier": 2
+  },
+  {
+    "id": "spinavela",
+    "name": "Spinavela",
+    "inspiration": [
+      "Edaphosaurus"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_red_desert"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.2,
+      "mass_kg": 300.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        10
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.6,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.7,
+      "patience": 0.6,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "foraging": 0.7,
+      "harvesting": 0.5,
+      "defense_herd_circle": 0.6,
+      "evasion": 0.4,
+      "transport_hauling": 0.4
+    },
+    "innate_techniques": [
+      "sail_signal",
+      "brace_spines",
+      "grazing_march"
+    ],
+    "roles": [
+      "harvest",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Plant shade cloths near its grazing grounds; it learns that handler camps are safe thermal refuges."
+    },
+    "abilities": [
+      {
+        "name": "Spine Fan",
+        "description": "Raised spines deter melee attackers."
+      },
+      {
+        "name": "Heat Store",
+        "description": "Stores sun and then radiates warmth to allies in cold zones."
+      }
+    ],
+    "wild_behavior": "Moves in tight herds between seasonal ferns, sails aligned to the sun. Flares sails in coordinated colour waves to warn of Cremaspis.",
+    "tier": 1
+  },
+  {
+    "id": "gorgovar",
+    "name": "Gorgovar",
+    "inspiration": [
+      "Gorgonopsid",
+      "Inostrancevia"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_red_desert",
+      "permian_salt_flats"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.6,
+      "height_m": 1.3,
+      "mass_kg": 320.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.7,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.2,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.9,
+      "fear": 0.2,
+      "curiosity": 0.3,
+      "territoriality": 0.8,
+      "sociability": 0.3,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.7,
+      "combat_melee": 0.8,
+      "tracking": 0.6,
+      "capture_nonlethal": 0.2
+    },
+    "innate_techniques": [
+      "saber_stab",
+      "pin_and_rip",
+      "paired_flank"
+    ],
+    "roles": [
+      "combat",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Defeat it in a non-lethal tusk contest at a salt wallow; the pair bond transfers to the handler only after proving superior stamina."
+    },
+    "abilities": [
+      {
+        "name": "Saber Stab",
+        "description": "Deep bite that causes bleeding."
+      },
+      {
+        "name": "Paired Flank",
+        "description": "Gains damage when its mate or owner also targets the foe."
+      }
+    ],
+    "wild_behavior": "Hunting pairs defend salt-wallow territories and ambush thirsty herbivores. Scutarch is hunted only when isolated.",
+    "tier": 4
+  },
+  {
+    "id": "scutarch",
+    "name": "Scutarch",
+    "inspiration": [
+      "Scutosaurus",
+      "Bradysaurus"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_red_desert",
+      "permian_salt_flats"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.6,
+      "height_m": 1.3,
+      "mass_kg": 600.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.4,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.4,
+      "curiosity": 0.2,
+      "territoriality": 0.4,
+      "sociability": 0.6,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "defense_herd_circle": 0.8,
+      "defense_guarding": 0.7,
+      "foraging": 0.6,
+      "transport_hauling": 0.5,
+      "combat_melee": 0.4
+    },
+    "innate_techniques": [
+      "shield_wall",
+      "armor_plate_bash",
+      "salt_lick_lead"
+    ],
+    "roles": [
+      "guard",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Offer mineral-rich salt blocks regularly; it adopts the base as a salt wallow and stays to guard."
+    },
+    "abilities": [
+      {
+        "name": "Bone Shell",
+        "description": "Heavy armor plates with high damage reduction."
+      },
+      {
+        "name": "Wall Formation",
+        "description": "Herd members adjacent to it share its defense."
+      }
+    ],
+    "wild_behavior": "Feeds in tight groups near salt springs, arranging itself in a ring when threatened. Calves are guarded in the center.",
+    "tier": 2
+  },
+  {
+    "id": "burrowtusk",
+    "name": "Burrowtusk",
+    "inspiration": [
+      "Lystrosaurus"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_salt_flats",
+      "permian_red_desert"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.0,
+      "height_m": 0.5,
+      "mass_kg": 90.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped",
+      "burrower"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.7,
+      "hearing": 0.3,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.7,
+      "curiosity": 0.5,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.4,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "digging_burrowing": 0.6,
+      "foraging": 0.7,
+      "evasion": 0.6,
+      "communication": 0.5,
+      "territory_patrol": 0.3
+    },
+    "innate_techniques": [
+      "tuber_dig",
+      "warren_alarm",
+      "tusk_scrape"
+    ],
+    "roles": [
+      "dig",
+      "harvest",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.6
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Dig a small den beside its warren and leave tubers at the entrance; it adopts you as a warren neighbor."
+    },
+    "abilities": [
+      {
+        "name": "Tuber Locator",
+        "description": "Finds buried roots and ore-adjacent water."
+      },
+      {
+        "name": "Warren Alarm",
+        "description": "Colony alerts nearby allies to danger."
+      }
+    ],
+    "wild_behavior": "Lives in communal warrens beneath salt crusts and surfaces at dusk to graze. Survived harsh seasons by sleeping underground.",
+    "tier": 1
+  },
+  {
+    "id": "bulwarkhorn",
+    "name": "Bulwarkhorn",
+    "inspiration": [
+      "Moschops",
+      "Estemmenosuchus"
+    ],
+    "era": "permian",
+    "habitats": [
+      "permian_red_desert",
+      "permian_salt_flats"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 4.6,
+      "height_m": 1.6,
+      "mass_kg": 1400.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.6,
+      "sociability": 0.5,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "combat_melee": 0.6,
+      "defense_guarding": 0.7,
+      "defense_herd_circle": 0.6,
+      "transport_hauling": 0.6,
+      "foraging": 0.5
+    },
+    "innate_techniques": [
+      "head_ram",
+      "skull_brace",
+      "territory_roar"
+    ],
+    "roles": [
+      "guard",
+      "transport",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Win a restrained head-pushing contest on the salt flat at dawn; once it yields, it will bear a handler's yoke and guard the camp."
+    },
+    "abilities": [
+      {
+        "name": "Skull Ram",
+        "description": "Charge that staggers enemies."
+      },
+      {
+        "name": "Territory Roar",
+        "description": "Warns and boosts herd morale."
+      }
+    ],
+    "wild_behavior": "Rival males settle disputes with ritual head-butting; the herd shelters behind the dominant bull.",
+    "tier": 3
+  },
+  {
+    "id": "pterygar",
+    "name": "Pterygar",
+    "inspiration": [
+      "Jaekelopterus",
+      "Eurypterus"
+    ],
+    "era": "permian",
+    "habitats": [
+      "shallow_reef_sea",
+      "permian_salt_flats"
+    ],
+    "layer": "amphibious",
+    "size": {
+      "length_m": 2.5,
+      "height_m": 0.4,
+      "mass_kg": 90.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "crawler",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.4,
+      "hearing": 0.2,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.6,
+      "sociability": 0.1,
+      "patience": 0.6,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.7,
+      "swimming_diving": 0.7,
+      "stealth": 0.5,
+      "combat_melee": 0.6,
+      "territory_patrol": 0.4
+    },
+    "innate_techniques": [
+      "claw_snare",
+      "tide_crawl",
+      "silt_burst"
+    ],
+    "roles": [
+      "combat",
+      "capture"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "rescue_bond",
+      "description": "Free it from a stranded salt pan and return it to the sea; it repays the rescue by following your tide pools."
+    },
+    "abilities": [
+      {
+        "name": "Claw Snare",
+        "description": "Grappling claw locks prey in place."
+      },
+      {
+        "name": "Silt Burst",
+        "description": "Kicks up a cloud that blinds attackers."
+      }
+    ],
+    "wild_behavior": "Hunts on tide flats, scuttling between sea and brackish ponds. Raids nests of shore dwellers at night.",
+    "tier": 3
+  },
+  {
+    "id": "pallidrake",
+    "name": "Pallidrake",
+    "inspiration": [
+      "Coelophysis",
+      "Gojirasaurus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.5,
+      "height_m": 0.9,
+      "mass_kg": 25.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        6,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.5,
+      "curiosity": 0.6,
+      "territoriality": 0.4,
+      "sociability": 0.9,
+      "patience": 0.5,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.9,
+      "hunting_pursuit": 0.8,
+      "tracking": 0.6,
+      "communication": 0.7,
+      "scouting_aerial": 0.2,
+      "evasion": 0.6
+    },
+    "innate_techniques": [
+      "pack_flush",
+      "relay_chase",
+      "contact_call"
+    ],
+    "roles": [
+      "combat",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "imprinting_egg",
+      "description": "Raise a clutch from a shared nest egg while keeping the whole hatchling brood together; the pack imprints on the handler as a pack-mate."
+    },
+    "abilities": [
+      {
+        "name": "Relay Chase",
+        "description": "Pack members take turns pursuing prey to exhaust it."
+      },
+      {
+        "name": "Contact Call",
+        "description": "Rallies nearby pack members."
+      }
+    ],
+    "wild_behavior": "Roves badlands in loud packs, driving small prey into dry washes. Packs scatter from Rauxis but mob lone juveniles of other species.",
+    "tier": 1
+  },
+  {
+    "id": "prosaurex",
+    "name": "Prosaurex",
+    "inspiration": [
+      "Plateosaurus",
+      "Massospondylus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 6.0,
+      "height_m": 2.8,
+      "mass_kg": 1500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.5,
+      "hearing": 0.5,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.5,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.6,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "foraging": 0.7,
+      "harvesting": 0.7,
+      "transport_hauling": 0.6,
+      "defense_herd_circle": 0.5,
+      "climbing": 0.2
+    },
+    "innate_techniques": [
+      "browse_stretch",
+      "tail_swing",
+      "rear_up_look"
+    ],
+    "roles": [
+      "mount",
+      "transport",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Offer pine tips from a raised platform; it rears to take them and slowly accepts a saddle after repeated gentle pressure."
+    },
+    "abilities": [
+      {
+        "name": "Browse Reach",
+        "description": "Harvests tall tree foliage and resin."
+      },
+      {
+        "name": "Tail Sweep",
+        "description": "Knocks back small attackers."
+      }
+    ],
+    "wild_behavior": "Migrates along conifer valleys, standing on hind legs to browse. Herds move at dusk and keep sentries at the flanks.",
+    "tier": 2
+  },
+  {
+    "id": "rauxis",
+    "name": "Rauxis",
+    "inspiration": [
+      "Postosuchus",
+      "Saurosuchus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands",
+      "triassic_rift_lakes"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 5.0,
+      "height_m": 1.7,
+      "mass_kg": 600.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.7,
+      "hearing": 0.5,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.85,
+      "fear": 0.2,
+      "curiosity": 0.3,
+      "territoriality": 0.85,
+      "sociability": 0.1,
+      "patience": 0.8,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.5,
+      "combat_melee": 0.8,
+      "tracking": 0.7,
+      "territory_patrol": 0.7
+    },
+    "innate_techniques": [
+      "jaw_clamp",
+      "death_roll_dry",
+      "den_defend"
+    ],
+    "roles": [
+      "combat",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Prove dominance with a bait carcass that it tries to guard; non-lethal defeat on carcass grounds leads to submission."
+    },
+    "abilities": [
+      {
+        "name": "Crushing Bite",
+        "description": "Powerful bite that breaks armor."
+      },
+      {
+        "name": "Den Defense",
+        "description": "Boosts damage near its nest."
+      }
+    ],
+    "wild_behavior": "Apex stalker of badlands drainages; patrols dry riverbeds and drags kills to its den. Sleeps through midday heat.",
+    "tier": 4
+  },
+  {
+    "id": "placeron",
+    "name": "Placeron",
+    "inspiration": [
+      "Placerias",
+      "Kannemeyeria"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands",
+      "triassic_rift_lakes"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.4,
+      "mass_kg": 1000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        8,
+        30
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.4,
+      "curiosity": 0.2,
+      "territoriality": 0.3,
+      "sociability": 0.9,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "foraging": 0.6,
+      "defense_herd_circle": 0.8,
+      "transport_hauling": 0.6,
+      "digging_burrowing": 0.3,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "tusk_dig",
+      "herd_ring",
+      "mud_wade"
+    ],
+    "roles": [
+      "transport",
+      "harvest",
+      "dig"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.3
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Maintain a mud wallow near the base and refill it daily; the herd treats it as its own."
+    },
+    "abilities": [
+      {
+        "name": "Tusk Dig",
+        "description": "Digs for roots and shallow water."
+      },
+      {
+        "name": "Herd Ring",
+        "description": "Boosts defense with nearby herd members."
+      }
+    ],
+    "wild_behavior": "Lives in big herds around lake margins, wallowing in mud and uprooting shrubs. Calves are kept in the herd centre.",
+    "tier": 2
+  },
+  {
+    "id": "nothogar",
+    "name": "Nothogar",
+    "inspiration": [
+      "Nothosaurus",
+      "Lariosaurus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_rift_lakes",
+      "jurassic_lagoon_archipelago"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 0.6,
+      "mass_kg": 200.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.4,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.4,
+      "curiosity": 0.5,
+      "territoriality": 0.5,
+      "sociability": 0.6,
+      "patience": 0.5,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "fishing": 0.8,
+      "swimming_diving": 0.8,
+      "hunting_cooperative": 0.5,
+      "evasion": 0.6,
+      "stealth": 0.4
+    },
+    "innate_techniques": [
+      "net_jaw_snap",
+      "shoal_herd",
+      "reed_sweep"
+    ],
+    "roles": [
+      "fishing",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Offer live fish at the shoreline from a boat; it learns the boat as a feeding station."
+    },
+    "abilities": [
+      {
+        "name": "Net Jaw",
+        "description": "Interlocking teeth catch slippery fish."
+      },
+      {
+        "name": "Shoal Herding",
+        "description": "Drives fish into a dense ball for easier harvesting."
+      }
+    ],
+    "wild_behavior": "Hunts in lakeshore groups, driving shoals and hauling out to rest on rocks. Avoids larger Rauxis at the banks.",
+    "tier": 2
+  },
+  {
+    "id": "stenocollis",
+    "name": "Stenocollis",
+    "inspiration": [
+      "Tanystropheus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_rift_lakes"
+    ],
+    "layer": "amphibious",
+    "size": {
+      "length_m": 5.0,
+      "height_m": 1.0,
+      "mass_kg": 150.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "quadruped",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.3,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.4,
+      "curiosity": 0.5,
+      "territoriality": 0.5,
+      "sociability": 0.1,
+      "patience": 0.9,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "fishing": 0.8,
+      "hunting_ambush": 0.7,
+      "swimming_diving": 0.6,
+      "stealth": 0.6,
+      "capture_nonlethal": 0.4
+    },
+    "innate_techniques": [
+      "neck_strike",
+      "silent_wade",
+      "reed_still"
+    ],
+    "roles": [
+      "fishing",
+      "capture"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Mimic the slow sweeping of reed blades with a long pole; it accepts the mimic as a mate-like partner and stays near."
+    },
+    "abilities": [
+      {
+        "name": "Whip Neck",
+        "description": "Long reach strike on fish and flying prey."
+      },
+      {
+        "name": "Reed Still",
+        "description": "Stays motionless and becomes harder to detect."
+      }
+    ],
+    "wild_behavior": "Stands motionless in shallows, then extends its neck to snap fish. Dozes on mudbanks and avoids deeper water.",
+    "tier": 3
+  },
+  {
+    "id": "thalassarch",
+    "name": "Thalassarch",
+    "inspiration": [
+      "Shonisaurus",
+      "Shastasaurus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "open_ocean_pelagic"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 20.0,
+      "height_m": 3.5,
+      "mass_kg": 35000.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.4,
+      "hearing": 0.7,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.4
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        2,
+        5
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.2,
+      "curiosity": 0.5,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.9,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "swimming_diving": 0.9,
+      "transport_hauling": 0.7,
+      "communication": 0.7,
+      "evasion": 0.3,
+      "fishing": 0.5
+    },
+    "innate_techniques": [
+      "suction_gulp",
+      "deep_dive",
+      "song_call"
+    ],
+    "roles": [
+      "aquatic_mount",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "symbiosis_offer",
+      "description": "Let its remora-like cleaner fish nest on your boat hull; the giant tolerates the vessel as part of its pod and lets riders board."
+    },
+    "abilities": [
+      {
+        "name": "Suction Gulp",
+        "description": "Draws in schools of squid and fish with a powerful gulp."
+      },
+      {
+        "name": "Ocean Song",
+        "description": "Low calls guide allies over long distances."
+      }
+    ],
+    "wild_behavior": "Cruises in slow pods, diving for squid shoals. Its song attracts followers and remora-like fish that clean its skin.",
+    "tier": 5
+  },
+  {
+    "id": "dartwing",
+    "name": "Dartwing",
+    "inspiration": [
+      "Eudimorphodon",
+      "Peteinosaurus"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_rift_lakes",
+      "triassic_conifer_badlands"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 1.0,
+      "height_m": 0.2,
+      "mass_kg": 1.5
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.2,
+      "hearing": 0.4,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        6,
+        30
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.7,
+      "curiosity": 0.7,
+      "territoriality": 0.3,
+      "sociability": 0.7,
+      "patience": 0.4,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "fishing": 0.7,
+      "scouting_aerial": 0.7,
+      "evasion": 0.8,
+      "hunting_pursuit": 0.6,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "skim_snatch",
+      "flock_swirl",
+      "cliff_roost"
+    ],
+    "roles": [
+      "scout",
+      "fishing"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Throw fish from a cliff-top perch daily; the flock gradually takes food from your hand."
+    },
+    "abilities": [
+      {
+        "name": "Skim Snatch",
+        "description": "Quick grab of fish at the water surface."
+      },
+      {
+        "name": "Flock Swirl",
+        "description": "Distracts enemies with a rotating flock."
+      }
+    ],
+    "wild_behavior": "Roosts in cliff colonies and skims lakes for fish at dawn. Colonies mob egg raiders loudly.",
+    "tier": 1
+  },
+  {
+    "id": "burrowfur",
+    "name": "Burrowfur",
+    "inspiration": [
+      "Thrinaxodon",
+      "Cynognathus juvenile"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands",
+      "permian_red_desert"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 0.5,
+      "height_m": 0.15,
+      "mass_kg": 1.5
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "quadruped",
+      "burrower"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.8,
+      "hearing": 0.7,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        2,
+        4
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.8,
+      "curiosity": 0.6,
+      "territoriality": 0.5,
+      "sociability": 0.6,
+      "patience": 0.4,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "digging_burrowing": 0.7,
+      "foraging": 0.7,
+      "stealth": 0.6,
+      "evasion": 0.7,
+      "tracking": 0.5
+    },
+    "innate_techniques": [
+      "sniff_burrow",
+      "torpor_curl",
+      "den_chamber"
+    ],
+    "roles": [
+      "dig",
+      "utility",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 2,
+      "speed": 0.7
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Dig a mock burrow and place insects within; it moves in and becomes a loyal den-mate."
+    },
+    "abilities": [
+      {
+        "name": "Sniff Burrow",
+        "description": "Locates buried insects, fungus and roots."
+      },
+      {
+        "name": "Torpor Curl",
+        "description": "Enters torpor, avoiding detection and conserving energy."
+      }
+    ],
+    "wild_behavior": "Digs paired burrows in dry soil and forages at dusk. Seasonally sleeps in torpor through the dry season.",
+    "tier": 1
+  },
+  {
+    "id": "fringeglider",
+    "name": "Fringeglider",
+    "inspiration": [
+      "Longisquama",
+      "Sharovipteryx"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands",
+      "jurassic_araucaria_forest"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 0.2,
+      "height_m": 0.05,
+      "mass_kg": 0.3
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "glider",
+      "climber"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.3,
+      "hearing": 0.5,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        3,
+        10
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.9,
+      "curiosity": 0.8,
+      "territoriality": 0.2,
+      "sociability": 0.5,
+      "patience": 0.3,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "climbing": 0.8,
+      "evasion": 0.9,
+      "foraging": 0.6,
+      "scouting_aerial": 0.3,
+      "stealth": 0.4
+    },
+    "innate_techniques": [
+      "fringe_glide",
+      "bark_cling",
+      "insect_snap"
+    ],
+    "roles": [
+      "scout",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Hold still beneath a conifer with a mealworm until it glides onto your shoulder."
+    },
+    "abilities": [
+      {
+        "name": "Fringe Glide",
+        "description": "Long glides between trees without stamina cost."
+      },
+      {
+        "name": "Bark Cling",
+        "description": "Sticks to any bark and ledges."
+      }
+    ],
+    "wild_behavior": "Glides between conifer trunks hunting beetles, using elongated back fringes for braking. Hides under bark flakes when raptors pass.",
+    "tier": 1
+  },
+  {
+    "id": "rhynchon",
+    "name": "Rhynchon",
+    "inspiration": [
+      "Hyperodapedon",
+      "Rhynchosaur"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "triassic_conifer_badlands"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.4,
+      "height_m": 0.5,
+      "mass_kg": 80.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        10,
+        40
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.6,
+      "curiosity": 0.4,
+      "territoriality": 0.3,
+      "sociability": 0.9,
+      "patience": 0.5,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "digging_burrowing": 0.4,
+      "harvesting": 0.6,
+      "defense_herd_circle": 0.5,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "beak_scoop",
+      "seed_gather",
+      "dust_bathe"
+    ],
+    "roles": [
+      "harvest",
+      "dig"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.5
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Scatter seed-ferns near a dust bath at your base; the herd arrives within a season."
+    },
+    "abilities": [
+      {
+        "name": "Beak Scoop",
+        "description": "Scrapes soil for roots and seed ferns."
+      },
+      {
+        "name": "Seed Gather",
+        "description": "Collects seeds in bulk."
+      }
+    ],
+    "wild_behavior": "Bulk grazers in dense dust-bathing herds, scraping up seed ferns. Easy prey for Pallidrake packs but strong in numbers.",
+    "tier": 2
+  },
+  {
+    "id": "caelotitan",
+    "name": "Caelotitan",
+    "inspiration": [
+      "Brachiosaurus",
+      "Giraffatitan"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_fern_prairie",
+      "jurassic_araucaria_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 25.0,
+      "height_m": 12.0,
+      "mass_kg": 40000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.4,
+      "hearing": 0.5,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.2,
+      "curiosity": 0.2,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.9,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.9,
+      "foraging": 0.6,
+      "defense_herd_circle": 0.7,
+      "communication": 0.5,
+      "construction": 0.3
+    },
+    "innate_techniques": [
+      "tower_browse",
+      "ground_shake",
+      "herd_march"
+    ],
+    "roles": [
+      "transport",
+      "guard",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Maintain stable feed groves; the giants slowly treat an area with fresh foliage as part of their route and permit loading platforms."
+    },
+    "abilities": [
+      {
+        "name": "Tower Browse",
+        "description": "Reaches treetop foliage unavailable to others."
+      },
+      {
+        "name": "Ground Shake",
+        "description": "Footfalls stagger small attackers."
+      }
+    ],
+    "wild_behavior": "Moves in slow family groups between forest edges; calves are hidden within the herd. Predators rarely test a healthy adult.",
+    "tier": 5
+  },
+  {
+    "id": "tergoplax",
+    "name": "Tergoplax",
+    "inspiration": [
+      "Stegosaurus",
+      "Kentrosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_fern_prairie"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 7.0,
+      "height_m": 3.0,
+      "mass_kg": 3500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.4,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.4,
+      "curiosity": 0.2,
+      "territoriality": 0.5,
+      "sociability": 0.6,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "combat_melee": 0.7,
+      "defense_guarding": 0.7,
+      "defense_herd_circle": 0.5,
+      "foraging": 0.5,
+      "transport_hauling": 0.4
+    },
+    "innate_techniques": [
+      "thagomizer_swing",
+      "plate_flush",
+      "back_to_back"
+    ],
+    "roles": [
+      "guard",
+      "combat",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Present your shield to its tail swing and endure rounds of harmless blows without retreating; it then accepts the handler as herd-leader."
+    },
+    "abilities": [
+      {
+        "name": "Spiked Tail",
+        "description": "Strong swing that wounds attackers."
+      },
+      {
+        "name": "Plate Flush",
+        "description": "Plates flush red to threaten, reducing enemy aggression."
+      }
+    ],
+    "wild_behavior": "Grazes in small groups and uses plate colors for signals. Defends against Lacerax by turning and swinging tails.",
+    "tier": 3
+  },
+  {
+    "id": "lacerax",
+    "name": "Lacerax",
+    "inspiration": [
+      "Allosaurus",
+      "Ceratosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_fern_prairie",
+      "jurassic_araucaria_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 9.0,
+      "height_m": 3.5,
+      "mass_kg": 2000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.7,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "instincts": {
+      "aggression": 0.85,
+      "fear": 0.2,
+      "curiosity": 0.4,
+      "territoriality": 0.7,
+      "sociability": 0.4,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.7,
+      "combat_melee": 0.8,
+      "tracking": 0.7,
+      "capture_nonlethal": 0.3
+    },
+    "innate_techniques": [
+      "hatchet_bite",
+      "stalk_crouch",
+      "ridge_roar"
+    ],
+    "roles": [
+      "combat",
+      "mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Outlast its stalking bluff charge at the edge of a carcass, standing tall; after a feeding standoff it concedes rank and follows."
+    },
+    "abilities": [
+      {
+        "name": "Hatchet Bite",
+        "description": "Heavy downward bite."
+      },
+      {
+        "name": "Ridge Roar",
+        "description": "Intimidating call lowers enemy morale."
+      }
+    ],
+    "wild_behavior": "Ambushes sauropod calves and carcass-feeds; rival adults sometimes gather at big kills. Roars from ridgelines at dusk.",
+    "tier": 4
+  },
+  {
+    "id": "pipsnatch",
+    "name": "Pipsnatch",
+    "inspiration": [
+      "Compsognathus",
+      "Sinosauropteryx"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_araucaria_forest",
+      "jurassic_fern_prairie"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 0.7,
+      "height_m": 0.3,
+      "mass_kg": 3.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.1,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        4,
+        12
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.7,
+      "curiosity": 0.8,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.3,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.6,
+      "hunting_pursuit": 0.6,
+      "foraging": 0.6,
+      "evasion": 0.8,
+      "communication": 0.6,
+      "retrieval_rescue": 0.4
+    },
+    "innate_techniques": [
+      "scrap_scamper",
+      "tail_flick",
+      "pack_chirp"
+    ],
+    "roles": [
+      "companion",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Trade shiny trinkets and bugs; the pack adopts the handler's camp as its hunting base."
+    },
+    "abilities": [
+      {
+        "name": "Scrap Scamper",
+        "description": "Steals small items from enemies' loot."
+      },
+      {
+        "name": "Pack Chirp",
+        "description": "Warns of threats around the base."
+      }
+    ],
+    "wild_behavior": "Small flocks forage under conifers, grab lizards and scavenge. Fleeing from anything larger.",
+    "tier": 1
+  },
+  {
+    "id": "eoalis",
+    "name": "Eoalis",
+    "inspiration": [
+      "Archaeopteryx",
+      "Anchiornis"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_araucaria_forest",
+      "jurassic_fern_prairie"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 0.5,
+      "height_m": 0.2,
+      "mass_kg": 0.8
+    },
+    "diet": "omnivore",
+    "locomotion": [
+      "flyer",
+      "climber"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.4,
+      "hearing": 0.5,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        2,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.8,
+      "curiosity": 0.8,
+      "territoriality": 0.4,
+      "sociability": 0.5,
+      "patience": 0.4,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.6,
+      "climbing": 0.7,
+      "foraging": 0.6,
+      "evasion": 0.7,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "clap_glide",
+      "branch_hop",
+      "seed_peck"
+    ],
+    "roles": [
+      "scout",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Mimic its song on a bone whistle until it answers and perches on your hand."
+    },
+    "abilities": [
+      {
+        "name": "Clap Glide",
+        "description": "Short glide for travel."
+      },
+      {
+        "name": "Seed Peck",
+        "description": "Finds seeds, fruit and insects."
+      }
+    ],
+    "wild_behavior": "Pairs hop from branch to branch and do short flights between trees. Sings at dawn to defend its tree from rivals.",
+    "tier": 1
+  },
+  {
+    "id": "skimtail",
+    "name": "Skimtail",
+    "inspiration": [
+      "Rhamphorhynchus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_lagoon_archipelago"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 1.8,
+      "height_m": 0.3,
+      "mass_kg": 2.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.2,
+      "hearing": 0.4,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        10,
+        50
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.6,
+      "curiosity": 0.5,
+      "territoriality": 0.5,
+      "sociability": 0.8,
+      "patience": 0.5,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "fishing": 0.8,
+      "scouting_aerial": 0.7,
+      "hunting_pursuit": 0.6,
+      "evasion": 0.7,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "vane_tail_turn",
+      "gaff_dip",
+      "fish_hover"
+    ],
+    "roles": [
+      "fishing",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Leave fish on a rock at nest sites; flocks become used to the handler."
+    },
+    "abilities": [
+      {
+        "name": "Gaff Dip",
+        "description": "Needle teeth catch fish near the water surface."
+      },
+      {
+        "name": "Vane Tail Turn",
+        "description": "Fast turns while flying."
+      }
+    ],
+    "wild_behavior": "Colonies nest on archipelago cliffs and fish lagoons at dawn. Thieves of each other's catches.",
+    "tier": 2
+  },
+  {
+    "id": "orbitus",
+    "name": "Orbitus",
+    "inspiration": [
+      "Ophthalmosaurus",
+      "Ichthyosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_lagoon_archipelago",
+      "shallow_reef_sea",
+      "open_ocean_pelagic"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 5.0,
+      "height_m": 1.0,
+      "mass_kg": 900.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.2,
+      "hearing": 0.5,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.2
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        3,
+        12
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.5,
+      "curiosity": 0.6,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.5,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "swimming_diving": 0.9,
+      "hunting_pursuit": 0.8,
+      "hunting_cooperative": 0.6,
+      "fishing": 0.7,
+      "evasion": 0.7
+    },
+    "innate_techniques": [
+      "dusk_dive",
+      "pod_sync",
+      "barrel_roll"
+    ],
+    "roles": [
+      "aquatic_mount",
+      "fishing",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Swim alongside in synchrony and echo its body language until it accepts your lead."
+    },
+    "abilities": [
+      {
+        "name": "Dusk Dive",
+        "description": "Dives to high depth to hunt squid."
+      },
+      {
+        "name": "Pod Sync",
+        "description": "Pods share speed bonuses."
+      }
+    ],
+    "wild_behavior": "Pods dive to hunt squid at dusk; their huge eyes hold deep-sea predators at bay.",
+    "tier": 3
+  },
+  {
+    "id": "kraxmaw",
+    "name": "Kraxmaw",
+    "inspiration": [
+      "Liopleurodon",
+      "Pliosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_lagoon_archipelago",
+      "open_ocean_pelagic"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 12.0,
+      "height_m": 2.5,
+      "mass_kg": 12000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.9,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.95,
+      "fear": 0.1,
+      "curiosity": 0.3,
+      "territoriality": 0.9,
+      "sociability": 0.0,
+      "patience": 0.8,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.8,
+      "combat_melee": 0.9,
+      "swimming_diving": 0.8,
+      "tracking": 0.8,
+      "territory_patrol": 0.8
+    },
+    "innate_techniques": [
+      "skull_crush",
+      "smell_trail",
+      "ambush_surge"
+    ],
+    "roles": [
+      "combat",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Outswim it in a long, calm chase through deep water while carrying fish offerings; exhaustion and respect make it yield."
+    },
+    "abilities": [
+      {
+        "name": "Skull Crush",
+        "description": "Bite that crushes armor and bone."
+      },
+      {
+        "name": "Scent Trail",
+        "description": "Tracks injured prey over kilometres."
+      }
+    ],
+    "wild_behavior": "Sole ruler of its archipelago waters, patrolling channels and attacking anything that wades. Even other apex predators avoid its territory.",
+    "tier": 5
+  },
+  {
+    "id": "fernrunner",
+    "name": "Fernrunner",
+    "inspiration": [
+      "Dryosaurus",
+      "Camptosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_fern_prairie",
+      "jurassic_araucaria_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.5,
+      "mass_kg": 150.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.5,
+      "hearing": 0.6,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        6,
+        25
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.8,
+      "curiosity": 0.4,
+      "territoriality": 0.2,
+      "sociability": 0.8,
+      "patience": 0.4,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.4,
+      "evasion": 0.9,
+      "foraging": 0.6,
+      "scouting_aerial": 0.3,
+      "defense_herd_circle": 0.4
+    },
+    "innate_techniques": [
+      "burst_sprint",
+      "zigzag_dodge",
+      "sentinel_call"
+    ],
+    "roles": [
+      "mount",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Move slowly with open palms and let it graze alongside; it accepts riders after a few runs together."
+    },
+    "abilities": [
+      {
+        "name": "Burst Sprint",
+        "description": "Short high-speed escape."
+      },
+      {
+        "name": "Sentinel Call",
+        "description": "Alerts herd when predators near."
+      }
+    ],
+    "wild_behavior": "Herds graze open prairies with sentinels on mounds. When alarmed they flee in a sudden spurt, zigzagging.",
+    "tier": 2
+  },
+  {
+    "id": "flagellun",
+    "name": "Flagellun",
+    "inspiration": [
+      "Diplodocus",
+      "Apatosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_fern_prairie"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 22.0,
+      "height_m": 5.5,
+      "mass_kg": 15000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.4,
+      "hearing": 0.5,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        12
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.4,
+      "sociability": 0.7,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.8,
+      "defense_herd_circle": 0.6,
+      "defense_guarding": 0.5,
+      "foraging": 0.5,
+      "combat_melee": 0.5
+    },
+    "innate_techniques": [
+      "whip_crack_tail",
+      "comb_graze",
+      "long_march"
+    ],
+    "roles": [
+      "transport",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Cultivate fern fields and let herds graze them across seasons; they accept pack loads after several seasons."
+    },
+    "abilities": [
+      {
+        "name": "Whip Crack",
+        "description": "Sonic tail crack that stuns small foes."
+      },
+      {
+        "name": "Long March",
+        "description": "Carries heavy loads for long distances."
+      }
+    ],
+    "wild_behavior": "Moves across prairies in lines, combing low ferns. Tail cracks warn predators and keep the herd aligned.",
+    "tier": 4
+  },
+  {
+    "id": "scelida",
+    "name": "Scelida",
+    "inspiration": [
+      "Scelidosaurus",
+      "Scutellosaurus"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "jurassic_araucaria_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.5,
+      "height_m": 1.0,
+      "mass_kg": 250.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.6,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.6,
+      "patience": 0.6,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "defense_guarding": 0.5,
+      "defense_herd_circle": 0.5,
+      "foraging": 0.7,
+      "evasion": 0.4,
+      "climbing": 0.2
+    },
+    "innate_techniques": [
+      "scute_hunker",
+      "bristle_plate",
+      "low_graze"
+    ],
+    "roles": [
+      "guard",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Leave low cycads in a quiet glade; it returns each dusk and settles at the base."
+    },
+    "abilities": [
+      {
+        "name": "Scute Hunker",
+        "description": "Hunkers, gaining heavy defense."
+      },
+      {
+        "name": "Low Graze",
+        "description": "Gathers cycad fronds quickly."
+      }
+    ],
+    "wild_behavior": "Lives at forest edges grazing low cycads. Hunkers under its armor when threatened, relying on scutes.",
+    "tier": 1
+  },
+  {
+    "id": "vorathrax",
+    "name": "Vorathrax",
+    "inspiration": [
+      "Tyrannosaurus",
+      "Tarbosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest",
+      "cretaceous_floodplain_delta"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 12.0,
+      "height_m": 4.0,
+      "mass_kg": 8000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.9,
+      "hearing": 0.5,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.9,
+      "fear": 0.1,
+      "curiosity": 0.4,
+      "territoriality": 0.9,
+      "sociability": 0.3,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.7,
+      "hunting_ambush": 0.5,
+      "combat_melee": 0.9,
+      "tracking": 0.9,
+      "territory_patrol": 0.9,
+      "capture_nonlethal": 0.2
+    },
+    "innate_techniques": [
+      "bone_crush_bite",
+      "scent_track",
+      "territory_thunder"
+    ],
+    "roles": [
+      "combat",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Offer a series of increasingly large kills at the territory boundary over many days; it concedes the territory to the handler only after you have shown no fear at the border."
+    },
+    "abilities": [
+      {
+        "name": "Bone Crush",
+        "description": "Bite that cracks armor and bone."
+      },
+      {
+        "name": "Scent Track",
+        "description": "Follows wounded prey over huge distances."
+      }
+    ],
+    "wild_behavior": "Patrols huge territories along forest edges, scavenging and hunting hadrosaur herds. Neighbouring territories are marked by roars.",
+    "tier": 5
+  },
+  {
+    "id": "cranioplax",
+    "name": "Cranioplax",
+    "inspiration": [
+      "Triceratops",
+      "Torosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest",
+      "cretaceous_floodplain_delta"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 8.0,
+      "height_m": 2.8,
+      "mass_kg": 6000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        10
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.6,
+      "sociability": 0.6,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "combat_melee": 0.8,
+      "defense_guarding": 0.8,
+      "defense_herd_circle": 0.7,
+      "transport_hauling": 0.5,
+      "foraging": 0.5
+    },
+    "innate_techniques": [
+      "frill_flash",
+      "horn_charge",
+      "herd_wedge"
+    ],
+    "roles": [
+      "mount",
+      "combat",
+      "guard",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Out-stand it in a slow, head-lowered parley where you place a hand on its frill without retreat; it then accepts the handler as its calf-guard."
+    },
+    "abilities": [
+      {
+        "name": "Horn Charge",
+        "description": "Charge that gores enemies."
+      },
+      {
+        "name": "Frill Flash",
+        "description": "Colorful display drains enemy morale."
+      }
+    ],
+    "wild_behavior": "Herds march through forest, calves at the center. Males spar by locking horns without serious injury.",
+    "tier": 3
+  },
+  {
+    "id": "falxira",
+    "name": "Falxira",
+    "inspiration": [
+      "Velociraptor",
+      "Deinonychus",
+      "Utahraptor"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest",
+      "cretaceous_volcanic_highlands"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.0,
+      "height_m": 1.0,
+      "mass_kg": 20.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.7,
+      "hearing": 0.6,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.3,
+      "curiosity": 0.7,
+      "territoriality": 0.5,
+      "sociability": 0.9,
+      "patience": 0.6,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.9,
+      "hunting_pursuit": 0.8,
+      "combat_melee": 0.7,
+      "capture_nonlethal": 0.5,
+      "communication": 0.7,
+      "stealth": 0.5
+    },
+    "innate_techniques": [
+      "sickle_pin",
+      "feather_flare",
+      "relay_flank"
+    ],
+    "roles": [
+      "combat",
+      "mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "imprinting_egg",
+      "description": "Raise the pack's eggs under a heated stone nest, then play fetch with hatchlings; the pack bonds with the handler's household."
+    },
+    "abilities": [
+      {
+        "name": "Sickle Pin",
+        "description": "Pins prey with a curved claw and holds it."
+      },
+      {
+        "name": "Relay Flank",
+        "description": "Pack members flank prey in teamwork."
+      }
+    ],
+    "wild_behavior": "Coordinated packs hunt young herbivores and use wing feathers to balance and signal. Packs share territory with kin groups.",
+    "tier": 2
+  },
+  {
+    "id": "gravitor",
+    "name": "Gravitor",
+    "inspiration": [
+      "Ankylosaurus",
+      "Euoplocephalus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_volcanic_highlands",
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 6.0,
+      "height_m": 1.7,
+      "mass_kg": 4000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.5,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.2,
+      "curiosity": 0.2,
+      "territoriality": 0.6,
+      "sociability": 0.3,
+      "patience": 0.9,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "defense_guarding": 0.9,
+      "combat_melee": 0.7,
+      "foraging": 0.5,
+      "digging_burrowing": 0.2,
+      "transport_hauling": 0.4
+    },
+    "innate_techniques": [
+      "club_swing",
+      "hunker_slab",
+      "ash_forage"
+    ],
+    "roles": [
+      "guard",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 1,
+      "speed": 0.1
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Leave heaps of mineral-rich ash plants; its defensive bluff relaxes after you eat nearby in a non-threatening posture."
+    },
+    "abilities": [
+      {
+        "name": "Tail Club",
+        "description": "Heavy club swing that cracks bone."
+      },
+      {
+        "name": "Hunker Slab",
+        "description": "Near-immune to damage when hunkering."
+      }
+    ],
+    "wild_behavior": "Grazes volcanic slopes alone or in pairs and ignores predators. It forages ash-fertilised shrubs.",
+    "tier": 4
+  },
+  {
+    "id": "sonocrest",
+    "name": "Sonocrest",
+    "inspiration": [
+      "Parasaurolophus",
+      "Corythosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_floodplain_delta",
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 9.0,
+      "height_m": 3.0,
+      "mass_kg": 4000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.5,
+      "hearing": 0.9,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        10,
+        40
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.5,
+      "curiosity": 0.4,
+      "territoriality": 0.3,
+      "sociability": 0.9,
+      "patience": 0.6,
+      "playfulness": 0.4
+    },
+    "skill_affinity": {
+      "communication": 0.9,
+      "defense_herd_circle": 0.5,
+      "foraging": 0.6,
+      "transport_hauling": 0.4,
+      "scouting_aerial": 0.3
+    },
+    "innate_techniques": [
+      "crest_trumpet",
+      "herd_alarm",
+      "chorus_call"
+    ],
+    "roles": [
+      "mount",
+      "transport",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Answer its crest calls with a horn, matching rhythm for days; it carries a rider once your calls form a stable dialogue."
+    },
+    "abilities": [
+      {
+        "name": "Crest Trumpet",
+        "description": "Long-range call alerts or rallies allies."
+      },
+      {
+        "name": "Chorus Call",
+        "description": "Calls from herd members grant buffs."
+      }
+    ],
+    "wild_behavior": "Huge herds travel river deltas, calling constantly. Calls change with the seasons and warn of Vorathrax.",
+    "tier": 2
+  },
+  {
+    "id": "hydrasail",
+    "name": "Hydrasail",
+    "inspiration": [
+      "Spinosaurus",
+      "Baryonyx"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_floodplain_delta"
+    ],
+    "layer": "amphibious",
+    "size": {
+      "length_m": 14.0,
+      "height_m": 5.0,
+      "mass_kg": 7000.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "facultative_biped",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.8,
+      "hearing": 0.5,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.2,
+      "curiosity": 0.4,
+      "territoriality": 0.8,
+      "sociability": 0.3,
+      "patience": 0.8,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "fishing": 0.9,
+      "swimming_diving": 0.8,
+      "hunting_ambush": 0.6,
+      "combat_melee": 0.7,
+      "tracking": 0.6
+    },
+    "innate_techniques": [
+      "sail_display",
+      "net_snap",
+      "river_stalk"
+    ],
+    "roles": [
+      "fishing",
+      "aquatic_mount",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Provide an endless supply of catch near a river bar and wade out without bait; it comes to see your presence as harmless."
+    },
+    "abilities": [
+      {
+        "name": "Net Snap",
+        "description": "Whips fish out of water with its jaws."
+      },
+      {
+        "name": "Sail Display",
+        "description": "Raises sail to threaten or attract mates."
+      }
+    ],
+    "wild_behavior": "Wades the delta and hunts fish with sweeps of the snout, but also scavenges carcasses. Lone adult drives out rivals.",
+    "tier": 4
+  },
+  {
+    "id": "cirrothrone",
+    "name": "Cirrothrone",
+    "inspiration": [
+      "Quetzalcoatlus",
+      "Hatzegopteryx"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_volcanic_highlands",
+      "cretaceous_chalk_coast"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 8.0,
+      "height_m": 4.5,
+      "mass_kg": 250.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "flyer",
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.4,
+      "hearing": 0.4,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.3,
+      "curiosity": 0.5,
+      "territoriality": 0.7,
+      "sociability": 0.4,
+      "patience": 0.8,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.9,
+      "transport_hauling": 0.6,
+      "hunting_pursuit": 0.5,
+      "tracking": 0.6,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "thermal_ride",
+      "stalk_bill_snap",
+      "cliff_launch"
+    ],
+    "roles": [
+      "flying_mount",
+      "scout",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Perform its courtship hops and bill clatters in a specified pattern; if you match them, it accepts the handler as a partner."
+    },
+    "abilities": [
+      {
+        "name": "Thermal Ride",
+        "description": "Soars for long periods without stamina cost."
+      },
+      {
+        "name": "Bill Snap",
+        "description": "Bill grab of ground prey."
+      }
+    ],
+    "wild_behavior": "Soars on volcanic updrafts and stalks the ground for prey. Pairs nest on high ledges and defend them.",
+    "tier": 5
+  },
+  {
+    "id": "thermalwing",
+    "name": "Thermalwing",
+    "inspiration": [
+      "Pteranodon",
+      "Istiodactylus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_chalk_coast",
+      "shallow_reef_sea"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 6.0,
+      "height_m": 1.8,
+      "mass_kg": 40.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.2,
+      "hearing": 0.4,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        8,
+        40
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.5,
+      "curiosity": 0.6,
+      "territoriality": 0.4,
+      "sociability": 0.8,
+      "patience": 0.5,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.8,
+      "fishing": 0.7,
+      "hunting_pursuit": 0.5,
+      "evasion": 0.6,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "dynamic_soar",
+      "fish_scoop",
+      "crest_steer"
+    ],
+    "roles": [
+      "flying_mount",
+      "fishing",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Feed it fish from a cliff perch; it accepts an anchor harness once trust builds."
+    },
+    "abilities": [
+      {
+        "name": "Dynamic Soar",
+        "description": "Efficient flying in coastal winds."
+      },
+      {
+        "name": "Fish Scoop",
+        "description": "Scoops fish from the surface."
+      }
+    ],
+    "wild_behavior": "Colonies ride coastal winds and scoop fish. They share cliffs with large gulls and compete for nest ledges.",
+    "tier": 3
+  },
+  {
+    "id": "brinegar",
+    "name": "Brinegar",
+    "inspiration": [
+      "Mosasaurus",
+      "Tylosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "open_ocean_pelagic",
+      "cretaceous_chalk_coast",
+      "shallow_reef_sea"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 13.0,
+      "height_m": 2.5,
+      "mass_kg": 10000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.7,
+      "hearing": 0.6,
+      "tremor": 0.6,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.9,
+      "fear": 0.1,
+      "curiosity": 0.3,
+      "territoriality": 0.8,
+      "sociability": 0.1,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.9,
+      "combat_melee": 0.9,
+      "swimming_diving": 0.9,
+      "tracking": 0.7,
+      "territory_patrol": 0.8
+    },
+    "innate_techniques": [
+      "jaw_hinge_gulp",
+      "surge_strike",
+      "wake_read"
+    ],
+    "roles": [
+      "combat",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Defeat it in a long tow-line contest from a ship; its pride yields only to a handler who matches its stamina."
+    },
+    "abilities": [
+      {
+        "name": "Surge Strike",
+        "description": "Underwater rush attack."
+      },
+      {
+        "name": "Wake Read",
+        "description": "Senses vibrations from ships and swimmers."
+      }
+    ],
+    "wild_behavior": "Apex marine hunter that surges from deep water to take anything at the surface.",
+    "tier": 5
+  },
+  {
+    "id": "tessaron",
+    "name": "Tessaron",
+    "inspiration": [
+      "Archelon"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_chalk_coast",
+      "shallow_reef_sea"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 4.0,
+      "height_m": 0.8,
+      "mass_kg": 2000.0
+    },
+    "diet": "omnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.6,
+      "hearing": 0.3,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.2,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.3,
+      "patience": 0.9,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "swimming_diving": 0.9,
+      "transport_hauling": 0.6,
+      "foraging": 0.6,
+      "defense_guarding": 0.5,
+      "fishing": 0.4
+    },
+    "innate_techniques": [
+      "leather_shell_roll",
+      "jelly_nibble",
+      "current_ride"
+    ],
+    "roles": [
+      "aquatic_mount",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Release jellyfish and kelp in a lagoon pen; it shelters there, and later tows boats willingly."
+    },
+    "abilities": [
+      {
+        "name": "Leather Shell",
+        "description": "Flexible shell with good defense."
+      },
+      {
+        "name": "Current Ride",
+        "description": "Efficient long-distance swimming."
+      }
+    ],
+    "wild_behavior": "Wanders reefs eating jellyfish and nesting on chalk beaches. Hatchlings are picked off by shore pterosaurs.",
+    "tier": 2
+  },
+  {
+    "id": "cursorex",
+    "name": "Cursorex",
+    "inspiration": [
+      "Gallimimus",
+      "Struthiomimus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_floodplain_delta",
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.5,
+      "height_m": 2.0,
+      "mass_kg": 150.0
+    },
+    "diet": "omnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.4,
+      "hearing": 0.6,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.9,
+      "curiosity": 0.5,
+      "territoriality": 0.2,
+      "sociability": 0.7,
+      "patience": 0.4,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.5,
+      "evasion": 0.9,
+      "foraging": 0.6,
+      "scouting_aerial": 0.3,
+      "retrieval_rescue": 0.4,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "long_stride",
+      "gravel_gulp",
+      "feint_dodge"
+    ],
+    "roles": [
+      "mount",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Race beside it daily, matching pace, then slow down together; it accepts a rider after a few matched sprints."
+    },
+    "abilities": [
+      {
+        "name": "Long Stride",
+        "description": "High sprint speed."
+      },
+      {
+        "name": "Feint Dodge",
+        "description": "Dodges incoming attacks."
+      }
+    ],
+    "wild_behavior": "Fast herds roam floodplains and eat leaves, eggs and insects. They scatter in all directions when attacked.",
+    "tier": 1
+  },
+  {
+    "id": "tholoram",
+    "name": "Tholoram",
+    "inspiration": [
+      "Pachycephalosaurus",
+      "Stegoceras"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_volcanic_highlands",
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.6,
+      "height_m": 1.4,
+      "mass_kg": 300.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.6,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        9
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.4,
+      "curiosity": 0.4,
+      "territoriality": 0.6,
+      "sociability": 0.6,
+      "patience": 0.5,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "combat_melee": 0.6,
+      "evasion": 0.5,
+      "foraging": 0.6,
+      "territory_patrol": 0.5,
+      "defense_herd_circle": 0.4
+    },
+    "innate_techniques": [
+      "dome_crash",
+      "ridge_spar",
+      "flank_ram"
+    ],
+    "roles": [
+      "combat",
+      "mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Spar with a padded stand; losing the headbutt duel gracefully gives it the confidence to follow the handler."
+    },
+    "abilities": [
+      {
+        "name": "Dome Crash",
+        "description": "Head ram that deals concussive damage."
+      },
+      {
+        "name": "Ridge Spar",
+        "description": "Duel mode improves combat training."
+      }
+    ],
+    "wild_behavior": "Stages ritual head-butting duels on ridges and defends slopes against rivals.",
+    "tier": 2
+  },
+  {
+    "id": "orogant",
+    "name": "Orogant",
+    "inspiration": [
+      "Argentinosaurus",
+      "Patagotitan"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_floodplain_delta",
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 33.0,
+      "height_m": 9.0,
+      "mass_kg": 70000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.4,
+      "hearing": 0.6,
+      "tremor": 0.9,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.1,
+      "curiosity": 0.2,
+      "territoriality": 0.2,
+      "sociability": 0.9,
+      "patience": 1.0,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.9,
+      "defense_herd_circle": 0.8,
+      "defense_guarding": 0.6,
+      "foraging": 0.5,
+      "communication": 0.5
+    },
+    "innate_techniques": [
+      "earth_rumble",
+      "calf_ring",
+      "land_bridge"
+    ],
+    "roles": [
+      "transport",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "symbiosis_offer",
+      "description": "Accept its slow-moving caretaker fauna on your platforms; as it tolerates your riding platform, it will carry a whole camp over time."
+    },
+    "abilities": [
+      {
+        "name": "Earth Rumble",
+        "description": "Tremors that stun enemies."
+      },
+      {
+        "name": "Land Bridge",
+        "description": "Carries a whole camp on its back."
+      }
+    ],
+    "wild_behavior": "Slowly migrates between delta and forest, creating clearings and trails others use. Adults ignore all but very large predators.",
+    "tier": 5
+  },
+  {
+    "id": "psittula",
+    "name": "Psittula",
+    "inspiration": [
+      "Psittacosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.5,
+      "height_m": 0.7,
+      "mass_kg": 25.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.6,
+      "hearing": 0.5,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        8,
+        30
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.7,
+      "curiosity": 0.6,
+      "territoriality": 0.2,
+      "sociability": 0.9,
+      "patience": 0.4,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "foraging": 0.7,
+      "harvesting": 0.6,
+      "communication": 0.6,
+      "evasion": 0.6,
+      "retrieval_rescue": 0.3
+    },
+    "innate_techniques": [
+      "beak_crack",
+      "nut_crunch",
+      "squeak_chorus"
+    ],
+    "roles": [
+      "harvest",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Pass nuts to its beak with a gentle sling; it follows the sound of shells."
+    },
+    "abilities": [
+      {
+        "name": "Beak Crack",
+        "description": "Cracks nuts and hard seeds."
+      },
+      {
+        "name": "Squeak Chorus",
+        "description": "Herd chatter alerts to danger."
+      }
+    ],
+    "wild_behavior": "Squeaky herds pick seeds and nuts, with juveniles clustering. Their chatter is used by other species as a safe signal.",
+    "tier": 2
+  },
+  {
+    "id": "tetraptera",
+    "name": "Tetraptera",
+    "inspiration": [
+      "Microraptor",
+      "Changyuraptor"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 0.8,
+      "height_m": 0.2,
+      "mass_kg": 0.9
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "glider",
+      "climber"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.4,
+      "hearing": 0.6,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        2,
+        4
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.6,
+      "curiosity": 0.7,
+      "territoriality": 0.5,
+      "sociability": 0.5,
+      "patience": 0.4,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.7,
+      "climbing": 0.8,
+      "scouting_aerial": 0.5,
+      "evasion": 0.8,
+      "stealth": 0.6
+    },
+    "innate_techniques": [
+      "four_wing_glide",
+      "branch_drop",
+      "thicket_prowl"
+    ],
+    "roles": [
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Match its trilling calls with leaf drums; once it accepts the rhythm, it perches on the handler's shoulder."
+    },
+    "abilities": [
+      {
+        "name": "Four-Wing Glide",
+        "description": "Glides between tall trees quietly."
+      },
+      {
+        "name": "Branch Drop",
+        "description": "Surprise attack from above."
+      }
+    ],
+    "wild_behavior": "Glides from high branches to ambush small mammals and birds at dawn.",
+    "tier": 2
+  },
+  {
+    "id": "falcarm",
+    "name": "Falcarm",
+    "inspiration": [
+      "Therizinosaurus",
+      "Nothronychus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "cretaceous_angiosperm_forest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 9.0,
+      "height_m": 4.0,
+      "mass_kg": 4500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.3,
+      "curiosity": 0.3,
+      "territoriality": 0.6,
+      "sociability": 0.4,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "harvesting": 0.9,
+      "combat_melee": 0.6,
+      "defense_guarding": 0.5,
+      "climbing": 0.4,
+      "foraging": 0.6
+    },
+    "innate_techniques": [
+      "branch_hook",
+      "claw_threat",
+      "leaf_comb"
+    ],
+    "roles": [
+      "harvest",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Hold fruiting branches on a long pole while it plucks; it tolerates the handler working with it at the same tree."
+    },
+    "abilities": [
+      {
+        "name": "Branch Hook",
+        "description": "Pulls entire branches down to harvest fruit."
+      },
+      {
+        "name": "Claw Threat",
+        "description": "Spreads long claws to deter attackers."
+      }
+    ],
+    "wild_behavior": "Browses big trees with scythe-like claws and rears when threatened. It sleeps sitting up.",
+    "tier": 3
+  },
+  {
+    "id": "clavirostra",
+    "name": "Clavirostra",
+    "inspiration": [
+      "Phorusrhacid",
+      "Gastornis"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "paleogene_tropical_rainforest",
+      "neogene_savanna"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.5,
+      "height_m": 2.4,
+      "mass_kg": 150.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.8,
+      "smell": 0.5,
+      "hearing": 0.7,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.3,
+      "curiosity": 0.4,
+      "territoriality": 0.7,
+      "sociability": 0.4,
+      "patience": 0.6,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.9,
+      "hunting_ambush": 0.5,
+      "combat_melee": 0.7,
+      "tracking": 0.6,
+      "territory_patrol": 0.6
+    },
+    "innate_techniques": [
+      "hammer_peck",
+      "sprint_snatch",
+      "call_duet"
+    ],
+    "roles": [
+      "mount",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Mirror its dueting calls with a flute; it dances and eventually adopts the handler as its mate-partner."
+    },
+    "abilities": [
+      {
+        "name": "Hammer Peck",
+        "description": "Beak strike delivering heavy blows."
+      },
+      {
+        "name": "Call Duet",
+        "description": "Calls amplify its mate's damage."
+      }
+    ],
+    "wild_behavior": "Mated pairs hunt in rainforest clearings, using sprints to catch prey. Duets echo across territories.",
+    "tier": 3
+  },
+  {
+    "id": "anguicet",
+    "name": "Anguicet",
+    "inspiration": [
+      "Basilosaurus"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "open_ocean_pelagic",
+      "shallow_reef_sea"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 18.0,
+      "height_m": 2.0,
+      "mass_kg": 20000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.6,
+      "hearing": 0.8,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.5
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.2,
+      "curiosity": 0.3,
+      "territoriality": 0.7,
+      "sociability": 0.2,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.7,
+      "hunting_pursuit": 0.7,
+      "combat_melee": 0.8,
+      "swimming_diving": 0.9,
+      "tracking": 0.6,
+      "territory_patrol": 0.6
+    },
+    "innate_techniques": [
+      "serpent_coil",
+      "sonar_pulse",
+      "tail_lash"
+    ],
+    "roles": [
+      "combat",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "rescue_bond",
+      "description": "Free it from fishing nets or stranding; it bonds with its rescuer for life."
+    },
+    "abilities": [
+      {
+        "name": "Sonar Pulse",
+        "description": "Detects hidden prey and structures."
+      },
+      {
+        "name": "Tail Lash",
+        "description": "Sweeping tail strike."
+      }
+    ],
+    "wild_behavior": "Elongated hunter patrols shallow seas and snaps up fish and young reptiles.",
+    "tier": 4
+  },
+  {
+    "id": "colubrex",
+    "name": "Colubrex",
+    "inspiration": [
+      "Titanoboa"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "paleogene_tropical_rainforest"
+    ],
+    "layer": "amphibious",
+    "size": {
+      "length_m": 13.0,
+      "height_m": 1.0,
+      "mass_kg": 1100.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "crawler",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.7,
+      "hearing": 0.3,
+      "tremor": 0.5,
+      "thermal": 0.8,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.2,
+      "curiosity": 0.2,
+      "territoriality": 0.7,
+      "sociability": 0.0,
+      "patience": 0.9,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.9,
+      "stealth": 0.8,
+      "swimming_diving": 0.7,
+      "capture_nonlethal": 0.6,
+      "tracking": 0.6
+    },
+    "innate_techniques": [
+      "coil_hold",
+      "heat_pit_sense",
+      "river_drag"
+    ],
+    "roles": [
+      "combat",
+      "capture"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Share a heated rock beside it for weeks without sudden movement; once it recognizes your thermal trace as safe, it consents to handling."
+    },
+    "abilities": [
+      {
+        "name": "Constrict",
+        "description": "Holds prey in coils and suffocates."
+      },
+      {
+        "name": "Heat Pit",
+        "description": "Senses warm bodies in the dark."
+      }
+    ],
+    "wild_behavior": "Lurks in warm river margins, lying submerged and striking at anything that comes to drink. Digests prey for weeks.",
+    "tier": 4
+  },
+  {
+    "id": "eohoof",
+    "name": "Eohoof",
+    "inspiration": [
+      "Eohippus",
+      "Hyracotherium"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "paleogene_tropical_rainforest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 0.6,
+      "height_m": 0.3,
+      "mass_kg": 8.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.6,
+      "hearing": 0.8,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.0,
+      "fear": 0.95,
+      "curiosity": 0.6,
+      "territoriality": 0.1,
+      "sociability": 0.8,
+      "patience": 0.3,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "evasion": 0.9,
+      "foraging": 0.7,
+      "communication": 0.5,
+      "scouting_aerial": 0.2
+    },
+    "innate_techniques": [
+      "thicket_dash",
+      "leaf_nibble",
+      "alarm_whistle"
+    ],
+    "roles": [
+      "companion",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Whistle softly while leaving fruit under cover; the herd gradually follows you into base."
+    },
+    "abilities": [
+      {
+        "name": "Thicket Dash",
+        "description": "Rapid dodges through foliage."
+      },
+      {
+        "name": "Alarm Whistle",
+        "description": "Alerts nearby creatures of danger."
+      }
+    ],
+    "wild_behavior": "Slips between thickets in small herds, eating leaves and fruit and bolting in unison when predators near.",
+    "tier": 1
+  },
+  {
+    "id": "nyctalis",
+    "name": "Nyctalis",
+    "inspiration": [
+      "Icaronycteris",
+      "Onychonycteris"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "paleogene_tropical_rainforest",
+      "karst_caves"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 0.2,
+      "height_m": 0.05,
+      "mass_kg": 0.05
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.2,
+      "hearing": 0.9,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.9
+    },
+    "social": {
+      "structure": "swarm",
+      "group_size": [
+        20,
+        200
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.7,
+      "curiosity": 0.5,
+      "territoriality": 0.2,
+      "sociability": 0.9,
+      "patience": 0.3,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.6,
+      "communication": 0.7,
+      "evasion": 0.9,
+      "tracking": 0.5,
+      "foraging": 0.5
+    },
+    "innate_techniques": [
+      "sonar_chirp",
+      "swarm_drift",
+      "roost_hang"
+    ],
+    "roles": [
+      "scout",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "symbiosis_offer",
+      "description": "Provide a roosting rack of hollow logs in the base; the swarm will shelter there and share its sonar maps."
+    },
+    "abilities": [
+      {
+        "name": "Sonar Chirp",
+        "description": "Reveals terrain and hidden creatures."
+      },
+      {
+        "name": "Swarm Drift",
+        "description": "Creates a swirling cloud of distraction."
+      }
+    ],
+    "wild_behavior": "Roosts in hollow trees by day and swarms through forest gaps at dusk, mapping the dark using echolocation.",
+    "tier": 1
+  },
+  {
+    "id": "altimont",
+    "name": "Altimont",
+    "inspiration": [
+      "Paraceratherium",
+      "Indricotherium"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "neogene_savanna",
+      "paleogene_tropical_rainforest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 8.0,
+      "height_m": 5.5,
+      "mass_kg": 15000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.5,
+      "hearing": 0.6,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.3,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.6,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.8,
+      "foraging": 0.6,
+      "defense_herd_circle": 0.6,
+      "defense_guarding": 0.5,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "canopy_pull",
+      "trunk_footfall",
+      "long_call"
+    ],
+    "roles": [
+      "transport",
+      "guard",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Plant tall acacia-like groves at the base; it becomes a visitor and later a loyal grazer."
+    },
+    "abilities": [
+      {
+        "name": "Canopy Pull",
+        "description": "Harvests high branches without climbing."
+      },
+      {
+        "name": "Footfall",
+        "description": "Heavy steps shake smaller creatures."
+      }
+    ],
+    "wild_behavior": "Giant hornless rhino relative browsing in tall trees and wandering between woodlands. Calves hide beneath mothers.",
+    "tier": 5
+  },
+  {
+    "id": "brontoplax",
+    "name": "Brontoplax",
+    "inspiration": [
+      "Embolotherium",
+      "Megacerops"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "neogene_savanna",
+      "paleogene_tropical_rainforest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 4.5,
+      "height_m": 2.5,
+      "mass_kg": 3000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.4,
+      "smell": 0.5,
+      "hearing": 0.5,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        12
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.6,
+      "sociability": 0.6,
+      "patience": 0.6,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "combat_melee": 0.7,
+      "defense_herd_circle": 0.6,
+      "defense_guarding": 0.6,
+      "transport_hauling": 0.5,
+      "foraging": 0.5
+    },
+    "innate_techniques": [
+      "horn_prong_charge",
+      "herd_wedge",
+      "dust_roar"
+    ],
+    "roles": [
+      "combat",
+      "mount",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Contest its nasal horn in a controlled clash in dust; accepting its pushes and answering with equal force is the way to rank."
+    },
+    "abilities": [
+      {
+        "name": "Horn Charge",
+        "description": "Forked-horn charge."
+      },
+      {
+        "name": "Dust Roar",
+        "description": "Roars that kick up blinding dust."
+      }
+    ],
+    "wild_behavior": "Males clash in dusty arenas for dominance; herds guard watering holes. Serve as bodyguards to smaller grazers.",
+    "tier": 3
+  },
+  {
+    "id": "dinoceron",
+    "name": "Dinoceron",
+    "inspiration": [
+      "Uintatherium",
+      "Eobasileus"
+    ],
+    "era": "paleogene",
+    "habitats": [
+      "paleogene_tropical_rainforest"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.8,
+      "height_m": 1.7,
+      "mass_kg": 2000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.4,
+      "curiosity": 0.2,
+      "territoriality": 0.5,
+      "sociability": 0.5,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "defense_guarding": 0.7,
+      "combat_melee": 0.6,
+      "foraging": 0.6,
+      "transport_hauling": 0.5,
+      "defense_herd_circle": 0.5
+    },
+    "innate_techniques": [
+      "bony_horn_gore",
+      "saber_threat",
+      "mud_wallow"
+    ],
+    "roles": [
+      "guard",
+      "combat",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Maintain a muddy wallow with fresh fruits; it makes the base part of its home range."
+    },
+    "abilities": [
+      {
+        "name": "Horn Gore",
+        "description": "Bony horns inflict piercing damage."
+      },
+      {
+        "name": "Mud Wallow",
+        "description": "Cooling mud boosts regeneration."
+      }
+    ],
+    "wild_behavior": "Browses river-edge forests and wallows in muddy pools. Males show off bony horns and sparring tusks.",
+    "tier": 3
+  },
+  {
+    "id": "megadent",
+    "name": "Megadent",
+    "inspiration": [
+      "Otodus megalodon",
+      "Carcharocles"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "open_ocean_pelagic",
+      "shallow_reef_sea"
+    ],
+    "layer": "aquatic",
+    "size": {
+      "length_m": 16.0,
+      "height_m": 3.0,
+      "mass_kg": 40000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.9,
+      "hearing": 0.7,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.95,
+      "fear": 0.05,
+      "curiosity": 0.3,
+      "territoriality": 0.8,
+      "sociability": 0.0,
+      "patience": 0.8,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.9,
+      "hunting_ambush": 0.7,
+      "combat_melee": 0.9,
+      "swimming_diving": 0.9,
+      "tracking": 0.9,
+      "territory_patrol": 0.8
+    },
+    "innate_techniques": [
+      "blood_scent_bite",
+      "breach_strike",
+      "apex_circle"
+    ],
+    "roles": [
+      "combat",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Hold a slow parallel course beside it in open water for days while dragging whale-blubber bait; its stalking bluff fades once you show no prey behaviour."
+    },
+    "abilities": [
+      {
+        "name": "Serrated Bite",
+        "description": "Massive bite that causes severe bleeding."
+      },
+      {
+        "name": "Breach Strike",
+        "description": "Leaps to strike surface targets."
+      }
+    ],
+    "wild_behavior": "Hunts whales and giant reptiles, patrolling migration routes. Stays in open water during most of the year, nurseries in warm shallows.",
+    "tier": 5
+  },
+  {
+    "id": "terragrade",
+    "name": "Terragrade",
+    "inspiration": [
+      "Megatherium",
+      "Eremotherium"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna",
+      "pleistocene_mammoth_steppe"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 6.0,
+      "height_m": 3.5,
+      "mass_kg": 4000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped",
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.2,
+      "smell": 0.8,
+      "hearing": 0.4,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.3,
+      "curiosity": 0.3,
+      "territoriality": 0.6,
+      "sociability": 0.3,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "harvesting": 0.8,
+      "combat_melee": 0.7,
+      "defense_guarding": 0.6,
+      "climbing": 0.5,
+      "foraging": 0.6
+    },
+    "innate_techniques": [
+      "claw_rake",
+      "rear_brace",
+      "leaf_hook"
+    ],
+    "roles": [
+      "harvest",
+      "guard",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Offer branches pulled to its reach while keeping to its side; it places its claws on the handler's shoulder as a sign of acceptance."
+    },
+    "abilities": [
+      {
+        "name": "Claw Rake",
+        "description": "Powerful claw strikes that tear."
+      },
+      {
+        "name": "Rear Brace",
+        "description": "Rears on hind legs to defend."
+      }
+    ],
+    "wild_behavior": "Browses tall trees alone, walking slowly and rearing to pull branches. Scares predators by raising its arms.",
+    "tier": 3
+  },
+  {
+    "id": "spadetusk",
+    "name": "Spadetusk",
+    "inspiration": [
+      "Platybelodon",
+      "Gomphotherium"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 4.0,
+      "height_m": 2.5,
+      "mass_kg": 4500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.7,
+      "hearing": 0.7,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.4,
+      "sociability": 0.8,
+      "patience": 0.7,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.7,
+      "digging_burrowing": 0.4,
+      "harvesting": 0.6,
+      "defense_herd_circle": 0.7,
+      "communication": 0.6
+    },
+    "innate_techniques": [
+      "shovel_tusk_dig",
+      "herd_ring",
+      "trunk_signal"
+    ],
+    "roles": [
+      "transport",
+      "harvest",
+      "dig"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.4
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Dig a wide watering trough at the base and replenish it; the herd relocates."
+    },
+    "abilities": [
+      {
+        "name": "Shovel Tusk",
+        "description": "Digs water holes and uproots plants."
+      },
+      {
+        "name": "Trunk Signal",
+        "description": "Silent communication to herd."
+      }
+    ],
+    "wild_behavior": "Matriarch-led herds wander savannas, digging for water in dry seasons.",
+    "tier": 3
+  },
+  {
+    "id": "carapaxon",
+    "name": "Carapaxon",
+    "inspiration": [
+      "Glyptodon",
+      "Doedicurus"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.5,
+      "mass_kg": 1000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.4,
+      "hearing": 0.3,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        2,
+        5
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.2,
+      "curiosity": 0.2,
+      "territoriality": 0.5,
+      "sociability": 0.6,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "defense_guarding": 0.9,
+      "combat_melee": 0.6,
+      "foraging": 0.5,
+      "defense_herd_circle": 0.4,
+      "transport_hauling": 0.3
+    },
+    "innate_techniques": [
+      "spike_tail_whirl",
+      "hunker_dome",
+      "grass_graze"
+    ],
+    "roles": [
+      "guard",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Offer fresh grass in a sheltered paddock; its shell opens and it accepts guard duties."
+    },
+    "abilities": [
+      {
+        "name": "Dome Hunker",
+        "description": "Gains immunity-level defense while stationary."
+      },
+      {
+        "name": "Mace Tail",
+        "description": "Spiked tail swing."
+      }
+    ],
+    "wild_behavior": "Grazes in small groups and tucks into its shell when attacked. Mud wallows keep parasites down.",
+    "tier": 2
+  },
+  {
+    "id": "aeroclast",
+    "name": "Aeroclast",
+    "inspiration": [
+      "Argentavis",
+      "Aiolornis"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna",
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "aerial",
+    "size": {
+      "length_m": 3.5,
+      "height_m": 1.5,
+      "mass_kg": 70.0
+    },
+    "diet": "scavenger",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.9,
+      "smell": 0.5,
+      "hearing": 0.3,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        2
+      ]
+    },
+    "instincts": {
+      "aggression": 0.4,
+      "fear": 0.3,
+      "curiosity": 0.5,
+      "territoriality": 0.6,
+      "sociability": 0.4,
+      "patience": 0.8,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.9,
+      "tracking": 0.7,
+      "transport_hauling": 0.4,
+      "retrieval_rescue": 0.4,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "updraft_climb",
+      "carrion_spot",
+      "crash_land"
+    ],
+    "roles": [
+      "flying_mount",
+      "scout",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Lay out carrion in a courtship-like display; its ritual of exchanging gifts bonds it."
+    },
+    "abilities": [
+      {
+        "name": "Updraft Climb",
+        "description": "Efficient soaring in thermals."
+      },
+      {
+        "name": "Carrion Spot",
+        "description": "Detects carrion at long distances."
+      }
+    ],
+    "wild_behavior": "Soars at high altitude searching for carcasses and defends nesting cliffs. Circles over dying herds.",
+    "tier": 3
+  },
+  {
+    "id": "branchhorn",
+    "name": "Branchhorn",
+    "inspiration": [
+      "Sivatherium",
+      "Giraffokeryx"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 2.6,
+      "mass_kg": 800.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.5,
+      "hearing": 0.6,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        14
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.6,
+      "curiosity": 0.4,
+      "territoriality": 0.5,
+      "sociability": 0.7,
+      "patience": 0.5,
+      "playfulness": 0.4
+    },
+    "skill_affinity": {
+      "foraging": 0.6,
+      "evasion": 0.6,
+      "defense_herd_circle": 0.5,
+      "transport_hauling": 0.5,
+      "scouting_aerial": 0.3
+    },
+    "innate_techniques": [
+      "antler_clash",
+      "tall_browse",
+      "herd_wedge"
+    ],
+    "roles": [
+      "mount",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Present salt and young shoots at its height; it accepts a saddle after regular rides."
+    },
+    "abilities": [
+      {
+        "name": "Antler Clash",
+        "description": "Branching horn charge."
+      },
+      {
+        "name": "Tall Browse",
+        "description": "Collects tall tree foliage."
+      }
+    ],
+    "wild_behavior": "Herds roam the savanna eating leaves from tall trees. Males compete with branched horns.",
+    "tier": 2
+  },
+  {
+    "id": "digdrome",
+    "name": "Digdrome",
+    "inspiration": [
+      "Diprotodon"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "neogene_savanna",
+      "pleistocene_mammoth_steppe"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.5,
+      "height_m": 1.8,
+      "mass_kg": 2500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.6,
+      "hearing": 0.4,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        10
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.4,
+      "sociability": 0.7,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.7,
+      "foraging": 0.6,
+      "digging_burrowing": 0.3,
+      "defense_herd_circle": 0.5,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "pouch_carry",
+      "shrub_grub",
+      "mud_trek"
+    ],
+    "roles": [
+      "transport",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.3
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Plant a salt-lick garden; the herd adopts the area as its seasonal range and accepts packs."
+    },
+    "abilities": [
+      {
+        "name": "Pouch Carry",
+        "description": "Carries young and small cargo."
+      },
+      {
+        "name": "Shrub Grub",
+        "description": "Rapidly clears shrubs."
+      }
+    ],
+    "wild_behavior": "Large slow marsupial-like browsers travel along waterways, grubbing shrubs and trekking in mud.",
+    "tier": 3
+  },
+  {
+    "id": "lanatusk",
+    "name": "Lanatusk",
+    "inspiration": [
+      "Mammuthus",
+      "Palaeoloxodon"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe",
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 4.5,
+      "height_m": 3.5,
+      "mass_kg": 6000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.3,
+      "curiosity": 0.3,
+      "territoriality": 0.5,
+      "sociability": 0.9,
+      "patience": 0.8,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "transport_hauling": 0.8,
+      "defense_herd_circle": 0.8,
+      "defense_guarding": 0.6,
+      "communication": 0.6,
+      "foraging": 0.5,
+      "combat_melee": 0.5
+    },
+    "innate_techniques": [
+      "tusk_snowplow",
+      "herd_circle",
+      "trunk_horn"
+    ],
+    "roles": [
+      "transport",
+      "guard",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Clear snow from grazing patches near the base through winter; the herd learns your camp is a feeding ground."
+    },
+    "abilities": [
+      {
+        "name": "Tusk Snowplow",
+        "description": "Clears snow and ice from paths."
+      },
+      {
+        "name": "Herd Circle",
+        "description": "Herd forms a protective ring."
+      }
+    ],
+    "wild_behavior": "Matriarchal herds migrate across steppe and valleys; calves are encircled when wolves approach.",
+    "tier": 3
+  },
+  {
+    "id": "monoceron",
+    "name": "Monoceron",
+    "inspiration": [
+      "Elasmotherium",
+      "Coelodonta"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 5.0,
+      "height_m": 2.0,
+      "mass_kg": 4000.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.2,
+      "smell": 0.8,
+      "hearing": 0.5,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.8,
+      "sociability": 0.1,
+      "patience": 0.6,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "combat_melee": 0.8,
+      "defense_guarding": 0.6,
+      "foraging": 0.5,
+      "territory_patrol": 0.6,
+      "transport_hauling": 0.3
+    },
+    "innate_techniques": [
+      "horn_charge",
+      "ground_stomp",
+      "snow_bluff"
+    ],
+    "roles": [
+      "combat",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Stand your ground against its bluff charge three times; if you hold without flinching, it follows you."
+    },
+    "abilities": [
+      {
+        "name": "Great Horn",
+        "description": "Horn charge with huge knockback."
+      },
+      {
+        "name": "Ground Stomp",
+        "description": "Stuns nearby enemies."
+      }
+    ],
+    "wild_behavior": "Solitary grazers on steppe grasslands who charge intruders. Defend patches of grass.",
+    "tier": 4
+  },
+  {
+    "id": "falcidens",
+    "name": "Falcidens",
+    "inspiration": [
+      "Smilodon",
+      "Homotherium"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe",
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.3,
+      "height_m": 1.1,
+      "mass_kg": 250.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.7,
+      "hearing": 0.6,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        2,
+        5
+      ]
+    },
+    "instincts": {
+      "aggression": 0.8,
+      "fear": 0.2,
+      "curiosity": 0.4,
+      "territoriality": 0.6,
+      "sociability": 0.6,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.9,
+      "hunting_cooperative": 0.6,
+      "combat_melee": 0.8,
+      "stealth": 0.6,
+      "capture_nonlethal": 0.3
+    },
+    "innate_techniques": [
+      "saber_drop",
+      "flank_pin",
+      "cub_guard"
+    ],
+    "roles": [
+      "combat",
+      "mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "imprinting_egg",
+      "description": "Raise a cub from an orphaned den; it imprints on the handler as a pride member."
+    },
+    "abilities": [
+      {
+        "name": "Saber Drop",
+        "description": "Heavy stabbing bite from ambush."
+      },
+      {
+        "name": "Flank Pin",
+        "description": "Pins prey with powerful forelimbs."
+      }
+    ],
+    "wild_behavior": "Small prides ambush big herbivores from tall grass. They use caves as dens.",
+    "tier": 4
+  },
+  {
+    "id": "cinderlupus",
+    "name": "Cinderlupus",
+    "inspiration": [
+      "Aenocyon",
+      "Canis dirus"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe",
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.6,
+      "height_m": 0.9,
+      "mass_kg": 60.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.9,
+      "hearing": 0.8,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        5,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.3,
+      "curiosity": 0.6,
+      "territoriality": 0.6,
+      "sociability": 0.9,
+      "patience": 0.7,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.9,
+      "hunting_pursuit": 0.9,
+      "tracking": 0.9,
+      "communication": 0.7,
+      "retrieval_rescue": 0.5,
+      "territory_patrol": 0.5
+    },
+    "innate_techniques": [
+      "howl_relay",
+      "snow_track",
+      "pack_hamper"
+    ],
+    "roles": [
+      "combat",
+      "mount",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "imprinting_egg",
+      "description": "Raise a litter together with pack mates; pups imprint on the handler's household."
+    },
+    "abilities": [
+      {
+        "name": "Howl Relay",
+        "description": "Calls across long distances to gather pack mates."
+      },
+      {
+        "name": "Snow Track",
+        "description": "Follows scent in snow."
+      }
+    ],
+    "wild_behavior": "Packs hunt in relays across steppe; they share kills and keep a hierarchy.",
+    "tier": 2
+  },
+  {
+    "id": "tallpaw",
+    "name": "Tallpaw",
+    "inspiration": [
+      "Arctodus",
+      "Arctotherium"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe",
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 3.5,
+      "height_m": 3.4,
+      "mass_kg": 900.0
+    },
+    "diet": "omnivore",
+    "locomotion": [
+      "quadruped",
+      "facultative_biped"
+    ],
+    "senses": {
+      "vision": 0.5,
+      "smell": 0.9,
+      "hearing": 0.5,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.2,
+      "curiosity": 0.4,
+      "territoriality": 0.8,
+      "sociability": 0.1,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.7,
+      "tracking": 0.8,
+      "combat_melee": 0.8,
+      "foraging": 0.6,
+      "climbing": 0.4,
+      "territory_patrol": 0.6
+    },
+    "innate_techniques": [
+      "stand_scout",
+      "long_stride_chase",
+      "scent_claim"
+    ],
+    "roles": [
+      "combat",
+      "mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Gain dominance in a long standoff over a fresh carcass without retreating; it will sit down to share."
+    },
+    "abilities": [
+      {
+        "name": "Standing Scout",
+        "description": "Rears to survey long distances."
+      },
+      {
+        "name": "Long-Stride Chase",
+        "description": "Fast chase over long distances."
+      }
+    ],
+    "wild_behavior": "Wide-ranging solitary hunters and scavengers who steal kills from smaller predators.",
+    "tier": 4
+  },
+  {
+    "id": "gnawmaw",
+    "name": "Gnawmaw",
+    "inspiration": [
+      "Crocuta spelaea",
+      "Pachycrocuta"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe",
+      "karst_caves"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.6,
+      "height_m": 0.9,
+      "mass_kg": 70.0
+    },
+    "diet": "scavenger",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.6,
+      "smell": 0.9,
+      "hearing": 0.8,
+      "tremor": 0.2,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        6,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.3,
+      "curiosity": 0.6,
+      "territoriality": 0.6,
+      "sociability": 0.9,
+      "patience": 0.6,
+      "playfulness": 0.8
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.8,
+      "tracking": 0.8,
+      "foraging": 0.7,
+      "communication": 0.8,
+      "retrieval_rescue": 0.4,
+      "territory_patrol": 0.5
+    },
+    "innate_techniques": [
+      "bone_crack",
+      "laugh_signal",
+      "den_raid"
+    ],
+    "roles": [
+      "combat",
+      "scout",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Mimic its laughing calls and join its greeting ritual; it accepts the handler as a clan member."
+    },
+    "abilities": [
+      {
+        "name": "Bone Crack",
+        "description": "Powerful bite breaks bone for marrow."
+      },
+      {
+        "name": "Laugh Signal",
+        "description": "Calls coordinate the clan."
+      }
+    ],
+    "wild_behavior": "Clans use cave dens and scavenge on kills from larger predators.",
+    "tier": 2
+  },
+  {
+    "id": "coronag",
+    "name": "Coronag",
+    "inspiration": [
+      "Megaloceros"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_mammoth_steppe"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 2.5,
+      "height_m": 2.1,
+      "mass_kg": 600.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.5,
+      "hearing": 0.7,
+      "tremor": 0.3,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.7,
+      "curiosity": 0.4,
+      "territoriality": 0.5,
+      "sociability": 0.7,
+      "patience": 0.5,
+      "playfulness": 0.4
+    },
+    "skill_affinity": {
+      "hunting_pursuit": 0.4,
+      "evasion": 0.7,
+      "foraging": 0.6,
+      "communication": 0.5,
+      "transport_hauling": 0.5
+    },
+    "innate_techniques": [
+      "antler_sweep",
+      "rut_display",
+      "herd_flight"
+    ],
+    "roles": [
+      "mount",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Share fodder within its antler display circle and avoid sudden motions; it permits riding."
+    },
+    "abilities": [
+      {
+        "name": "Antler Sweep",
+        "description": "Wide antler sweep."
+      },
+      {
+        "name": "Rut Display",
+        "description": "Boosts allied morale."
+      }
+    ],
+    "wild_behavior": "Herds roam open steppe; males grow massive antlers and fight at rut.",
+    "tier": 2
+  },
+  {
+    "id": "saxifex",
+    "name": "Saxifex",
+    "inspiration": [
+      "Myotragus",
+      "Ibex"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "pleistocene_glacial_alps"
+    ],
+    "layer": "surface",
+    "size": {
+      "length_m": 1.5,
+      "height_m": 0.9,
+      "mass_kg": 80.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped",
+      "climber"
+    ],
+    "senses": {
+      "vision": 0.7,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        4,
+        15
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.6,
+      "curiosity": 0.5,
+      "territoriality": 0.4,
+      "sociability": 0.8,
+      "patience": 0.4,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "climbing": 0.9,
+      "evasion": 0.8,
+      "foraging": 0.6,
+      "scouting_aerial": 0.3,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "cliff_leap",
+      "scree_run",
+      "horn_butt"
+    ],
+    "roles": [
+      "mount",
+      "scout",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Share salt on a ledge and remain still; it follows you along cliff paths."
+    },
+    "abilities": [
+      {
+        "name": "Cliff Leap",
+        "description": "Leaps across cliffs."
+      },
+      {
+        "name": "Scree Run",
+        "description": "Runs across loose rock without slipping."
+      }
+    ],
+    "wild_behavior": "Nimble herds scale cliffs to eat alpine plants. They move higher in summer.",
+    "tier": 1
+  },
+  {
+    "id": "sonovex",
+    "name": "Sonovex",
+    "inspiration": [
+      "Troodon",
+      "Sinornithoides"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.6,
+      "height_m": 0.9,
+      "mass_kg": 25.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.5,
+      "hearing": 0.9,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.95
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.6,
+      "fear": 0.5,
+      "curiosity": 0.7,
+      "territoriality": 0.5,
+      "sociability": 0.9,
+      "patience": 0.6,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "hunting_cooperative": 0.9,
+      "tracking": 0.8,
+      "stealth": 0.8,
+      "communication": 0.7,
+      "hunting_pursuit": 0.6,
+      "scouting_aerial": 0.2
+    },
+    "innate_techniques": [
+      "click_map",
+      "pack_echo",
+      "dark_flank"
+    ],
+    "roles": [
+      "scout",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Trade clicks in the dark with a bone clicker; as the pack learns your pattern, it guides the handler through caves."
+    },
+    "abilities": [
+      {
+        "name": "Click Map",
+        "description": "Echolocation outlines caves and hidden foes."
+      },
+      {
+        "name": "Pack Echo",
+        "description": "Pack shares sonar maps."
+      }
+    ],
+    "wild_behavior": "Blind-ish descendants of troodontids who patrol karst galleries in clicking packs. Drive prey to dead ends and avoid noisy streams.",
+    "tier": 2
+  },
+  {
+    "id": "caecoplax",
+    "name": "Caecoplax",
+    "inspiration": [
+      "Ankylosaur",
+      "Scolosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "karst_caves",
+      "fungal_deep_caverns"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 4.0,
+      "height_m": 1.4,
+      "mass_kg": 1800.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped",
+      "burrower"
+    ],
+    "senses": {
+      "vision": 0.0,
+      "smell": 0.8,
+      "hearing": 0.5,
+      "tremor": 0.9,
+      "thermal": 0.0,
+      "echolocation": 0.2
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.3,
+      "curiosity": 0.2,
+      "territoriality": 0.6,
+      "sociability": 0.3,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "digging_burrowing": 0.9,
+      "defense_guarding": 0.8,
+      "foraging": 0.6,
+      "combat_melee": 0.5,
+      "territory_patrol": 0.4
+    },
+    "innate_techniques": [
+      "rock_delve",
+      "slab_shell",
+      "tunnel_stamp"
+    ],
+    "roles": [
+      "dig",
+      "guard",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 7,
+      "speed": 0.5
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Tap a steady rhythm on tunnel walls; its trust grows and it digs where you tap."
+    },
+    "abilities": [
+      {
+        "name": "Rock Delve",
+        "description": "Excavates stone at high hardness."
+      },
+      {
+        "name": "Slab Shell",
+        "description": "Heavy cover for allies in tunnels."
+      }
+    ],
+    "wild_behavior": "Blind ankylosaur descendant that tunnels slowly through limestone eating root mats and fungus. Excavations become routes for other cave animals.",
+    "tier": 3
+  },
+  {
+    "id": "pallidolm",
+    "name": "Pallidolm",
+    "inspiration": [
+      "Andrias",
+      "Prionosuchus"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "underground_rivers"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.8,
+      "height_m": 0.3,
+      "mass_kg": 15.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "swimmer",
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.0,
+      "smell": 0.8,
+      "hearing": 0.5,
+      "tremor": 0.8,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.3,
+      "fear": 0.5,
+      "curiosity": 0.4,
+      "territoriality": 0.5,
+      "sociability": 0.2,
+      "patience": 0.8,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "fishing": 0.7,
+      "swimming_diving": 0.8,
+      "stealth": 0.6,
+      "tracking": 0.5,
+      "evasion": 0.5
+    },
+    "innate_techniques": [
+      "pale_drift",
+      "scent_snap",
+      "pool_hold"
+    ],
+    "roles": [
+      "fishing",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Place fish at the edge of a dark pool; it grows used to the scent and sleeps by the handler."
+    },
+    "abilities": [
+      {
+        "name": "Pale Drift",
+        "description": "Moves silently in water."
+      },
+      {
+        "name": "Scent Snap",
+        "description": "Snap on prey found by smell."
+      }
+    ],
+    "wild_behavior": "Lives in underground pools drifting for days, then snapping fish in sudden bursts.",
+    "tier": 1
+  },
+  {
+    "id": "guanoptera",
+    "name": "Guanoptera",
+    "inspiration": [
+      "Myotis",
+      "Desmodus"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 0.3,
+      "height_m": 0.1,
+      "mass_kg": 0.4
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.3,
+      "hearing": 0.8,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.95
+    },
+    "social": {
+      "structure": "swarm",
+      "group_size": [
+        50,
+        500
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.6,
+      "curiosity": 0.4,
+      "territoriality": 0.3,
+      "sociability": 0.95,
+      "patience": 0.3,
+      "playfulness": 0.5
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.6,
+      "communication": 0.8,
+      "tracking": 0.5,
+      "evasion": 0.9,
+      "foraging": 0.6
+    },
+    "innate_techniques": [
+      "cave_sonar",
+      "guano_drop",
+      "swarm_cloud"
+    ],
+    "roles": [
+      "scout",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "symbiosis_offer",
+      "description": "Install perches in a quiet cave section; the colony adopts the base and offers sonar scouting."
+    },
+    "abilities": [
+      {
+        "name": "Cave Sonar",
+        "description": "Maps tunnels instantly in a wide radius."
+      },
+      {
+        "name": "Guano Drop",
+        "description": "Produces fertiliser for farming."
+      }
+    ],
+    "wild_behavior": "Hundreds roost on cave roofs and swirl out at night. Their guano feeds fungi and beetles below.",
+    "tier": 1
+  },
+  {
+    "id": "emberstalk",
+    "name": "Emberstalk",
+    "inspiration": [
+      "Ceratosaurus",
+      "Dilophosaurus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "lava_tubes"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 2.6,
+      "height_m": 1.0,
+      "mass_kg": 80.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "biped"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.5,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.95,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "instincts": {
+      "aggression": 0.7,
+      "fear": 0.3,
+      "curiosity": 0.4,
+      "territoriality": 0.7,
+      "sociability": 0.4,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.9,
+      "tracking": 0.7,
+      "stealth": 0.7,
+      "combat_melee": 0.6,
+      "evasion": 0.5
+    },
+    "innate_techniques": [
+      "heat_sight",
+      "tube_lunge",
+      "basalt_hide"
+    ],
+    "roles": [
+      "combat",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Avoid the glow of its heat-pit gaze and stay calm in front of a hot flare; after a feeding standoff it submits."
+    },
+    "abilities": [
+      {
+        "name": "Heat Sight",
+        "description": "Sees warm creatures in total darkness."
+      },
+      {
+        "name": "Tube Lunge",
+        "description": "Surprise lunge from side tunnels."
+      }
+    ],
+    "wild_behavior": "Prowls warm lava tubes waiting beside vents for hot-blooded prey. Heat pits help it hunt in total dark.",
+    "tier": 4
+  },
+  {
+    "id": "basaltodon",
+    "name": "Basaltodon",
+    "inspiration": [
+      "Hypsilophodon",
+      "Hadrosaur"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "lava_tubes",
+      "crystal_geode_caverns"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.2,
+      "mass_kg": 700.0
+    },
+    "diet": "lithovore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.7,
+      "hearing": 0.4,
+      "tremor": 0.6,
+      "thermal": 0.4,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        3,
+        8
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.4,
+      "sociability": 0.6,
+      "patience": 0.6,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "digging_burrowing": 0.8,
+      "foraging": 0.7,
+      "harvesting": 0.7,
+      "defense_herd_circle": 0.5,
+      "defense_guarding": 0.5
+    },
+    "innate_techniques": [
+      "mineral_grind",
+      "obsidian_lick",
+      "vein_sense"
+    ],
+    "roles": [
+      "harvest",
+      "dig"
+    ],
+    "dig": {
+      "max_hardness": 8,
+      "speed": 0.5
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Supply mineral salts and crushed obsidian; it settles in the base and processes ore for you."
+    },
+    "abilities": [
+      {
+        "name": "Mineral Grind",
+        "description": "Processes ore into purified minerals."
+      },
+      {
+        "name": "Vein Sense",
+        "description": "Locates metal veins."
+      }
+    ],
+    "wild_behavior": "Grinds basalt and obsidian with gizzard stones, absorbing minerals. Leaves cavities lined with crystal dust.",
+    "tier": 3
+  },
+  {
+    "id": "umbrapede",
+    "name": "Umbrapede",
+    "inspiration": [
+      "Arthropleura",
+      "Eoarthropleura"
+    ],
+    "era": "carboniferous",
+    "habitats": [
+      "lava_tubes",
+      "fungal_deep_caverns",
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.2,
+      "height_m": 0.2,
+      "mass_kg": 12.0
+    },
+    "diet": "scavenger",
+    "locomotion": [
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.8,
+      "hearing": 0.3,
+      "tremor": 0.8,
+      "thermal": 0.3,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        5,
+        30
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.7,
+      "curiosity": 0.4,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.4,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "tracking": 0.6,
+      "stealth": 0.6,
+      "climbing": 0.5,
+      "retrieval_rescue": 0.3
+    },
+    "innate_techniques": [
+      "ember_scrape",
+      "fungus_clean",
+      "carrion_hunt"
+    ],
+    "roles": [
+      "utility",
+      "companion"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Leave decaying fruit beside a lamp; it adopts your cave camp as a scavenger post."
+    },
+    "abilities": [
+      {
+        "name": "Carrion Hunt",
+        "description": "Finds corpses and food waste."
+      },
+      {
+        "name": "Fungus Clean",
+        "description": "Clears fungal overgrowth."
+      }
+    ],
+    "wild_behavior": "Cleans tunnel floors of carcasses and spores. Colonies move through lava tubes in slow, glowing processions.",
+    "tier": 1
+  },
+  {
+    "id": "prismodon",
+    "name": "Prismodon",
+    "inspiration": [
+      "Cynodont",
+      "Diademodon"
+    ],
+    "era": "triassic",
+    "habitats": [
+      "crystal_geode_caverns"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 0.3,
+      "height_m": 0.1,
+      "mass_kg": 0.4
+    },
+    "diet": "lithovore",
+    "locomotion": [
+      "quadruped",
+      "burrower"
+    ],
+    "senses": {
+      "vision": 0.2,
+      "smell": 0.7,
+      "hearing": 0.6,
+      "tremor": 0.7,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        4,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.8,
+      "curiosity": 0.6,
+      "territoriality": 0.4,
+      "sociability": 0.7,
+      "patience": 0.4,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "digging_burrowing": 0.8,
+      "foraging": 0.7,
+      "harvesting": 0.6,
+      "evasion": 0.6,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "crystal_gnaw",
+      "gem_cheek_stash",
+      "resonance_squeak"
+    ],
+    "roles": [
+      "dig",
+      "harvest",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 5,
+      "speed": 0.8
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Offer small crystals from a geode; it hoards them in your pocket and returns for more."
+    },
+    "abilities": [
+      {
+        "name": "Crystal Gnaw",
+        "description": "Gnaws small crystal veins efficiently."
+      },
+      {
+        "name": "Gem Stash",
+        "description": "Stores gems in cheeks and delivers them."
+      }
+    ],
+    "wild_behavior": "Small colonies gnaw geode crystals and squeak resonant calls. They hide stashes of gems in burrows.",
+    "tier": 1
+  },
+  {
+    "id": "glimmerwing",
+    "name": "Glimmerwing",
+    "inspiration": [
+      "Cave pterosaur",
+      "Anurognathus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "crystal_geode_caverns",
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.2,
+      "height_m": 0.3,
+      "mass_kg": 3.0
+    },
+    "diet": "insectivore",
+    "locomotion": [
+      "flyer"
+    ],
+    "senses": {
+      "vision": 0.3,
+      "smell": 0.3,
+      "hearing": 0.8,
+      "tremor": 0.0,
+      "thermal": 0.0,
+      "echolocation": 0.7
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        6,
+        30
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.7,
+      "curiosity": 0.6,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.3,
+      "playfulness": 0.7
+    },
+    "skill_affinity": {
+      "scouting_aerial": 0.7,
+      "communication": 0.6,
+      "evasion": 0.8,
+      "foraging": 0.5,
+      "tracking": 0.5
+    },
+    "innate_techniques": [
+      "glint_flash",
+      "roof_cling",
+      "moth_snap"
+    ],
+    "roles": [
+      "scout",
+      "flying_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Reflect its wing glints with a polished crystal; it joins the display and perches on the handler."
+    },
+    "abilities": [
+      {
+        "name": "Glint Flash",
+        "description": "Blinding flash from its wing membranes."
+      },
+      {
+        "name": "Roof Cling",
+        "description": "Perches on ceilings unseen."
+      }
+    ],
+    "wild_behavior": "Pterosaur colonies cling to crystal ceilings and glide after cave moths. Their wings reflect light in mating displays.",
+    "tier": 2
+  },
+  {
+    "id": "opalnaut",
+    "name": "Opalnaut",
+    "inspiration": [
+      "Nautiloid",
+      "Ammonoid"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "crystal_geode_caverns",
+      "underground_rivers"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.5,
+      "height_m": 0.8,
+      "mass_kg": 90.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "crawler",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.2,
+      "smell": 0.5,
+      "hearing": 0.4,
+      "tremor": 0.6,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.4,
+      "curiosity": 0.4,
+      "territoriality": 0.6,
+      "sociability": 0.1,
+      "patience": 0.7,
+      "playfulness": 0.2
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.7,
+      "swimming_diving": 0.6,
+      "capture_nonlethal": 0.5,
+      "stealth": 0.6,
+      "tracking": 0.4
+    },
+    "innate_techniques": [
+      "shell_pearl_flash",
+      "tentacle_snare",
+      "jet_retreat"
+    ],
+    "roles": [
+      "capture",
+      "combat"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Present a carefully held polished pearl while resisting its tentacle snares; it yields once it has tested your composure."
+    },
+    "abilities": [
+      {
+        "name": "Tentacle Snare",
+        "description": "Ensnares small prey and removes weapons."
+      },
+      {
+        "name": "Pearl Flash",
+        "description": "Iridescent shell stuns attackers."
+      }
+    ],
+    "wild_behavior": "Crawls underwater along geode floors and snares fish and crustaceans with tentacles. Can retreat by jet.",
+    "tier": 2
+  },
+  {
+    "id": "nyxfin",
+    "name": "Nyxfin",
+    "inspiration": [
+      "Ophthalmosaurus",
+      "Cave fish-lizard"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "underground_rivers"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 0.6,
+      "mass_kg": 120.0
+    },
+    "diet": "piscivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.0,
+      "smell": 0.6,
+      "hearing": 0.7,
+      "tremor": 0.5,
+      "thermal": 0.0,
+      "echolocation": 0.9
+    },
+    "social": {
+      "structure": "pack",
+      "group_size": [
+        2,
+        6
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.4,
+      "curiosity": 0.5,
+      "territoriality": 0.5,
+      "sociability": 0.7,
+      "patience": 0.5,
+      "playfulness": 0.6
+    },
+    "skill_affinity": {
+      "fishing": 0.8,
+      "swimming_diving": 0.9,
+      "hunting_cooperative": 0.6,
+      "evasion": 0.6,
+      "tracking": 0.6
+    },
+    "innate_techniques": [
+      "echo_hunt",
+      "current_ride",
+      "silent_glide"
+    ],
+    "roles": [
+      "aquatic_mount",
+      "fishing",
+      "scout"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "mimic_courtship",
+      "description": "Echo its click patterns underwater via a bone clacker; it recognises you as a pod member."
+    },
+    "abilities": [
+      {
+        "name": "Echo Hunt",
+        "description": "Detects fish in dark waters."
+      },
+      {
+        "name": "Current Ride",
+        "description": "Rides currents with low stamina cost."
+      }
+    ],
+    "wild_behavior": "Blind ichthyosaur descendants hunt in pods along flooded galleries, using echoes to find fish.",
+    "tier": 3
+  },
+  {
+    "id": "umbrasuchus",
+    "name": "Umbrasuchus",
+    "inspiration": [
+      "Sarcosuchus",
+      "Deinosuchus"
+    ],
+    "era": "cretaceous",
+    "habitats": [
+      "underground_rivers",
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 6.0,
+      "height_m": 1.1,
+      "mass_kg": 1800.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "quadruped",
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.0,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.9,
+      "thermal": 0.3,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.85,
+      "fear": 0.2,
+      "curiosity": 0.3,
+      "territoriality": 0.9,
+      "sociability": 0.1,
+      "patience": 0.9,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.9,
+      "combat_melee": 0.8,
+      "stealth": 0.7,
+      "swimming_diving": 0.7,
+      "tracking": 0.7,
+      "territory_patrol": 0.8
+    },
+    "innate_techniques": [
+      "tremor_ambush",
+      "death_roll_dark",
+      "cavern_hold"
+    ],
+    "roles": [
+      "combat",
+      "guard"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Defeat it in a non-lethal grappling duel on a sandbar and share an offering of eel meat; it then yields."
+    },
+    "abilities": [
+      {
+        "name": "Tremor Ambush",
+        "description": "Waits for vibrations before striking."
+      },
+      {
+        "name": "Death Roll",
+        "description": "Rolls to tear prey apart."
+      }
+    ],
+    "wild_behavior": "Blind giant crocodilian lying in subterranean river bends, striking at tremors. Defends a stretch of river and its sandbar.",
+    "tier": 4
+  },
+  {
+    "id": "sporodon",
+    "name": "Sporodon",
+    "inspiration": [
+      "Dicynodont",
+      "Oudenodon"
+    ],
+    "era": "permian",
+    "habitats": [
+      "fungal_deep_caverns",
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 2.0,
+      "height_m": 0.9,
+      "mass_kg": 150.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.8,
+      "hearing": 0.4,
+      "tremor": 0.6,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "herd",
+      "group_size": [
+        5,
+        20
+      ]
+    },
+    "instincts": {
+      "aggression": 0.1,
+      "fear": 0.6,
+      "curiosity": 0.3,
+      "territoriality": 0.3,
+      "sociability": 0.8,
+      "patience": 0.6,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "harvesting": 0.6,
+      "digging_burrowing": 0.4,
+      "defense_herd_circle": 0.5,
+      "communication": 0.4
+    },
+    "innate_techniques": [
+      "fungus_graze",
+      "beak_shear",
+      "spore_walk"
+    ],
+    "roles": [
+      "harvest",
+      "transport"
+    ],
+    "dig": {
+      "max_hardness": 3,
+      "speed": 0.4
+    },
+    "taming": {
+      "method": "feeding_passive",
+      "description": "Seed a fungus plot with mulch; it brings its herd to graze and accepts harvest duty."
+    },
+    "abilities": [
+      {
+        "name": "Fungus Graze",
+        "description": "Eats spores and fungus without harm."
+      },
+      {
+        "name": "Beak Shear",
+        "description": "Cuts tough fungal stalks."
+      }
+    ],
+    "wild_behavior": "Herds follow fungal blooms and cultivate patches by spreading spores in dung. Relatives of beaked synapsids.",
+    "tier": 1
+  },
+  {
+    "id": "penduloth",
+    "name": "Penduloth",
+    "inspiration": [
+      "Mylodon",
+      "Hapalops"
+    ],
+    "era": "pleistocene",
+    "habitats": [
+      "fungal_deep_caverns",
+      "karst_caves"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 3.0,
+      "height_m": 1.5,
+      "mass_kg": 500.0
+    },
+    "diet": "herbivore",
+    "locomotion": [
+      "climber",
+      "quadruped"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.8,
+      "hearing": 0.5,
+      "tremor": 0.4,
+      "thermal": 0.0,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "pair",
+      "group_size": [
+        1,
+        3
+      ]
+    },
+    "instincts": {
+      "aggression": 0.2,
+      "fear": 0.5,
+      "curiosity": 0.4,
+      "territoriality": 0.4,
+      "sociability": 0.4,
+      "patience": 0.9,
+      "playfulness": 0.3
+    },
+    "skill_affinity": {
+      "climbing": 0.9,
+      "foraging": 0.6,
+      "harvesting": 0.6,
+      "stealth": 0.4,
+      "defense_guarding": 0.4
+    },
+    "innate_techniques": [
+      "ceiling_hang",
+      "slow_graze",
+      "claw_snag"
+    ],
+    "roles": [
+      "mount",
+      "harvest",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "trust_building",
+      "description": "Hang a hammock beside its roost; it accepts the handler to ride on its back."
+    },
+    "abilities": [
+      {
+        "name": "Ceiling Hang",
+        "description": "Hangs upside down on cave roofs and lets allies climb."
+      },
+      {
+        "name": "Slow Graze",
+        "description": "Slow-grazing mat feeding lowers noise."
+      }
+    ],
+    "wild_behavior": "Hangs from stalactites to graze hanging mats of lichen and roots. Very slow but strong, rarely noticed.",
+    "tier": 2
+  },
+  {
+    "id": "pyrelasmus",
+    "name": "Pyrelasmus",
+    "inspiration": [
+      "Plesiosaur",
+      "Pliosaur"
+    ],
+    "era": "jurassic",
+    "habitats": [
+      "abyssal_magma_depths"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 9.0,
+      "height_m": 2.0,
+      "mass_kg": 5000.0
+    },
+    "diet": "carnivore",
+    "locomotion": [
+      "swimmer"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.6,
+      "hearing": 0.6,
+      "tremor": 0.5,
+      "thermal": 0.9,
+      "echolocation": 0.5
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.8,
+      "fear": 0.1,
+      "curiosity": 0.3,
+      "territoriality": 0.9,
+      "sociability": 0.1,
+      "patience": 0.8,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "hunting_ambush": 0.8,
+      "hunting_pursuit": 0.7,
+      "combat_melee": 0.8,
+      "swimming_diving": 0.9,
+      "tracking": 0.8,
+      "territory_patrol": 0.8
+    },
+    "innate_techniques": [
+      "vent_ambush",
+      "heat_shield_hide",
+      "magma_surge"
+    ],
+    "roles": [
+      "combat",
+      "aquatic_mount"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Defeat it in a heat-tolerant contest in warm water, offering a vent fish; it concedes only after you endure the vents."
+    },
+    "abilities": [
+      {
+        "name": "Vent Ambush",
+        "description": "Waits next to hydrothermal vents then surges."
+      },
+      {
+        "name": "Magma Surge",
+        "description": "Sprays superheated water."
+      }
+    ],
+    "wild_behavior": "Deepwater predator in magma-heated seas. Hunts creatures that gather around vents.",
+    "tier": 5
+  },
+  {
+    "id": "thermosyph",
+    "name": "Thermosyph",
+    "inspiration": [
+      "Tube worm",
+      "Rangea"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "abyssal_magma_depths"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 2.0,
+      "height_m": 1.5,
+      "mass_kg": 40.0
+    },
+    "diet": "filter_feeder",
+    "locomotion": [
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.0,
+      "smell": 0.4,
+      "hearing": 0.3,
+      "tremor": 0.8,
+      "thermal": 0.7,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "colony",
+      "group_size": [
+        10,
+        80
+      ]
+    },
+    "instincts": {
+      "aggression": 0.0,
+      "fear": 0.3,
+      "curiosity": 0.1,
+      "territoriality": 0.1,
+      "sociability": 0.9,
+      "patience": 1.0,
+      "playfulness": 0.0
+    },
+    "skill_affinity": {
+      "foraging": 0.8,
+      "harvesting": 0.6,
+      "defense_guarding": 0.4,
+      "construction": 0.3,
+      "communication": 0.3
+    },
+    "innate_techniques": [
+      "sulfur_sieve",
+      "vent_bloom",
+      "heat_pulse"
+    ],
+    "roles": [
+      "harvest",
+      "utility"
+    ],
+    "dig": {
+      "max_hardness": 0,
+      "speed": 0.0
+    },
+    "taming": {
+      "method": "symbiosis_offer",
+      "description": "Place cultured bacteria mats near it; it shares its vents and yields minerals."
+    },
+    "abilities": [
+      {
+        "name": "Sulfur Sieve",
+        "description": "Filters and produces sulfur compounds."
+      },
+      {
+        "name": "Heat Pulse",
+        "description": "Warms nearby allies in the cold deep."
+      }
+    ],
+    "wild_behavior": "Rooted clusters line magma vents, filtering bacteria. Provide shelter for small deep-sea animals.",
+    "tier": 2
+  },
+  {
+    "id": "scoriaclaw",
+    "name": "Scoriaclaw",
+    "inspiration": [
+      "Giant crab",
+      "Eurypterus"
+    ],
+    "era": "neogene",
+    "habitats": [
+      "abyssal_magma_depths",
+      "lava_tubes"
+    ],
+    "layer": "underground",
+    "size": {
+      "length_m": 1.5,
+      "height_m": 0.7,
+      "mass_kg": 120.0
+    },
+    "diet": "omnivore",
+    "locomotion": [
+      "crawler"
+    ],
+    "senses": {
+      "vision": 0.1,
+      "smell": 0.4,
+      "hearing": 0.4,
+      "tremor": 0.9,
+      "thermal": 0.6,
+      "echolocation": 0.0
+    },
+    "social": {
+      "structure": "solitary",
+      "group_size": [
+        1,
+        1
+      ]
+    },
+    "instincts": {
+      "aggression": 0.5,
+      "fear": 0.4,
+      "curiosity": 0.3,
+      "territoriality": 0.6,
+      "sociability": 0.2,
+      "patience": 0.7,
+      "playfulness": 0.1
+    },
+    "skill_affinity": {
+      "combat_melee": 0.6,
+      "defense_guarding": 0.7,
+      "foraging": 0.6,
+      "digging_burrowing": 0.4,
+      "capture_nonlethal": 0.4
+    },
+    "innate_techniques": [
+      "slag_carapace",
+      "pincer_crack",
+      "scorch_claw"
+    ],
+    "roles": [
+      "combat",
+      "guard",
+      "harvest"
+    ],
+    "dig": {
+      "max_hardness": 6,
+      "speed": 0.4
+    },
+    "taming": {
+      "method": "dominance",
+      "description": "Show no fear when it clacks claws and offer a vent shrimp; it submits to the first handler who breaks its claw-bluff."
+    },
+    "abilities": [
+      {
+        "name": "Slag Carapace",
+        "description": "Heat-resistant shell with high defense."
+      },
+      {
+        "name": "Pincer Crack",
+        "description": "Crushes shells and rocks."
+      }
+    ],
+    "wild_behavior": "Roams slag fields eating carrion and crustaceans. Burrows into hot ash to ambush.",
+    "tier": 3
+  }
+]

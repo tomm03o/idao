@@ -1,0 +1,73 @@
+{
+  "name": "dromaeosaur_20kg",
+  "notes": "Mid-size dromaeosaurid-like theropod. Hindlimb proportions follow small theropods (femur:tibia:metatarsus ~ 1:1.2:0.65, cursorial). Leg muscle fraction ~ 28% of body mass (both legs), in line with reconstructions of cursorial theropod hindlimb musculature (caudofemoralis-dominated hip extension). Tail and neck are partially pneumatic (lower density).",
+  "mass_kg": 20.0,
+  "timestep": 0.0025,
+  "torso": {"length": 0.50, "radius": 0.105, "density_factor": 1.0},
+  "head": {"length": 0.20, "radius": 0.045, "angle_deg": 100, "density_factor": 0.85},
+  "muscle": {"leg_muscle_fraction": 0.28},
+  "legs": [
+    {
+      "name": "hind",
+      "attach_x": 0.06,
+      "lateral": 0.085,
+      "muscle_mass_share": 1.0,
+      "segments": [
+        {"name": "femur", "length": 0.20, "radius": 0.040, "angle_deg": 25},
+        {"name": "tibia", "length": 0.24, "radius": 0.028, "angle_deg": -30},
+        {"name": "metatarsus", "length": 0.13, "radius": 0.020, "angle_deg": 18},
+        {"name": "toe", "length": 0.075, "radius": 0.017, "angle_deg": 80}
+      ],
+      "joints": [
+        [
+          {"name": "hip_pitch", "axis": [0, 1, 0], "range_deg": [-55, 70], "muscle_share": 0.42, "moment_arm_k": 0.20, "extensor_fraction": 0.62},
+          {"name": "hip_roll", "axis": [1, 0, 0], "range_deg": [-25, 25], "muscle_share": 0.07, "moment_arm_k": 0.12, "extensor_fraction": 0.5}
+        ],
+        [
+          {"name": "knee", "axis": [0, 1, 0], "range_deg": [-35, 90], "muscle_share": 0.24, "moment_arm_k": 0.12, "extensor_fraction": 0.6}
+        ],
+        [
+          {"name": "ankle", "axis": [0, 1, 0], "range_deg": [-70, 55], "muscle_share": 0.21, "moment_arm_k": 0.16, "extensor_fraction": 0.62}
+        ],
+        [
+          {"name": "toe", "axis": [0, 1, 0], "range_deg": [-50, 60], "muscle_share": 0.06, "moment_arm_k": 0.12, "extensor_fraction": 0.5}
+        ]
+      ]
+    }
+  ],
+  "tail": {
+    "muscle_fraction": 0.05,
+    "segments": [
+      {"name": "t1", "length": 0.40, "radius": 0.070, "angle_deg": -95, "density_factor": 0.95},
+      {"name": "t2", "length": 0.38, "radius": 0.045, "angle_deg": -95, "density_factor": 0.9},
+      {"name": "t3", "length": 0.36, "radius": 0.022, "angle_deg": -95, "density_factor": 0.85}
+    ],
+    "joints": [
+      [
+        {"name": "t1_pitch", "axis": [0, 1, 0], "range_deg": [-25, 25], "muscle_share": 0.30, "moment_arm_k": 0.25, "extensor_fraction": 0.5},
+        {"name": "t1_yaw", "axis": [0, 0, 1], "range_deg": [-30, 30], "muscle_share": 0.30, "moment_arm_k": 0.25, "extensor_fraction": 0.5}
+      ],
+      [
+        {"name": "t2_pitch", "axis": [0, 1, 0], "range_deg": [-25, 25], "muscle_share": 0.10, "moment_arm_k": 0.25, "extensor_fraction": 0.5},
+        {"name": "t2_yaw", "axis": [0, 0, 1], "range_deg": [-30, 30], "muscle_share": 0.10, "moment_arm_k": 0.25, "extensor_fraction": 0.5}
+      ],
+      [
+        {"name": "t3_pitch", "axis": [0, 1, 0], "range_deg": [-20, 20], "muscle_share": 0.10, "moment_arm_k": 0.25, "extensor_fraction": 0.5},
+        {"name": "t3_yaw", "axis": [0, 0, 1], "range_deg": [-25, 25], "muscle_share": 0.10, "moment_arm_k": 0.25, "extensor_fraction": 0.5}
+      ]
+    ]
+  },
+  "neck": {
+    "muscle_fraction": 0.03,
+    "segments": [
+      {"name": "n1", "length": 0.22, "radius": 0.040, "angle_deg": 45, "density_factor": 0.8}
+    ],
+    "joints": [
+      [
+        {"name": "n1_pitch", "axis": [0, 1, 0], "range_deg": [-35, 30], "muscle_share": 0.6, "moment_arm_k": 0.2, "extensor_fraction": 0.55},
+        {"name": "n1_yaw", "axis": [0, 0, 1], "range_deg": [-40, 40], "muscle_share": 0.4, "moment_arm_k": 0.2, "extensor_fraction": 0.5}
+      ]
+    ]
+  },
+  "gait": {"stride_frequency_hz": 1.8, "duty_factor": 0.6, "max_speed_mps": 3.0}
+}

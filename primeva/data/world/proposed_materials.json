@@ -1,0 +1,74 @@
+[
+  {
+    "id": "gypsum",
+    "note": "evaporiti permiane/triassiche; intonaco, fertilizzante"
+  },
+  {
+    "id": "dolomite",
+    "note": "calcare magnesiaco, piu duro del limestone; pareti dolomitiche"
+  },
+  {
+    "id": "travertine",
+    "note": "carbonato depositato da sorgenti termali; terrazze"
+  },
+  {
+    "id": "laterite",
+    "note": "suolo rosso ferro-alluminoso dei tropici; paleogene"
+  },
+  {
+    "id": "bauxite",
+    "note": "minerale di alluminio da laterite; tropici"
+  },
+  {
+    "id": "loess",
+    "note": "limo eolico del pleistocene; suolo fertile e friabile (frana)"
+  },
+  {
+    "id": "permafrost",
+    "note": "terreno ghiacciato duro che si scioglie con calore"
+  },
+  {
+    "id": "glacial_till",
+    "note": "morena: ghiaia e argille miste"
+  },
+  {
+    "id": "amber",
+    "note": "resina fossile; decorazione, commercio, inclusioni"
+  },
+  {
+    "id": "pumice",
+    "note": "roccia vulcanica leggera, galleggia"
+  },
+  {
+    "id": "calcite_flowstone",
+    "note": "speleotemi di grotta (stalattiti, colate)"
+  },
+  {
+    "id": "guano",
+    "note": "fertilizzante e nitrati da caverne con pipistrelli"
+  },
+  {
+    "id": "oil_shale",
+    "note": "scisto bituminoso: combustibile non-coal"
+  },
+  {
+    "id": "fossil_bed",
+    "note": "letto di ossa fossili: loot e indizi di lore"
+  },
+  {
+    "id": "flint",
+    "note": "selce delle falesie di gesso; utensili"
+  },
+  {
+    "id": "gold_native",
+    "note": "oro nativo nei filoni idrotermali; endgame"
+  },
+  {
+    "id": "manganese_nodule",
+    "note": "noduli sui fondali abissali"
+  },
+  {
+    "id": "cronite",
+    "note": "minerale di lore: cristallo che ancora i rifugi nel tempo (Pilastri di Eone)"
+  }
+]
